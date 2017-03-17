@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+</head>
+<body>
+        <div id="main">
+                <input v-model="suta">
+                <input type="button" name="" value="水果" v-on:click="aclick">
+                <input type="button" name="" value="汽车" v-on:click="bclick">
+                <input type="button" name="" value="苹果" v-on:click="cclick">
+                <li v-for="item in list|filterBy suta in 'category'|orderBy 'price' 1 |filterBy sutb in 'name'">{{item.name}}-{{item.price|discount 25| currency}}-{{item.category}}</li>
+        </div>
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/vue/1.0.8/vue.min.js"></script>
+        <script type="text/javascript">
+
+                var vm=new Vue({
+                        el:"#main",
+                        data:{
+                                text:"132  456",
+                                aaa:"555",
+                                suta:"",
+                                sutb:"",
+                                list:[
+									{name: '苹果',price: 25,category: "水果"},
+									{name: '香蕉',price: 15,category: "水果"},
+									{name: '雪梨',price: 65,category: "水果"},
+									{name: '宝马',price: 2500,category: "汽车"},
+									{name: '奔驰',price: 10025,category: "汽车"},
+									{name: '柑橘',price: 15,category: "水果"},
+									{name: '奥迪',price: 25,category: "汽车"}
+                                ]                        },
+                        filters: {
+                                        discount: function(value, discount) {
+                                            return value * (discount / 100);
+                                        }
+                                    },
+                        methods:{
+                                aclick:function(){
+                                        (this.suta=="")?this.suta="水果":this.suta="";
+                                },
+                                bclick:function(){
+                                        this.suta="汽车";
+                                },
+                                cclick:function(){
+                                        this.sutb="苹果";
+                                }
+                        }
+                })
+
+        </script>
+</body>
+</html> 
