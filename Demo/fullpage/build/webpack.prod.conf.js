@@ -1,16 +1,3 @@
-/*构建的时候用到的webpack配置来自webpack.prod.conf.js，该配置同样是在webpack.base.conf基础上的进一步完善。主要完成下面几件事情：
-
-    合并基础的webpack配置
-    使用styleLoaders
-    配置webpack的输出
-    配置webpack插件
-    gzip模式下的webpack插件配置
-    webpack-bundle分析
-
-说明： webpack插件里面多了丑化压缩代码以及抽离css文件等插件。
-
-详情请看代码：*/
-
 var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
@@ -20,16 +7,10 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-
-// 用于webpack生成的bundle中提取文本到特定文件中的插件
-//可以抽取css，js文件将其与webpack输出的bundle分离
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
-var env = process.env.NODE_ENV === 'testing'
-  ? require('../config/test.env')
-  : config.build.env
+var env = config.build.env
 
-// 合并基础的webpack配置
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -38,43 +19,38 @@ var webpackConfig = merge(baseWebpackConfig, {
     })
   },
   devtool: config.build.productionSourceMap ? '#source-map' : false,
-  // 配置webpack的输出
   output: {
-    // 编译输出目录
     path: config.build.assetsRoot,
-    // 编译输出文件名格式
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    // 没有指定输出名的文件 输出的文件名格式
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
-
-  // 配置webpack插件
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    // 丑化压缩代码
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       },
       sourceMap: true
     }),
-    // 抽离 CSS文件
+    // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
-    new OptimizeCSSPlugin(),
+    new OptimizeCSSPlugin({
+      cssProcessorOptions: {
+        safe: true
+      }
+    }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: process.env.NODE_ENV === 'testing'
-        ? 'index.html'
-        : config.build.index,
+      filename: config.build.index,
       template: 'index.html',
       inject: true,
       minify: {
@@ -117,7 +93,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     ])
   ]
 })
-// gzip 模式下需要引入 compression插件进行压缩
+
 if (config.build.productionGzip) {
   var CompressionWebpackPlugin = require('compression-webpack-plugin')
 

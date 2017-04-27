@@ -1,16 +1,3 @@
-/*发环境下的配置，下面开始来看构建环境下的配置。执行”npm run build”的时候首先执行的是build/build.js文件，build.js主要完成下面几件事：
-
-    loading动画
-    删除创建目标文件夹
-    webpack编译
-    输出信息
-
-说明： webpack编译之后会输出到配置里面指定的目标文件夹；删除目标文件夹之后再创建是为了去除旧的内容，以免产生不可预测的影响。
-
-详情请看代码注释：*/
-
-// https://github.com/shellhs/shelljs
-// 检查NodeJS和npm的版本
 require('./check-versions')()
 
 process.env.NODE_ENV = 'production'
@@ -18,24 +5,19 @@ process.env.NODE_ENV = 'production'
 var ora = require('ora')
 var rm = require('rimraf')
 var path = require('path')
-// 用于在控制台输出带字体颜色的插件
 var chalk = require('chalk')
-
 var webpack = require('webpack')
 var config = require('../config')
 var webpackConfig = require('./webpack.prod.conf')
 
 var spinner = ora('building for production...')
-spinner.start()   // 开启loading动画
+spinner.start()
 
-// 输出文件的目标文件
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   if (err) throw err
-    // webpack 编译
   webpack(webpackConfig, function (err, stats) {
-    spinner.stop()  //停止loading动画
+    spinner.stop()
     if (err) throw err
-      // 没有出错则输出相关信息
     process.stdout.write(stats.toString({
       colors: true,
       modules: false,

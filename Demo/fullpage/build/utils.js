@@ -1,6 +1,3 @@
-/*
- * 这个文件的主要目的是处理fonts文件
- */
 var path = require('path')
 var config = require('../config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -23,7 +20,7 @@ exports.cssLoaders = function (options) {
     }
   }
 
-  // 生成与提取文本插件一起使用的加载程序字符串
+  // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
     var loaders = [cssLoader]
     if (loader) {
@@ -35,7 +32,8 @@ exports.cssLoaders = function (options) {
       })
     }
 
-    // 在指定选项时提取CSS(生产建设中的情况)
+    // Extract CSS when that option is specified
+    // (which is the case during production build)
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
@@ -46,7 +44,7 @@ exports.cssLoaders = function (options) {
     }
   }
 
-  // http://vuejs.github.io/vue-loader/en/configurations/extract-css.html
+  // https://vue-loader.vuejs.org/en/configurations/extract-css.html
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
@@ -58,7 +56,7 @@ exports.cssLoaders = function (options) {
   }
 }
 
-// 生成独立样式文件 (outside of .vue)
+// Generate loaders for standalone style files (outside of .vue)
 exports.styleLoaders = function (options) {
   var output = []
   var loaders = exports.cssLoaders(options)
