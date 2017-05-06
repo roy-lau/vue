@@ -14,19 +14,17 @@
           </ul>
           <div v-if="!product.last" class="hr"></div>
         </template>
-        
       </div>
       <div class="index-left-block lastest-news">
         <h2>最新消息</h2>
         <ul>
-         <li v-for="item in newsList">
-           <a :href="item.url" class="new-item">{{ item.title }}</a>
-         </li>
+          <li v-for="item in newsList">
+            <a :href="item.url" class="new-item">{{ item.title }}</a>
+          </li>
         </ul>
       </div>
     </div>
     <div class="index-right">
-    <!-- 幻灯片组件 -->
       <slide-show :slides="slides" :inv="invTime"></slide-show>
       <div class="index-board-list">
         <div
@@ -47,22 +45,22 @@
 </template>
 
 <script>
-import slideShow from '@/components/slideShow'
+import slideShow from '../components/slideShow'
 export default {
   components: {
     slideShow
   },
-/*  created () {
-    this.$http.get('api/getNewsList').then((res) => {
-      	this.newsList = res.data
+  created: function () {
+    this.$http.get('api/getNewsList')
+    .then((res) => {
+      this.newsList = res.data
     }, (err) => {
-      	console.log(err)
+      console.log(err)
     })
-  },*/
+  },
   data () {
     return {
       invTime: 2000,
-      // 幻灯片的图片信息（vuejs的js中使用路径需要加require()）
       slides: [
         {
           src: require('../assets/slideShow/pic1.jpg'),
@@ -115,7 +113,7 @@ export default {
           saleout: false
         }
       ],
-      newsList: [],   // newsList是通过ajax请求来的--第六章第5小结
+      newsList: [],
       productList: {
         pc: {
           title: 'PC产品',
@@ -169,97 +167,97 @@ export default {
 </script>
 
 <style scoped>
-	.index-wrap {
-	  width: 1200px;
-	  margin: 0 auto;
-	  overflow: hidden;
-	}
-	.index-left {
-	  float: left;
-	  width: 300px;
-	  text-align: left;
-	}
-	.index-right {
-	  float: left;
-	  width: 900px;
-	}
-	.index-left-block {
-	  margin: 15px;
-	  background: #fff;
-	  box-shadow: 0 0 1px #ddd;
-	}
-	.index-left-block .hr {
-	  margin-bottom: 20px;
-	}
-	.index-left-block h2 {
-	  background: #4fc08d;
-	  color: #fff;
-	  padding: 10px 15px;
-	  margin-bottom: 20px;
-	}
-	.index-left-block h3 {
-	  padding: 0 15px 5px 15px;
-	  font-weight: bold;
-	  color: #222;
-	}
-	.index-left-block ul {
-	  padding: 10px 15px;
-	}
-	.index-left-block li {
-	  padding: 5px;
-	}
-	.index-board-list {
-	  overflow: hidden;
-	}
-	.index-board-item {
-	  float: left;
-	  width: 400px;
-	  background: #fff;
-	  box-shadow: 0 0 1px #ddd;
-	  padding: 20px;
-	  margin-right: 20px;
-	  margin-bottom: 20px;
-	}
-	.index-board-item-inner {
-	  min-height: 125px;
-	  padding-left: 120px;
-	}
-	.index-board-car .index-board-item-inner{
-	  background: url(../assets/images/1.png) no-repeat;
-	}
-	.index-board-loud .index-board-item-inner{
-	  background: url(../assets/images/2.png) no-repeat;
-	}
-	.index-board-earth .index-board-item-inner{
-	  background: url(../assets/images/3.png) no-repeat;
-	}
-	.index-board-hill .index-board-item-inner{
-	  background: url(../assets/images/4.png) no-repeat;
-	}
-	.index-board-item h2 {
-	  font-size: 18px;
-	  font-weight: bold;
-	  color: #000;
-	  margin-bottom: 15px;
-	}
-	.line-last {
-	  margin-right: 0;
-	}
-	.index-board-button {
-	  margin-top: 20px;
-	}
-	.lastest-news {
-	  min-height: 512px;
-	}
-	.hot-tag {
-	  background: red;
-	  color: #fff;
-	}
-	.new-item {
-	  display: inline-block;
-	  width: 230px;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-	  white-space: nowrap;
-	}
+.index-wrap {
+  width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.index-left {
+  float: left;
+  width: 300px;
+  text-align: left;
+}
+.index-right {
+  float: left;
+  width: 900px;
+}
+.index-left-block {
+  margin: 15px;
+  background: #fff;
+  box-shadow: 0 0 1px #ddd;
+}
+.index-left-block .hr {
+  margin-bottom: 20px;
+}
+.index-left-block h2 {
+  background: #4fc08d;
+  color: #fff;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+}
+.index-left-block h3 {
+  padding: 0 15px 5px 15px;
+  font-weight: bold;
+  color: #222;
+}
+.index-left-block ul {
+  padding: 10px 15px;
+}
+.index-left-block li {
+  padding: 5px;
+}
+.index-board-list {
+  overflow: hidden;
+}
+.index-board-item {
+  float: left;
+  width: 400px;
+  background: #fff;
+  box-shadow: 0 0 1px #ddd;
+  padding: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.index-board-item-inner {
+  min-height: 125px;
+  padding-left: 120px;
+}
+.index-board-car .index-board-item-inner{
+  background: url(../assets/images/1.png) no-repeat;
+}
+.index-board-loud .index-board-item-inner{
+  background: url(../assets/images/2.png) no-repeat;
+}
+.index-board-earth .index-board-item-inner{
+  background: url(../assets/images/3.png) no-repeat;
+}
+.index-board-hill .index-board-item-inner{
+  background: url(../assets/images/4.png) no-repeat;
+}
+.index-board-item h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 15px;
+}
+.line-last {
+  margin-right: 0;
+}
+.index-board-button {
+  margin-top: 20px;
+}
+.lastest-news {
+  min-height: 512px;
+}
+.hot-tag {
+  background: red;
+  color: #fff;
+}
+.new-item {
+  display: inline-block;
+  width: 230px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 </style>

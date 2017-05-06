@@ -3,9 +3,9 @@
   <!-- ##############################  头部布局 ################## 开始 -->
       <div class="app-head">
       <div class="app-head-inner">
-        <!-- <router-link :to="{path: '/'}"> -->
+        <router-link :to="{path: '/'}">
           <img src="../assets/logo.png">
-        <!-- </router-link> -->
+        </router-link>
         <div class="head-nav">
           <ul class="nav-list">
           <li> {{ username }}</li>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import dialog from './dialog'
+  import dialog from '@/components/base/dialog'
   import LogForm from './logForm'
   import RegForm from './regForm'
 

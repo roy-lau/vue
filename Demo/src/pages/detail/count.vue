@@ -1,32 +1,24 @@
 <template>
   <div class="sales-board">
       <div class="sales-board-intro">
-        <h2>广告发布</h2>
-        <p>广告活动按照广告计划执行，到完成广告创作并形成广告作品之后，经过广告主的最后审核同意，即可送到预定的媒介发布刊播。这项工作一般由媒介部门的有关专业人员负责，他们的任务就是专门负责与有关媒介单位接洽，安排有关广告的发播事宜，并对发播质量实施监督。</p>
+        <h2>数据统计</h2>
+        <p>历史资料、科学实验、检验、统计等所获得的和用于科学研究、技术设计、查证、决策等的数值加以统计为解决方案做前期准备。</p>
       </div>
       <div class="sales-board-form">
           <div class="sales-board-line">
               <div class="sales-board-line-left">
-                  购买数量：
+                  产品类型：
               </div>
               <div class="sales-board-line-right">
-                  <v-counter :max="100" :min="20"></v-counter>
+                  <v-chooser :selections="buyTypes"></v-chooser>
               </div>
           </div>
           <div class="sales-board-line">
               <div class="sales-board-line-left">
-                  行业：
+                  适用地区：
               </div>
               <div class="sales-board-line-right">
-                  <v-selection :selections="tradeList"></v-selection>
-              </div>
-          </div>
-          <div class="sales-board-line">
-              <div class="sales-board-line-left">
-                  产品版本：
-              </div>
-              <div class="sales-board-line-right">
-                  <v-mul-chooser :selections="versionList"></v-mul-chooser>
+                  <v-selection :selections="districts"></v-selection>
               </div>
           </div>
           <div class="sales-board-line">
@@ -56,7 +48,7 @@
       </div>
       <div class="sales-board-des">
         <h2>产品说明</h2>
-        <p>广告活动按照广告计划执行，到完成广告创作并形成广告作品之后，经过广告主的最后审核同意，即可送到预定的媒介发布刊播。这项工作一般由媒介部门的有关专业人员负责，他们的任务就是专门负责与有关媒介单位接洽，安排有关广告的发播事宜，并对发播质量实施监督。</p>
+        <p>历史资料、科学实验、检验、统计等所获得的和用于科学研究、技术设计、查证、决策等的数值加以统计为解决方案做前期准备。</p>
 
         <table class="sales-board-table">
           <tbody>
@@ -253,55 +245,53 @@
 
 <script>
 import VSelection from '../../components/base/selection'
-import VCounter from '../../components/base/counter'
-import VMulChooser from '../../components/base/multiplyChooser'
+import VChooser from '../../components/base/chooser'
 export default {
   components: {
-    VSelection,
-    VCounter,
-    VMulChooser
+    VChooser,
+    VSelection
   },
   data () {
     return {
-      tradeList: [
+      buyTypes: [
         {
-          label: '出版业',
+          label: '红色版',
           value: 0
         },
         {
-          label: '媒体',
+          label: '绿色版',
           value: 1
         },
         {
-          label: '金融',
+          label: '紫色版',
           value: 2
-        },
-        {
-          label: '互联网',
-          value: 3
-        },
-        {
-          label: '游戏',
-          value: 4
         }
       ],
-      versionList: [
+      districts: [
         {
-          label: '初级版',
+          label: '北京',
           value: 0
         },
         {
-          label: '中级版',
+          label: '上海',
           value: 1
         },
         {
-          label: '高级版',
+          label: '广州',
           value: 2
         },
         {
-          label: '专家版',
+          label: '天津',
           value: 3
-        }
+        },
+        {
+          label: '武汉',
+          value: 4
+        },
+        {
+          label: '重庆',
+          value: 5
+        },
       ]
     }
   }
@@ -309,6 +299,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style scoped>
 
 </style>

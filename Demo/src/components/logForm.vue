@@ -39,18 +39,14 @@ export default {
   computed: {
     userErrors () {
       let errorText, status
-
-      if (this.usernameModel == "") {
-            status = false
-          errorText = "用户名不能为空"
-        } else if (!/[a-zA-Z0-9]{3,12}/.test(this.usernameModel)) { 
-            status = false
-            errorText = "用户名为3-12位的字母，数字!"
-        }else {
-            status = true
-            errorText = ''
-       }
-       // 第一次进入清空判断的内容errorText
+      if (!/@/g.test(this.usernameModel)) {
+        status = false
+        errorText = '不包含@'
+      }
+      else {
+        status = true
+        errorText = ''
+      }
       if (!this.userFlag) {
         errorText = ''
         this.userFlag = true
@@ -70,7 +66,6 @@ export default {
         status = true
         errorText = ''
       }
-       // 第一次进入清空判断的内容errorText
       if (!this.passwordFlag) {
         errorText = ''
         this.passwordFlag = true
@@ -88,14 +83,12 @@ export default {
       }
       else {
         this.errorText = ''
-          this.$emit('has-log', this.usernameModel)
-
-        // this.$http.get('api/login')
-        // .then((res) => {
-        //   this.$emit('has-log', res.data)
-        // }, (error) => {
-        //   console.log(error)
-        // })
+        this.$http.get('api/login')
+        .then((res) => {
+          this.$emit('has-log', res.data)
+        }, (error) => {
+          console.log(error)
+        })
       }
     }
   }

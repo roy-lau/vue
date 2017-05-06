@@ -1,13 +1,10 @@
-
-<!-- 详情页布局 -->
-
 <template>
   <div class="detail-wrap">
     <div class="detail-left">
       <div class="product-board">
         <img :src="productIcon">
         <ul>
-          <router-link :to="{ path: item.path }" v-for="item in products"  tag="li" active-class="active">
+          <router-link v-for="item in products" :to="{ path: item.path }" tag="li" active-class="active">
             {{ item.name }}
           </router-link>
         </ul>
@@ -58,12 +55,7 @@ export default {
   },
   computed: {
     productIcon () {
-    /*
-      1. this.$route.path:获取当前页面的路由
-      2. this.imgMap: 图片和路由的映射表
-      3. 将当前的路由当做映射表的下标 获取图片路径，以此来改变每个页面显示不同的图片icon
-    */
-      return this.imgMap[this.$route.path] 
+      return this.imgMap[this.$route.path]
     }
   }
 }

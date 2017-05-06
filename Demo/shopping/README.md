@@ -5,17 +5,21 @@
 ## Build Setup
 
 ``` bash
+# Download this item
+1. git clone git@github.com:roy-lau/vue.git
+2. cd vue/Demo/shopping
+
 # install dependencies
-npm install
+3. npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+4. npm run dev
 
 # build for production with minification
-npm run build
+5. npm run build
 
 # build for production and view the bundle analyzer report
-npm run build --report
+6. npm run build --report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
