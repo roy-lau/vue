@@ -23,6 +23,8 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
+
+
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true
@@ -58,6 +60,38 @@ app.use(devMiddleware)
 // compilation error display
 app.use(hotMiddleware)
 
+ //  ##############################  下发数据 ################## 开始
+ var Api = express()
+  var bodyParser = require('body-parser')
+  Api.use(bodyParser.urlencoded({ extended: true }))
+  Api.use(bodyParser.json())
+  var ApiRouter = express.Router()
+  var fs = require('fs')
+  ApiRouter.get('/', function(req, res){
+    res.json({ message: 'hi! 欢迎查看API '})
+  });
+  ApiRouter.route('/:apiName')
+      .all(function(req, res){
+        fs.readFile('./db.json', 'utf8', function(err, data){
+          if(err) throw err
+            var data = JSON.parse(data)
+          if (data[req.params.apiName]) {
+            res.json(data[req.params.apiName])
+          }else {
+            req.snd('没有api信息')
+          }
+        })
+      });
+  Api.use('/api', ApiRouter);
+  Api.listen( port + 1, function(err){
+    if (err) { 
+      console.log(err) 
+      return 
+    }
+      console.log( 'listen at API http://localhost:' + (port + 1) +'/api')
+  })
+
+ //  ##############################  下发数据 ################## 结束 
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
