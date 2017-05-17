@@ -1,6 +1,6 @@
 1、如果想让div铺满整个屏幕，需要把当前元素及其所以的父元素(包括html和body)的height设为100%
 
-2、vue的声明周期函数
+2、vue的生命周期函数
 
 	   beforeCreate(){
 	      alert('beforeCreate' + '1')
@@ -33,7 +33,7 @@
 	      alert('deactivated' + '10')
 	   }
   3、vue事件
-  
+  	@ 表事件
 		  @mouseover 	// 鼠标移入
 		  @mouseout 	// 鼠标移出
 
@@ -46,7 +46,7 @@
     4. v-leave-active: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 transition/animation 完成之后移除。
     Transition Diagram
     
-__对于这些在 ``enter/leave`` 过渡中切换的类名，``v-`` 是这些类名的前缀。使用``<transition name="my-transition">``可以重置前缀，比如 ``v-enter`` 替换为 ``my-transition-enter``。
+__对于这些在 ``enter/leave`` 过渡中切换的类名，``v-`` 是这些类名的前缀。使用``<transition name="my-transition">``可以重置前缀，比如 ``v-enter`` 替换为 ``my-transition-enter``。__
 
   5、父子组件通信
   组件需要的一切都是通过上下文传递，包括：
