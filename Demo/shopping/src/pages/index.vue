@@ -52,13 +52,13 @@ export default {
   components: {
     slideShow
   },
-/*  created () {
+  created () {
     this.$http.get('api/getNewsList').then((res) => {
       	this.newsList = res.data
     }, (err) => {
       	console.log(err)
     })
-  },*/
+  },
   data () {
     return {
       invTime: 2000,

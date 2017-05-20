@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import VueResource from 'vue-resource'
 import IndexPage from '@/pages/index'
 import DetailPage from '@/pages/detail'
 import DetailAnaPage from '@/pages/detail/analysis'
@@ -9,6 +10,7 @@ import DetailPubPage from '@/pages/detail/publish'
 import orderList from '@/pages/orderList'
 
 Vue.use(Router)
+Vue.use(VueResource)
 
 export default new Router({
     mode: 'history', // 加入这个就可以去掉hash(#)了

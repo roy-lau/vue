@@ -7,7 +7,7 @@
       <div class="product-board">
         <img :src="productIcon">
         <ul>
-          <router-link :to="{ path: item.path }" v-for="item in products"  tag="li" active-class="active">
+          <router-link :to="{ path: item.path }" v-for="item in products" :key="item" tag="li" active-class="active">
             {{ item.name }}
           </router-link>
         </ul>

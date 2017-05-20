@@ -130,12 +130,12 @@ export default {
         startDate: this.startDate,  // 开始时间
         endDate: this.endDate       // 结束时间
       }
-     /* this.$http.post('/api/getOrderList', reqParams)
+      this.$http.post('/api/getOrderList', reqParams)
       .then((res) => {
         this.tableData = res.data.list
       }, (err) => {
 
-      })*/
+      })
     },
     changeOrderType (headItem) {
       this.tableHeads.map((item) => {
