@@ -130,7 +130,7 @@ export default {
         startDate: this.startDate,  // 开始时间
         endDate: this.endDate       // 结束时间
       }
-      this.$http.post('/api/getOrderList', reqParams)
+      this.$http.post('/api/getOrderList', reqParams)  // ======》 向后台发送数据
       .then((res) => {
         this.tableData = res.data.list
       }, (err) => {

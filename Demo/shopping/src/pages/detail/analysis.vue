@@ -1,3 +1,5 @@
+<!-- 流量分析组件 -->
+
 <template>
  <div class="sales-board">
       <div class="sales-board-intro">
@@ -191,9 +193,9 @@ export default {
   methods: {
     onParamChange (attr, val) {
       this[attr] = val
-      // this.getPrice()
+      this.getPrice()
     },
-   /* getPrice () {
+    getPrice () {
       let buyVersionsArray = _.map(this.versions, (item) => {
         return item.value
       })
@@ -207,7 +209,7 @@ export default {
       .then((res) => {
         this.price = res.data.amount
       })
-    },*/
+    },
     showPayDialog () {
       this.isShowPayDialog = true
     },
@@ -241,7 +243,7 @@ export default {
          this.isShowBuyDialog = false
         this.isShowErrDialog = true
       }
-     /* this.$http.post('/api/createOrder', reqParams)
+      this.$http.post('/api/createOrder', reqParams)
       .then((res) => {
         this.orderId = res.data.orderId
         this.isShowCheckOrder = true
@@ -249,7 +251,7 @@ export default {
       }, (err) => {
         this.isShowBuyDialog = false
         this.isShowErrDialog = true
-      })*/
+      })
     }
   },
   mounted () {
@@ -257,7 +259,7 @@ export default {
     this.buyType = this.buyTypes[0]
     this.versions = [this.versionList[0]]
     this.period = this.periodList[0]
-    // this.getPrice()
+    this.getPrice()
   }
 }
 </script>

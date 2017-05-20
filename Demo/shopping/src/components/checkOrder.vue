@@ -45,10 +45,10 @@ export default {
           this.isShowSuccessDialog = true
         this.$emit('on-close-check-dialog')
       }else {
-this.isShowFailDialog = true
+        this.isShowFailDialog = true
         this.$emit('on-close-check-dialog')
       }
-/*      this.$http.post('/api/checkOrder', {
+      this.$http.post('/api/checkOrder', {
         orderId: this.orderId
       })
       .then((res) => {
@@ -57,7 +57,7 @@ this.isShowFailDialog = true
       }, (err) => {
         this.isShowFailDialog = true
         this.$emit('on-close-check-dialog')
-      })*/
+      })
     },
     toOrderList () {
       this.$router.push({path: '/orderList'})

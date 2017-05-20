@@ -90,12 +90,12 @@ export default {
         this.errorText = ''
           this.$emit('has-log', this.usernameModel)
 
-        // this.$http.get('api/login')
-        // .then((res) => {
-        //   this.$emit('has-log', res.data)
-        // }, (error) => {
-        //   console.log(error)
-        // })
+        this.$http.get('api/login')
+        .then((res) => {
+          this.$emit('has-log', res.data)
+        }, (error) => {
+          console.log(error)
+        })
       }
     }
   }
