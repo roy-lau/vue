@@ -1,6 +1,6 @@
 1、指令
 
-<<<<<<< HEAD
+
 2、vue的生命周期函数
 =======
 	v-text		// 文本，字符串
@@ -16,7 +16,7 @@
 	v-pre
 	v-cloak
 	v-once
->>>>>>> 8b7196bd7ad3454e59217d86e90a38ad2e8422ff
+
 
 2、事件简写
 
@@ -89,7 +89,7 @@ __对于这些在 ``enter/leave`` 过渡中切换的类名，``v-`` 是这些类
 	    deactivated(){
 	      alert('deactivated' + '10')
 	   }
-<<<<<<< HEAD
+
   3、vue事件
   	@ 表事件
 		  @mouseover 	// 鼠标移入
@@ -119,8 +119,8 @@ __对于这些在 ``enter/leave`` 过渡中切换的类名，``v-`` 是这些类
   
 	    1. mode: 'history',    // 加入这个就可以去掉hash(#)了
 	    2. active-class       // 鼠标点击后给元素添加的样式
-=======
+
 	vue的生命周期图
 	
   <img src="https://cn.vuejs.org/images/lifecycle.png">
->>>>>>> 8b7196bd7ad3454e59217d86e90a38ad2e8422ff
+
