@@ -11,43 +11,44 @@
 
 // https://github.com/shellhs/shelljs
 // 检查NodeJS和npm的版本
-require('./check-versions')()
+require('./check-versions')() // 检查 Node 和 npm 版本
+require('shelljs/global') // 使用了 shelljs 插件，可以让我们在 node 环境的 js 中使用 shell
+env.NODE_ENV = 'production'
 
-process.env.NODE_ENV = 'production'
+var path = require('path') // 不再赘述
+var config = require('../config') // 加载 config.js
+var ora = require('ora') // 一个很好看的 loading 插件
+var webpack = require('webpack') // 加载 webpack
+var webpackConfig = require('./webpack.prod.conf') // 加载 webpack.prod.conf
 
-var ora = require('ora')
-var rm = require('rimraf')
-var path = require('path')
-// 用于在控制台输出带字体颜色的插件
-var chalk = require('chalk')
+console.log( //  输出提示信息 ～ 提示用户请在 http 服务下查看本页面，否则为空白页
+  '  Tip:\n' +
+  '  Built files are meant to be served over an HTTP server.\n' +
+  '  Opening index.html over file:// won\'t work.\n'
+)
 
-var webpack = require('webpack')
-var config = require('../config')
-var webpackConfig = require('./webpack.prod.conf')
+var spinner = ora('building for production...') // 使用 ora 打印出 loading + log
+spinner.start() // 开始 loading 动画
 
-var spinner = ora('building for production...')
-spinner.start()   // 开启loading动画
+/* 拼接编译输出文件路径 */
+var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
+/* 删除这个文件夹 （递归删除） */
+rm('-rf', assetsPath)
+/* 创建此文件夹 */ 
+mkdir('-p', assetsPath)
+/* 复制 static 文件夹到我们的编译输出目录 */
+cp('-R', 'static/*', assetsPath)
 
-// 输出文件的目标文件
-rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
+//  开始 webpack 的编译
+webpack(webpackConfig, function (err, stats) {
+  // 编译成功的回调函数
+  spinner.stop()
   if (err) throw err
-    // webpack 编译
-  webpack(webpackConfig, function (err, stats) {
-    spinner.stop()  //停止loading动画
-    if (err) throw err
-      // 没有出错则输出相关信息
-    process.stdout.write(stats.toString({
-      colors: true,
-      modules: false,
-      children: false,
-      chunks: false,
-      chunkModules: false
-    }) + '\n\n')
-
-    console.log(chalk.cyan('  Build complete.\n'))
-    console.log(chalk.yellow(
-      '  Tip: built files are meant to be served over an HTTP server.\n' +
-      '  Opening index.html over file:// won\'t work.\n'
-    ))
-  })
+  process.stdout.write(stats.toString({
+    colors: true,
+    modules: false,
+    children: false,
+    chunks: false,
+    chunkModules: false
+  }) + '\n')
 })

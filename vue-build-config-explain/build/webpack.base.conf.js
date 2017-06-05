@@ -8,92 +8,107 @@
 说明： 这个配置里面只配置了.js、.vue、图片、字体等几类文件的处理规则，如果需要处理其他文件可以在module.rules里面配置。*/
 
 // 具体请看代码注释：
+var path = require('path') // 使用 NodeJS 自带的文件路径插件
+var config = require('../config') // 引入 config/index.js
+var utils = require('./utils') // 引入一些小工具
+var projectRoot = path.resolve(__dirname, '../') // 拼接我们的工作区路径为一个绝对路径
 
-var path = require('path')
-var utils = require('./utils')
-var config = require('../config')
-var vueLoaderConfig = require('./vue-loader.conf')
-
-// 给出正确的绝对路径
-function resolve (dir) {
-  return path.join(__dirname, '..', dir)
-}
+/* 将 NodeJS 环境作为我们的编译环境 */
+var env = process.env.NODE_ENV
+/* 是否在 dev 环境下开启 cssSourceMap ，在 config/index.js 中可配置 */
+var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
+/* 是否在 production 环境下开启 cssSourceMap ，在 config/index.js 中可配置 */
+var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
+/* 最终是否使用 cssSourceMap */
+var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
-  // 配置webpack编译入口
   entry: {
-    app: './src/main.js'
+    app: './src/main.js' // 编译文件入口
   },
-
-  // 配置webpack输出路径和命名规则
   output: {
-    // webpack输出的目标文件夹路径（例如：/dist）
-    path: config.build.assetsRoot,
-    // webpack输出bundle文件命名格式
-    filename: '[name].js',
-    // webpack编译输出的发布路径
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    path: config.build.assetsRoot, // 编译输出的静态资源根路径
+    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath, // 正式发布环境下编译输出的上线路径的根路径
+    filename: '[name].js' // 编译输出的文件名
   },
-
-  // 配置模块resolve的规则
   resolve: {
-    // 自动resolve的扩展名
-    extensions: ['.js', '.vue', '.json'],
-    // resolve模块的时候要搜索的文件夹
-    modules: [
-      resolve('src'),
-      resolve('node_modules')
-    ],
-    // 创建路径别名，有了别名之后引用模块更方便，例如
-    // import Vue from 'vue/dist/vue.common.js'可以写成 import Vue from 'vue'
+    // 自动补全的扩展名
+    extensions: ['', '.js', '.vue'],
+    // 不进行自动补全或处理的文件或者文件夹
+    fallback: [path.join(__dirname, '../node_modules')],
     alias: {
+    // 默认路径代理，例如 import Vue from 'vue'，会自动到 'vue/dist/vue.common.js'中寻找
       'vue$': 'vue/dist/vue.common.js',
-      'src': resolve('src'),
-      'assets': resolve('src/assets'),
-      'components': resolve('src/components')
+      'src': path.resolve(__dirname, '../src'),
+      'assets': path.resolve(__dirname, '../src/assets'),
+      'components': path.resolve(__dirname, '../src/components')
     }
   },
-
-  // 配置不同类型模块的处理规则
+  resolveLoader: {
+    fallback: [path.join(__dirname, '../node_modules')]
+  },
   module: {
-    rules: [
-      {// 对src和test文件夹下的.js和.vue文件使用eslint-loader
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: "pre",
-        include: [resolve('src'), resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
-      {// 对所有.vue文件使用vue-loader
+    preLoaders: [
+      // 预处理的文件及使用的 loader
+      {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
+        loader: 'eslint',
+        include: projectRoot,
+        exclude: /node_modules/
       },
-      {// 对src和test文件夹下的.js文件使用babel-loader
+      {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        loader: 'eslint',
+        include: projectRoot,
+        exclude: /node_modules/
+      }
+    ],
+    loaders: [
+      // 需要处理的文件及使用的 loader
+      {
+        test: /\.vue$/,
+        loader: 'vue'
       },
-      {// 对图片资源文件使用url-loader，query.name指明了输出的命名规则
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        include: projectRoot,
+        exclude: /node_modules/
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: 'url',
         query: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
-      {// 对字体资源文件使用url-loader，query.name指明了输出的命名规则
+      {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: 'url',
         query: {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
+    ]
+  },
+  eslint: {
+    // eslint 代码检查配置工具
+    formatter: require('eslint-friendly-formatter')
+  },
+  vue: {
+    // .vue 文件配置 loader 及工具 (autoprefixer)
+    loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
+    // postcss补全浏览器前缀
+    postcss: [
+      require('autoprefixer')({
+        browsers: ['last 2 versions']
+      })
     ]
   }
 }
