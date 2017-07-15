@@ -11,13 +11,13 @@
 
 详情请看代码：*/
 
-vvar path = require('path') 
+vvar path = require('path')
 var config = require('../config') // 加载 confi.index.js
 var utils = require('./utils') // 使用一些小工具
 var webpack = require('webpack') // 加载 webpack
 var merge = require('webpack-merge') // 加载 webpack 配置合并工具
 var baseWebpackConfig = require('./webpack.base.conf') // 加载 webpack.base.conf.js
-/* 一个 webpack 扩展，可以提取一些代码并且将它们和文件分离开 */ 
+/* 一个 webpack 扩展，可以提取一些代码并且将它们和文件分离开 */
 /* 如果我们想将 webpack 打包成一个文件 css js 分离开，那我们需要这个插件 */
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 /* 一个可以插入 html 并且创建新的 .html 文件的插件 */
@@ -30,7 +30,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     /* 使用的 loader */
     loaders: utils.styleLoaders({ sourceMap: config.build.productionSourceMap, extract: true })
   },
-  /* 是否使用 #source-map 开发工具，更多信息可以查看 DDFE 往期文章 */
+  /* 是否使用 #source-map 开发工具 */
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     /* 编译输出目录 */
@@ -68,14 +68,14 @@ var webpackConfig = merge(baseWebpackConfig, {
       template: 'index.html', // 使用的模板
       inject: true, // 是否注入 html (有多重注入方式，可以选择注入的位置)
       minify: { // 压缩的方式
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
+        removeComments: true,         // 删除注释
+        collapseWhitespace: true,     //　删除换行
+        removeAttributeQuotes: true   // 删除空格
         // 更多参数可查看 https://github.com/kangax/html-minifier#options-quick-reference
       },
       chunksSortMode: 'dependency'
     }),
-    
+
      /*
        CommonsChunkPlugin用于生成在入口点之间共享的公共模块（比如jquery，vue）的块并将它们分成独立的包。
        而为什么要new两次这个插件，这是一个很经典的bug的解决方案，
@@ -83,7 +83,7 @@ var webpackConfig = merge(baseWebpackConfig, {
        官方文档上推荐使用这个插件，当我们在项目里实际使用之后，发现一旦更改了 app.js 内的代码，vendor.js 的 hash 也会改变，
        那么下次上线时，用户仍然需要重新下载 vendor.js 与 app.js
      */
-    
+
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module, count) {
@@ -101,7 +101,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       name: 'manifest',
       chunks: ['vendor']
     })
-    
+
   ]
 })
 

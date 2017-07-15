@@ -15,7 +15,7 @@ require('./check-versions')() // 检查 Node 和 npm 版本
 require('shelljs/global') // 使用了 shelljs 插件，可以让我们在 node 环境的 js 中使用 shell
 env.NODE_ENV = 'production'
 
-var path = require('path') // 不再赘述
+var path = require('path') // path
 var config = require('../config') // 加载 config.js
 var ora = require('ora') // 一个很好看的 loading 插件
 var webpack = require('webpack') // 加载 webpack
@@ -34,7 +34,7 @@ spinner.start() // 开始 loading 动画
 var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
 /* 删除这个文件夹 （递归删除） */
 rm('-rf', assetsPath)
-/* 创建此文件夹 */ 
+/* 创建此文件夹 */
 mkdir('-p', assetsPath)
 /* 复制 static 文件夹到我们的编译输出目录 */
 cp('-R', 'static/*', assetsPath)

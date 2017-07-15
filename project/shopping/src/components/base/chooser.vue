@@ -34,7 +34,6 @@ export default {
   methods: {
     chosenSelection (index) {
       this.nowIndex = index
-      alert(this.selections)
       this.$emit('on-change', this.selections[index])
     }
   }
