@@ -17,9 +17,9 @@ export default new Router({
     routes: [{				// 坑-- （router !== routes）
             path: '/',
             component: IndexPage   // 坑-- （componentes !== component）
-        	},{				
+        	},{
             path: '/orderList',
-            component: orderList  
+            component: orderList
         	},{
 			path: '/detail',
 			component: DetailPage,
@@ -43,5 +43,5 @@ export default new Router({
 				}
 			]
 		}]
-   
+
 })
