@@ -57,6 +57,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
+        drop_debugger: true, // 打包时删除debugger
+        drop_console: true  // 打包时删除console
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
