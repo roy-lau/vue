@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    hello woeld
   </div>
 </template>
 
@@ -10,9 +9,9 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-@import "~common/stylus/varible"
+@import "~common/stylus/variable"
 
 #app
-  color: $color-theme
+    color: $color-theme
 
 </style>
