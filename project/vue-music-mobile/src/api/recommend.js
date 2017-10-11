@@ -1,6 +1,6 @@
 import jsonp from 'common/js/jsonp'
 import { commonParams, options } from './config'
-// import axios from 'axios'
+import axios from 'axios'
 
 export function getRecommend() {
   const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
@@ -12,10 +12,9 @@ export function getRecommend() {
   })
   return jsonp(url, data, options)
 }
-
-// https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg?g_tk=5381&jsonpCallback=hotSearchKeysmod_top_search&loginUin=0&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0
+// http://localhost:8080/api/getDiscList?g_tk=1928093487&inCharset=utf-8&outCharset=utf-8&notice=0&format=json&platform=yqq&hostUin=0&sin=0&ein=29&sortId=5&needNewCode=0&categoryId=10000000&rnd=0.3559747485987321
 export function getDiscList() {
-  const url = 'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg'
+  const url = '/api/getDiscList'
   const data = Object.assign({}, commonParams, {
     platform: 'yqq',
     hostUin: 0,
@@ -24,7 +23,12 @@ export function getDiscList() {
     sortId: 5,
     needNewCode: 0,
     categoryId: 10000000,
-    rnd: Math.random()
+    rnd: Math.random(),
+    format: 'json'
   })
-  return jsonp(url, data, options)
+  return axios.get(url, {
+    params: data
+  }).then((res) => {
+    return Promise.resolve(res.data)
+  })
 }
