@@ -22,7 +22,7 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
-
+// 通过后端方法设置headers的referer，host获取qq音乐的数据
 var apiRoutes = express.Router()
 apiRoutes.get('/getDiscList', function(req, res){
   var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
@@ -33,7 +33,6 @@ apiRoutes.get('/getDiscList', function(req, res){
     },
     params: req.query
   }).then((response) => {
-    console.log(res)
     res.json(response.data)
   }).catch((e) => {
     console.error(e)
