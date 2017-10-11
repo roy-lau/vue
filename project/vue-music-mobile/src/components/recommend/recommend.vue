@@ -6,7 +6,7 @@
               <slider>
                 <div v-for="item in recommends">
                   <a :href="item.linkUrl">
-                    <img @load="loadImage" :src="item.picUrl" alt="" />
+                    <img class="needsclick" @load="loadImage" :src="item.picUrl" alt="" />
                   </a>
                 </div>
               </slider>
@@ -15,7 +15,7 @@
             <h1 class="list-title">热门歌单推荐</h1>
             <ul>
               <li v-for="item in discList" class="item">
-                <img :src="item.imgurl" width="60" height="60" class="icon" alt="" />
+                <img v-lazy="item.imgurl" width="60" height="60" class="icon" alt="" />
                 <div class="text">
                   <h2 class="name" v-html="item.creator.name"></h2>
                   <p class="desc" v-html="item.dissname"></p>

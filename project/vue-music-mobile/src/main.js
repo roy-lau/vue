@@ -6,8 +6,13 @@ import App from './App'
 import router from './router'
 import fastclick from 'fastclick'
 import 'common/stylus/index.styl'
+import VueLazyLoad from 'vue-lazyload'
 
 fastclick.attach(document.body) // 解决移动端点击300毫秒延迟
+
+Vue.use(VueLazyLoad, {
+  loading: require('common/imgs/default.png') // 默认显示的图片
+})
 
 Vue.config.productionTip = false
 
