@@ -4,7 +4,7 @@
       <li class="list-group" v-for="group in data" ref="listGroup">
         <h2 class="list-group-title" v-text="group.title"></h2>
         <ul>
-          <li class="list-group-item" v-for="item in group.items">
+          <li class="list-group-item" @click="selectItem(item)" v-for="item in group.items">
             <img class="avatar" v-lazy="item.avatar" :alt="item.name" />
             <span class="name" v-text="item.name"></span>
           </li>
@@ -16,14 +16,20 @@
         <li v-for="(item, index) in shortcutList" :data-index="index" :class="{'current': currentIndex === index}" class="item" v-text="item"></li>
       </ul>
     </div>
+    <div class="list-fixed" v-show="fixedTitle" ref="fixed">
+      <h1 class="fixed-title" v-text="fixedTitle"></h1>
+    </div>
+    <div v-show="!data.length" class="loading-container">
+      <loading></loading>
+    </div>
   </scroll>
 </template>
 <script type="text/ecmascript-6">
 import Scroll from 'base/scroll/scroll'
-// import Loading from 'base/loading/loading'
+import Loading from 'base/loading/loading'
 import { getData } from 'common/js/dom'
 
-// const TITLE_HEIGHT = 30
+const TITLE_HEIGHT = 30
 const ANCHOR_HEIGHT = 18
 
 export default {
@@ -36,7 +42,8 @@ export default {
   data() {
     return {
       scrollY: -1,
-      currentIndex: 0
+      currentIndex: 0,
+      diff: -1
     }
   },
   created() {
@@ -50,9 +57,16 @@ export default {
       return this.data.map((group) => {
         return group.title.substring(0, 1)
       })
+    },
+    fixedTitle() {
+      if (this.scrollY) return ''
+      return this.data[this.currentIndex] ? this.data[this.currentIndex].title : ''
     }
   },
   methods: {
+    selectItem(item) {
+      this.$emit('select', item)
+    },
     onShortcutTouchStart(e) {
       let anchorIndex = getData(e.target, 'index')
       let firstTouch = e.touches[0]
@@ -67,10 +81,17 @@ export default {
       let anchorIndex = +this.touch.anchorIndex + delta
       this._scrollTo(anchorIndex)
     },
+    refresh() {
+      this.$refs.listview.refresh()
+    },
     scroll(pos) {
       this.scrollY = pos.y
     },
     _scrollTo(index) {
+      if (!index && index !== 0) return
+      if (index < 0) index = 0
+      else if (index > this.listHeight.length - 2) index = this.listHeight.length - 2
+      this.scrollY = -this.listHeight[index]
       this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
     },
     _callateHeight() {
@@ -104,19 +125,28 @@ export default {
         let height2 = listHeight[i + 1]
         if (-newY >= height1 && -newY < height2) {
           this.currentIndex = i
+          this.diff = height2 + newY
           return
         }
       }
       // 当滚动到底部，且-newY大于最后一个元素的上级
       this.currentIndex = listHeight.length - 2
+    },
+    diff(newVal) {
+      let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
+      if (this.fixedTop === fixedTop) return
+      this.fixedTop = fixedTop
+      this.$refs.fixed.style.transform = `translate3d(0,${fixedTop}px,0)`
     }
   },
   components: {
-    Scroll
+    Scroll,
+    Loading
   }
 }
 
 </script>
+
 
 
 
