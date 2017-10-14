@@ -1,12 +1,13 @@
 <template>
   <div class="singer">
-    <div>歌手</div>
+    <list-view :data="singers"></list-view>
   </div>
 </template>
 <script type="text/ecmascript-6">
 import { getSingerList } from 'api/singer'
 import { ERR_OK } from 'api/config'
 import Singer from 'common/js/singer'
+import ListView from 'base/listview/listview'
 
 const HOT_NAME = '热门'
 const HOT_SINFER_LEN = 10
@@ -24,12 +25,12 @@ export default {
     _getSingerList() {
       getSingerList().then((res) => {
         if (res.code === ERR_OK) {
-          this.singers = res.data.list
-          console.log(this._normalizeSinger(this.singers))
+          this.singers = this._normalizeSinger(res.data.list)
+          console.log(this.singers)
         }
       })
     },
-    _normalizeSinger(list) {
+    _normalizeSinger(list) {    // 将获取到的数据处理成我们需要的数据
       let map = {
         hot: {
           title: HOT_NAME,
@@ -71,13 +72,13 @@ export default {
       })
       return hot.concat(ret)
     }
+  },
+  components: {
+    ListView
   }
 }
 
 </script>
-
-
-
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .singer
