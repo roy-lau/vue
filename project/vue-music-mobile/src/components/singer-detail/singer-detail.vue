@@ -2,6 +2,7 @@
   <transition name="slide">
   </transition>
 </template>
+
 <script type="text/ecmascript-6">
 import { mapGetters } from 'vuex'
 import { getSingerDetail } from 'api/singer'
