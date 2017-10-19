@@ -21,6 +21,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  store,
-  render: h => h(App)
+  render: h => h(App),
+  store
+  // store写在rander上边不能获取数据 cry
 })

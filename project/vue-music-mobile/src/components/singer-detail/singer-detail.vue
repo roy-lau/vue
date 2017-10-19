@@ -10,7 +10,6 @@ import { ERR_OK } from 'api/config'
 
 export default {
   created() {
-    console.log(mapGetters)
     this._getDetail()
   },
   computed: {
