@@ -1,6 +1,7 @@
 <template>
-  <transition name="slide">
-  </transition>
+  <div style="color: red;">
+      歌手详情页
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -9,24 +10,21 @@ import { getSingerDetail } from 'api/singer'
 import { ERR_OK } from 'api/config'
 
 export default {
-  created() {
-    this._getDetail()
-  },
   computed: {
     ...mapGetters([
       'singer'
     ])
   },
+  created() {
+    console.log(this.singer)
+    // this._getDetail()
+  },
   methods: {
     _getDetail() {
-      console.log('执行 methods')
-      console.log('获取 mapGetters 数据', this.singer)
       if (!this.singer) {
-        console.log('return /singer')
         this.$router.push('/singer')
         return
       }
-      console.log('执行 getSingerDetail 方法')
       getSingerDetail(this.singer.id).then((res) => {
         if (res.code === ERR_OK) {
           this.songs = this._normalizeSongs(res.data.list)
@@ -37,7 +35,6 @@ export default {
 }
 
 </script>
-
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .slide-enter-active, .slide-leave-active
