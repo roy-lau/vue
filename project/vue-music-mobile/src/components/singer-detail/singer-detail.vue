@@ -1,7 +1,9 @@
 <template>
-  <div class="singer-detail">
-      歌手详情页
-  </div>
+  <transition name="slide">
+    <div class="singer-detail">
+        歌手详情页
+    </div>
+  </transition>
 </template>
 
 <script type="text/ecmascript-6">
@@ -47,10 +49,8 @@ export default {
     right: 0
     bottom: 0
     background: $color-background
-
   .slide-enter-active, .slide-leave-active
     transition: all 0.3s
-
   .slide-enter, .slide-leave-to
     transform: translate3d(100%, 0, 0)
 
