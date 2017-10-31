@@ -91,17 +91,6 @@ export default {
     scroll(pos) {
       this.scrollY = pos.y
     },
-    _calculateHeight() {
-      this.listHeight = []
-      const list = this.$refs.listGroup
-      let height = 0
-      this.listHeight.push(height)
-      for (let i = 0; i < list.length; i++) {
-        let item = list[i]
-        height += item.clientHeight
-        this.listHeight.push(height)
-      }
-    },
     _scrollTo(index) {
       if (!index && index !== 0) {
         return
@@ -113,6 +102,17 @@ export default {
       }
       this.scrollY = -this.listHeight[index]
       this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
+    },
+    _calculateHeight() {
+      this.listHeight = []
+      const list = this.$refs.listGroup
+      let height = 0
+      this.listHeight.push(height)
+      for (let i = 0; i < list.length; i++) {
+        let item = list[i]
+        height += item.clientHeight
+        this.listHeight.push(height)
+      }
     }
   },
   watch: {
