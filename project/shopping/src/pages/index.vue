@@ -26,8 +26,9 @@
       </div>
     </div>
     <div class="index-right">
-    <!-- 幻灯片组件 -->
+    <!-- 幻灯片组件 start-->
       <slide-show :slides="slides" :inv="invTime"></slide-show>
+    <!-- 幻灯片组件 end-->
       <div class="index-board-list">
         <div
         class="index-board-item"
@@ -77,7 +78,7 @@ export default {
         {
           src: require('../assets/slideShow/pic3.jpg'),
           title: 'xxx3',
-          href: 'http://xxx.xxx.com'
+          href: 'detail/publish'
         },
         {
           src: require('../assets/slideShow/pic4.jpg'),

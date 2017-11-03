@@ -4,18 +4,16 @@
       <div class="g-form-line">
         <span class="g-form-label">用户名：</span>
         <div class="g-form-input">
-          <input type="text" 
-          v-model="usernameModel" placeholder="请输入用户名">
+          <input type="text" v-model="usernameModel" placeholder="请输入用户名">
+          <span class="g-form-error">{{ userErrors.errorText }}</span>
         </div>
-        <span class="g-form-error">{{ userErrors.errorText }}</span>
       </div>
       <div class="g-form-line">
         <span class="g-form-label">密码：</span>
         <div class="g-form-input">
-          <input type="password" 
-          v-model="passwordModel" placeholder="请输入密码">
+          <input type="password" v-model="passwordModel" placeholder="请输入密码">
+          <span class="g-form-error">{{ passwordErrors.errorText }}</span>
         </div>
-        <span class="g-form-error">{{ passwordErrors.errorText }}</span>
       </div>
       <div class="g-form-line">
         <div class="g-form-btn">
@@ -26,10 +24,9 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
-  data () {
+  data() {
     return {
       usernameModel: '',
       passwordModel: '',
@@ -37,20 +34,20 @@ export default {
     }
   },
   computed: {
-    userErrors () {
+    userErrors() {
       let errorText, status
 
       if (this.usernameModel == "") {
-            status = false
-          errorText = "用户名不能为空"
-        } else if (!/[a-zA-Z0-9]{3,12}/.test(this.usernameModel)) { 
-            status = false
-            errorText = "用户名为3-12位的字母，数字!"
-        }else {
-            status = true
-            errorText = ''
-       }
-       // 第一次进入清空判断的内容errorText
+        status = false
+        errorText = "用户名不能为空"
+      } else if (!/[a-zA-Z0-9]{3,12}/.test(this.usernameModel)) {
+        status = false
+        errorText = "用户名为3-12位的字母，数字!"
+      } else {
+        status = true
+        errorText = ''
+      }
+      // 第一次进入清空判断的内容errorText
       if (!this.userFlag) {
         errorText = ''
         this.userFlag = true
@@ -60,17 +57,16 @@ export default {
         errorText
       }
     },
-    passwordErrors () {
+    passwordErrors() {
       let errorText, status
-      if (!/^\w{1,6}$/g.test(this.passwordModel)) {
+      if (!/^\w{1,12}$/g.test(this.passwordModel)) {
         status = false
-        errorText = '密码不是1-6位'
-      }
-      else {
+        errorText = '密码应为1-12位'
+      } else {
         status = true
         errorText = ''
       }
-       // 第一次进入清空判断的内容errorText
+      // 第一次进入清空判断的内容errorText
       if (!this.passwordFlag) {
         errorText = ''
         this.passwordFlag = true
@@ -82,27 +78,27 @@ export default {
     }
   },
   methods: {
-    onLogin () {
+    onLogin() {
       if (!this.userErrors.status || !this.passwordErrors.status) {
         this.errorText = '部分选项未通过'
-      }
-      else {
+      } else {
         this.errorText = ''
-          this.$emit('has-log', this.usernameModel)
+        this.$emit('has-log', this.usernameModel)
 
         this.$http.get('api/login')
-        .then((res) => {
-          this.$emit('has-log', res.data)
-        }, (error) => {
-          console.log(error)
-        })
+          .then((res) => {
+            this.$emit('has-log', res.data)
+          }, (error) => {
+            console.log(error)
+          })
       }
     }
   }
 }
-</script>
 
+</script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 
 </style>

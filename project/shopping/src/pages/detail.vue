@@ -1,6 +1,4 @@
-
 <!-- 详情页布局 -->
-
 <template>
   <div class="detail-wrap">
     <div class="detail-left">
@@ -20,13 +18,11 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
-  data () {
+  data() {
     return {
-      products: [
-        {
+      products: [{
           name: '数据统计',
           path: 'count',
           icon: require('../assets/images/1.png'),
@@ -57,18 +53,18 @@ export default {
     }
   },
   computed: {
-    productIcon () {
-    /*
-      1. this.$route.path:获取当前页面的路由
-      2. this.imgMap: 图片和路由的映射表
-      3. 将当前的路由当做映射表的下标 获取图片路径，以此来改变每个页面显示不同的图片icon
-    */
-      return this.imgMap[this.$route.path] 
+    productIcon() {
+      /*
+        1. this.$route.path:获取当前页面的路由
+        2. this.imgMap: 图片和路由的映射表
+        3. 将当前的路由当做映射表的下标 获取图片路径，以此来改变每个页面显示不同的图片icon
+      */
+      return this.imgMap[this.$route.path]
     }
   }
 }
-</script>
 
+</script>
 <style>
 .detail-wrap {
   width: 1200px;
@@ -76,97 +72,120 @@ export default {
   overflow: hidden;
   padding-top: 20px;
 }
+
 .detail-left {
   float: left;
   width: 200px;
   text-align: center;
 }
+
 .detail-right {
   float: left;
   width: 980px;
   margin-left: 20px;
 }
+
 .product-board {
   background: #fff;
   padding: 20px 0;
 }
+
 .product-board ul {
   margin-top: 20px;
 }
+
 .product-board li {
   text-align: left;
   padding: 10px 15px;
   cursor: pointer;
 }
+
 .product-board li.active,
 .product-board li:hover {
   background: #4fc08d;
   color: #fff;
 }
+
 .product-board li a {
   display: block;
 }
+
 .sales-board {
   background: #fff;
 }
-.sales-board-form {
 
-}
+.sales-board-form {}
+
 .sales-board-intro h2 {
   font-size: 20px;
   padding: 20px;
 }
+
 .sales-board-intro p {
   background: #f7fcff;
   padding: 10px 20px;
   color: #999;
   line-height: 1.8;
 }
+
 .sales-board-form {
   padding: 30px 20px;
   font-size: 14px;
 }
+
 .sales-board-line {
   clear: both;
   padding-bottom: 20px;
 }
+
 .sales-board-line-left {
-    display: inline-block;
-    width: 100px;
+  display: inline-block;
+  width: 100px;
 }
+
 .sales-board-line-right {
-    display: inline-block;
-    width: 75%;
+  display: inline-block;
+  width: 75%;
 }
+
 .sales-board-des {
   border-top: 20px solid #f0f2f5;
   padding: 15px 20px;
 }
+
 .sales-board-des p {
   line-height: 1.6;
 }
+
 .sales-board-des h2 {
   font-size: 20px;
   padding-bottom: 15px;
 }
+
 .sales-board-des h3 {
   font-size: 18px;
   font-weight: bold;
   padding: 20px 0 10px 0;
 }
+
 .sales-board-des li {
   padding: 5px 0;
 }
+
 .sales-board-table {
   width: 100%;
   margin-top: 20px;
 }
+
 .sales-board-table th {
   background: #4fc08d;
   color: #fff;
 }
+
 .sales-board-table td {
-    border: 1px solid #f0f2f5;
-    padding: 15px;
+  border: 1px solid #f0f2f5;
+  padding: 15px;
 }
-</style>
+
+</st
+yle>

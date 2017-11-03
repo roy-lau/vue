@@ -13,7 +13,7 @@ Vue.use(Router)
 Vue.use(VueResource)
 
 export default new Router({
-    mode: 'history', // 加入这个就可以去掉hash(#)了
+    // mode: 'history', // 加入这个就可以去掉hash(#)了
     routes: [{				// 坑-- （router !== routes）
             path: '/',
             component: IndexPage   // 坑-- （componentes !== component）
