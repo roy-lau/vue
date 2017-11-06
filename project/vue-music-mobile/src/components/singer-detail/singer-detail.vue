@@ -34,7 +34,7 @@ export default {
     _getDetail() {
       console.log(this.singer.name)
       if (!this.singer.id) {
-        this.$router.push('/singer')
+        this.$router.push({path: '/singer'})
         return
       }
       getSingerDetail(this.singer.id).then((res) => {
