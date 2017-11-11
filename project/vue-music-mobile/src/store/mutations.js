@@ -21,7 +21,7 @@ const matutaions = {
   },
   [types.SET_CURRENT_INDEX](state, flag) {
     state.currentIndex = flag
-  },
+  }
 }
 
 export default matutaions

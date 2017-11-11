@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     _getDetail() {
-      console.log(this.singer.name)
       if (!this.singer.id) {
         this.$router.push({path: '/singer'})
         return

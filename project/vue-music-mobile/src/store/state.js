@@ -1,7 +1,7 @@
 import { playMode } from 'common/js/config'
 
 const state = {
-  stinger: {},
+  singer: {},
   playing: false, // 是否播放
   fullScreen: false, // 是否全屏
   playList: [], // 播放列表
