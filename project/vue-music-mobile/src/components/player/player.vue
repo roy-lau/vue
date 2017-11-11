@@ -1,18 +1,56 @@
 <template>
-  <div class="player" >
+  <div class="player" v-show="playList.length>0">
     <!-- 展开的播发器dom start-->
-    <div class="normal-player">
-      播放器
+    <div class="normal-player" v-show="fullScreen">
+      <!-- 背景图 -->
+      <div class="background"><img src="" alt="" width="100%",height="100%" /></div>
+      <!-- 头部 -->
+      <div class="top">
+        <div class="back">
+          <i class="icon-back"></i>
+        </div>
+          <h1 class="title"></h1>
+          <h2 class="subtitle"></h2>
+      </div>
+      <!-- 中间部分（唱片） -->
+      <div class="middle">
+        <div class="middle-l">
+          <div class="cd-wrapper">
+            <div class="cd"><img src="" alt="" class="image" /></div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="operators">
+          <div class="icon i-left"><i class="icon-sequence"></i></div>
+          <div class="icon i-left"><i class="icon-sequence"></i></div>
+          <div class="icon i-left"><i class="icon-sequence"></i></div>
+          <div class="icon i-left"><i class="icon-sequence"></i></div>
+          <div class="icon i-left"><i class="icon-sequence"></i></div>
+        </div>
+      </div>
     </div>
     <!-- 展开的播发器dom end -->
     <!-- 收起的播发器dom start -->
-    <div class="mini-player"></div>
+    <div class="mini-player" v-show="!fullScreen">
+
+    </div>
     <!-- 收起的播发器dom end -->
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  export default {}
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapGetters([
+      'fullScreen',
+      'playList'
+    ])
+  }
+}
+
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
