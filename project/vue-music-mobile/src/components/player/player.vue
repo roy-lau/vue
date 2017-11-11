@@ -17,7 +17,7 @@
         <div class="middle">
           <div class="middle-l">
             <div class="cd-wrapper" ref="cdWrapper">
-              <div class="cd"><img :src="currentSong.image" :alt="currentSong.name" class="image" /></div>
+              <div class="cd" :class="cdCls"><img :src="currentSong.image" :alt="currentSong.name" class="image" /></div>
             </div>
           </div>
         </div>
@@ -27,11 +27,13 @@
             <!-- 播放方式图标 -->
             <div class="icon i-left"><i class="icon-sequence"></i></div>
             <!-- 上一曲 -->
-            <div class="icon i-left"><i class="icon-prev"></i></div>
+            <div class="icon i-left" :class="disableCls"><i @click="prev" class="icon-prev"></i></div>
             <!-- 播放&&暂停 -->
-            <div class="icon i-center"><i class="icon-play"></i></div>
+            <div class="icon i-center" :class="disableCls">
+              <i @click="togglePlaying" :class="playIcon"></i>
+            </div>
             <!-- 下一曲 -->
-            <div class="icon i-right"><i class="icon-next"></i></div>
+            <div class="icon i-right" :class="disableCls"><i @click="next" class="icon-next"></i></div>
             <!-- 收藏&&心 -->
             <div class="icon i-right"><i class="icon-not-favorite"></i></div>
           </div>
@@ -42,19 +44,21 @@
     <!-- 收起的播发器dom start -->
     <transition name="mini">
       <div class="mini-player" v-show="!fullScreen" @click="open">
-        <div class="icon"><img :src="currentSong.image" :alt="currentSong.name" width="40" height="40" /></div>
+        <div class="icon" :class="cdCls"><img :src="currentSong.image" :alt="currentSong.name" width="40" height="40" /></div>
         <div class="text">
           <h2 class="name" v-html="currentSong.name"></h2>
           <p class="desc" v-html="currentSong.singer"></p>
         </div>
-        <div class="control"></div>
+        <div class="control"><i @click="togglePlaying" :class="miniIcon"></i></div>
         <div class="control"><i class="icon-playlist"></i></div>
       </div>
     </transition>
     <!-- 收起的播发器dom end -->
+    <!-- 音乐播放器 start -->
+    <audio ref="audio" :src="currentSong.url" @canplay="ready" @error="error"></audio>
+    <!-- 音乐播放器 end -->
   </div>
 </template>
-
 <script type="text/ecmascript-6">
 import { mapGetters, mapMutations } from 'vuex'
 import animations from 'create-keyframe-animation'
@@ -63,26 +67,49 @@ import { prefixStyle } from 'common/js/dom'
 const transform = prefixStyle('transform')
 
 export default {
+  data() {
+    return {
+      songReady: false
+    }
+  },
   computed: {
+    playIcon() {
+      return this.playing ? 'icon-pause' : 'icon-play'
+    },
+    miniIcon() {
+      return this.playing ? 'icon-pause-mini' : 'icon-play-mini'
+    },
+    cdCls() {
+      return this.playing ? 'play' : 'play pause'
+    },
+    disableCls() {
+      return this.songReady ? '' : 'disable'
+    },
     ...mapGetters([
       'fullScreen',
       'playList',
-      'currentSong'
+      'currentSong',
+      'playing',
+      'currentIndex'
     ])
   },
   methods: {
+    // 关闭音乐播放器
     back() {
-      this.setFullScreen(false) // 关闭音乐播放器
+      this.setFullScreen(false)
     },
+    // 打开音乐播放器
     open() {
-      this.setFullScreen(true) // 打开音乐播放器
+      this.setFullScreen(true)
     },
     ...mapMutations({
-      setFullScreen: 'SET_FULL_SCREEN'
+      setFullScreen: 'SET_FULL_SCREEN',
+      setPlayingState: 'SET_PLAYING_STATE',
+      setCurrentIndex: 'SET_CURRENT_INDEX'
     }),
-    // 动画钩子 start
+    // 动画钩子 4个
     enter(el, done) {
-      const {x, y, scale} = this._getPosAndScale()
+      const { x, y, scale } = this._getPosAndScale()
 
       let animation = {
         0: {
@@ -113,7 +140,7 @@ export default {
     },
     leave(el, done) {
       this.$refs.cdWrapper.style.transition = 'all 0.4s'
-      const {x, y, scale} = this._getPosAndScale()
+      const { x, y, scale } = this._getPosAndScale()
       this.$refs.cdWrapper.style[transform] = `translate3d(${x}px,${y}px,0) scale(${scale})`
       this.$refs.cdWrapper.addEventListener('transitionend', done)
     },
@@ -136,6 +163,51 @@ export default {
         y,
         scale
       }
+    },
+    // 播放&&暂停
+    togglePlaying() {
+      if (!this.songReady) return
+      this.setPlayingState(!this.playing)
+    },
+    // 上一曲
+    prev() {
+      if (!this.songReady) return
+      let index = this.currentIndex - 1
+      if (index === -1) index = this.playing.length - 1
+      this.setCurrentIndex(index)
+      if (!this.playing) this.togglePlaying()
+      this.songReady = false
+    },
+    // 下一曲
+    next() {
+      if (!this.songReady) return
+      let index = this.currentIndex + 1
+      if (index === this.playing.length) index = 0
+      this.setCurrentIndex(index)
+      if (!this.playing) this.togglePlaying()
+      this.songReady = false
+    },
+    // 处理用户连续点击报错bug
+    ready() {
+      this.songReady = true
+    },
+    // 处理播放错误情况(网络错误，歌曲请求失败等情况)
+    error() {
+      this.songReady = true
+    }
+  },
+  watch: {
+    currentSong() {
+      this.$refs.audio.load()
+      this.$nextTick(() => {
+        this.$refs.audio.play()
+      })
+    },
+    playing(newPlaying) {
+      const audio = this.$refs.audio
+      this.$nextTick(() => {
+        newPlaying ? audio.play() : audio.pause()
+      })
     }
   }
 }
