@@ -24,9 +24,9 @@
         <div class="operators">
           <div class="icon i-left"><i class="icon-sequence"></i></div>
           <div class="icon i-left"><i class="icon-sequence"></i></div>
-          <div class="icon i-left"><i class="icon-sequence"></i></div>
-          <div class="icon i-left"><i class="icon-sequence"></i></div>
-          <div class="icon i-left"><i class="icon-sequence"></i></div>
+          <div class="icon i-center"><i class="icon-sequence"></i></div>
+          <div class="icon i-right"><i class="icon-sequence"></i></div>
+          <div class="icon i-right"><i class="icon-sequence"></i></div>
         </div>
       </div>
     </div>
