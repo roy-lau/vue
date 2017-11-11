@@ -3,20 +3,20 @@
     <!-- 展开的播发器dom start-->
     <div class="normal-player" v-show="fullScreen">
       <!-- 背景图 -->
-      <div class="background"><img src="" alt="" width="100%" height="100%" /></div>
+      <div class="background"><img :src="currentSong.image" :alt="currentSong.name" width="100%" height="100%" /></div>
       <!-- 头部 -->
       <div class="top">
-        <div class="back">
+        <div class="back" @click="back">
           <i class="icon-back"></i>
         </div>
-        <h1 class="title"></h1>
-        <h2 class="subtitle"></h2>
+        <h1 class="title" v-html="currentSong.name"></h1>
+        <h2 class="subtitle" v-html="currentSong.singer"></h2>
       </div>
       <!-- 中间部分（唱片） -->
       <div class="middle">
         <div class="middle-l">
           <div class="cd-wrapper">
-            <div class="cd"><img src="" alt="" class="image" /></div>
+            <div class="cd"><img :src="currentSong.image" :alt="currentSong.name" class="image" /></div>
           </div>
         </div>
       </div>
@@ -38,11 +38,11 @@
     </div>
     <!-- 展开的播发器dom end -->
     <!-- 收起的播发器dom start -->
-    <div class="mini-player" v-show="!fullScreen">
-      <div class="icon"><img src="" alt="" width="40" height="40" /></div>
+    <div class="mini-player" v-show="!fullScreen" @click="open">
+      <div class="icon"><img :src="currentSong.image" :alt="currentSong.name" width="40" height="40" /></div>
       <div class="text">
-        <h2 class="name"></h2>
-        <p class="desc"></p>
+        <h2 class="name" v-html="currentSong.name"></h2>
+        <p class="desc" v-html="currentSong.singer"></p>
       </div>
       <div class="control"></div>
       <div class="control"><i class="icon-playlist"></i></div>
@@ -52,14 +52,26 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   computed: {
     ...mapGetters([
       'fullScreen',
-      'playList'
+      'playList',
+      'currentSong'
     ])
+  },
+  methods: {
+    back() {
+      this.setFullScreen(false) // 关闭音乐播放器
+    },
+    open() {
+      this.setFullScreen(true) // 打开音乐播放器
+    },
+    ...mapMutations({
+      setFullScreen: 'SET_FULL_SCREEN'
+    })
   }
 }
 

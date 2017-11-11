@@ -1,6 +1,6 @@
 # vue-music-mobile
 
-> 音乐播放器
+> 音乐播放器  :musical_note:
 
 ## Build Setup
 
@@ -19,5 +19,3 @@ npm run build --report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-暂时搁置在这，:bug:不知道怎么解决，歌手详情页get不到vuex的传来的数据（也有可能是路由跳转问题）
