@@ -23,6 +23,13 @@
         </div>
         <!-- 底部操作区 -->
         <div class="bottom">
+          <!-- 进度条 -->
+          <div class="progress-wapper">
+            <span class="time time-l" v-text="format(currentTime)"></span>
+            <div class="progress-bar-wrapper"></div>
+            <span class="time time-r" v-text="format(currentSong.duration)"></span>
+          </div>
+          <!-- 控制按钮组 -->
           <div class="operators">
             <!-- 播放方式图标 -->
             <div class="icon i-left"><i class="icon-sequence"></i></div>
@@ -55,7 +62,7 @@
     </transition>
     <!-- 收起的播发器dom end -->
     <!-- 音乐播放器 start -->
-    <audio ref="audio" :src="currentSong.url" @canplay="ready" @error="error"></audio>
+    <audio ref="audio" :src="currentSong.url" @timeupdate="updateTime" @canplay="ready" @error="error"></audio>
     <!-- 音乐播放器 end -->
   </div>
 </template>
@@ -69,7 +76,8 @@ const transform = prefixStyle('transform')
 export default {
   data() {
     return {
-      songReady: false
+      songReady: false,
+      currentTime: 0
     }
   },
   computed: {
@@ -194,6 +202,25 @@ export default {
     // 处理播放错误情况(网络错误，歌曲请求失败等情况)
     error() {
       this.songReady = true
+    },
+    // 更新播放时间
+    updateTime(e) {
+      this.currentTime = e.target.currentTime
+    },
+    // 格式化时间戳
+    format(interval) {
+      interval = ~~interval // 当前时间戳， ~~向下取整
+      const minute = ~~(interval / 60)  // 分
+      const second = this._pad(interval % 60)  // 秒
+      return `${minute}:${second}`
+    },
+    _pad(num, n = 2) {
+      let len = num.toString().length
+      while (len < n) {
+        num = '0' + num
+        len++
+      }
+      return num
     }
   },
   watch: {
