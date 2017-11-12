@@ -23,10 +23,12 @@
         </div>
         <!-- 底部操作区 -->
         <div class="bottom">
-          <!-- 进度条 -->
-          <div class="progress-wapper">
+          <!-- 播放进度 -->
+          <div class="progress-wrapper">
             <span class="time time-l" v-text="format(currentTime)"></span>
-            <div class="progress-bar-wrapper"></div>
+            <div class="progress-bar-wrapper">
+              <progress-bar :percent="percent" @percentChange="onProgressBarChange"><!-- 进度条 --></progress-bar>
+            </div>
             <span class="time time-r" v-text="format(currentSong.duration)"></span>
           </div>
           <!-- 控制按钮组 -->
@@ -70,6 +72,7 @@
 import { mapGetters, mapMutations } from 'vuex'
 import animations from 'create-keyframe-animation'
 import { prefixStyle } from 'common/js/dom'
+import ProgressBar from 'base/progress-bar/progress-bar'
 
 const transform = prefixStyle('transform')
 
@@ -92,6 +95,10 @@ export default {
     },
     disableCls() {
       return this.songReady ? '' : 'disable'
+    },
+    percent() {
+      // 歌曲播放的比例=歌曲当前播放的时间 / 总的歌曲时长
+      return this.currentTime / this.currentSong.duration
     },
     ...mapGetters([
       'fullScreen',
@@ -215,12 +222,19 @@ export default {
       return `${minute}:${second}`
     },
     _pad(num, n = 2) {
+      // 补 0
       let len = num.toString().length
       while (len < n) {
         num = '0' + num
         len++
       }
       return num
+    },
+    onProgressBarChange(percent) {
+      // 修改播放时间
+      this.$refs.audio.currentTime = this.currentSong.duration * percent
+      // 设置在暂停时拖动进度条后也能播放
+      if (!this.playing) this.togglePlaying()
     }
   },
   watch: {
@@ -236,6 +250,9 @@ export default {
         newPlaying ? audio.play() : audio.pause()
       })
     }
+  },
+  components: {
+    ProgressBar
   }
 }
 
