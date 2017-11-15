@@ -91,6 +91,7 @@ import { prefixStyle } from 'common/js/dom'
 import ProgressBar from 'base/progress-bar/progress-bar'
 import ProgressCircle from 'base/progress-circle/progress-circle'
 import { playMode } from 'common/js/config'
+import { shuffle } from 'common/js/util'
 
 const transform = prefixStyle('transform')
 
@@ -127,7 +128,8 @@ export default {
       'currentSong',
       'playing',
       'currentIndex',
-      'mode'
+      'mode',
+      'sequenceList'
     ])
   },
   methods: {
@@ -143,7 +145,8 @@ export default {
       setFullScreen: 'SET_FULL_SCREEN',
       setPlayingState: 'SET_PLAYING_STATE',
       setCurrentIndex: 'SET_CURRENT_INDEX',
-      setPlayMode: 'SET_PLAY_MODE'
+      setPlayMode: 'SET_PLAY_MODE',
+      setPlayList: 'SET_PLAYLIST'
     }),
     // 动画钩子 4个
     enter(el, done) {
@@ -264,10 +267,21 @@ export default {
     changeMode() {
       const mode = (this.mode + 1) % 3
       this.setPlayMode(mode)
+      let list = null
+      if (mode === playMode.random) list = shuffle(this.sequenceList)  // 随机播放
+      else list = this.sequenceList // 顺序播放
+      this.resetCurrentIndex(list)
+      this.setPlayList(list)
+    },
+    // 重置选中的歌曲列表
+    resetCurrentIndex(list) {
+      let index = list.findIndex((item) => item.id === this.currentSong.id)
+      this.setCurrentIndex(index)
     }
   },
   watch: {
-    currentSong() {
+    currentSong(newSong, oldSong) {
+      if (newSong.id === oldSong.id) return
       this.$refs.audio.load()
       this.$nextTick(() => {
         this.$refs.audio.play()
