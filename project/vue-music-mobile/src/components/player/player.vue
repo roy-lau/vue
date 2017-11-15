@@ -1,10 +1,16 @@
 <template>
   <div class="player" v-show="playList.length>0">
     <!-- 展开的播发器dom start-->
-    <transition name="normal" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
+    <transition name="normal"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @leave="leave"
+      @after-leave="afterLeave">
       <div class="normal-player" v-show="fullScreen">
         <!-- 背景图 -->
-        <div class="background"><img :src="currentSong.image" :alt="currentSong.name" width="100%" height="100%" /></div>
+        <div class="background">
+          <img :src="currentSong.image" :alt="currentSong.name" width="100%" height="100%" />
+        </div>
         <!-- 头部 -->
         <div class="top">
           <div class="back" @click="back">
@@ -34,7 +40,7 @@
           <!-- 控制按钮组 -->
           <div class="operators">
             <!-- 播放方式图标 -->
-            <div class="icon i-left"><i class="icon-sequence"></i></div>
+            <div class="icon i-left" @click="changeMode"><i :class="modeIcon"></i></div>
             <!-- 上一曲 -->
             <div class="icon i-left" :class="disableCls"><i @click="prev" class="icon-prev"></i></div>
             <!-- 播放&&暂停 -->
@@ -53,7 +59,9 @@
     <!-- 收起的播发器dom start -->
     <transition name="mini">
       <div class="mini-player" v-show="!fullScreen" @click="open">
-        <div class="icon" :class="cdCls"><img :src="currentSong.image" :alt="currentSong.name" width="40" height="40" /></div>
+        <div class="icon" :class="cdCls">
+          <img :src="currentSong.image" :alt="currentSong.name" width="40" height="40" />
+        </div>
         <div class="text">
           <h2 class="name" v-html="currentSong.name"></h2>
           <p class="desc" v-html="currentSong.singer"></p>
@@ -68,7 +76,11 @@
     </transition>
     <!-- 收起的播发器dom end -->
     <!-- 音乐播放器 start -->
-    <audio ref="audio" :src="currentSong.url" @timeupdate="updateTime" @canplay="ready" @error="error"></audio>
+    <audio ref="audio"
+      :src="currentSong.url"
+      @timeupdate="updateTime"
+      @canplay="ready"
+      @error="error"></audio>
     <!-- 音乐播放器 end -->
   </div>
 </template>
@@ -78,6 +90,7 @@ import animations from 'create-keyframe-animation'
 import { prefixStyle } from 'common/js/dom'
 import ProgressBar from 'base/progress-bar/progress-bar'
 import ProgressCircle from 'base/progress-circle/progress-circle'
+import { playMode } from 'common/js/config'
 
 const transform = prefixStyle('transform')
 
@@ -95,6 +108,9 @@ export default {
     miniIcon() {
       return this.playing ? 'icon-pause-mini' : 'icon-play-mini'
     },
+    modeIcon() {
+      return this.mode === playMode.sequence ? 'icon-sequence' : this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
+    },
     cdCls() {
       return this.playing ? 'play' : 'play pause'
     },
@@ -110,7 +126,8 @@ export default {
       'playList',
       'currentSong',
       'playing',
-      'currentIndex'
+      'currentIndex',
+      'mode'
     ])
   },
   methods: {
@@ -125,7 +142,8 @@ export default {
     ...mapMutations({
       setFullScreen: 'SET_FULL_SCREEN',
       setPlayingState: 'SET_PLAYING_STATE',
-      setCurrentIndex: 'SET_CURRENT_INDEX'
+      setCurrentIndex: 'SET_CURRENT_INDEX',
+      setPlayMode: 'SET_PLAY_MODE'
     }),
     // 动画钩子 4个
     enter(el, done) {
@@ -235,11 +253,17 @@ export default {
       }
       return num
     },
+    // 监听进度条变换
     onProgressBarChange(percent) {
       // 修改播放时间
       this.$refs.audio.currentTime = this.currentSong.duration * percent
       // 设置在暂停时拖动进度条后也能播放
       if (!this.playing) this.togglePlaying()
+    },
+    // 改变播放模式
+    changeMode() {
+      const mode = (this.mode + 1) % 3
+      this.setPlayMode(mode)
     }
   },
   watch: {
