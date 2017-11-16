@@ -53,8 +53,11 @@ export default {
       this.$refs.progressBtn.style[transform] = `translate3d(${offsetWidth}px,0,0)`
     },
     progressClick(e) {
-      // 点击时跳到 点击的位置播放
-      this._offset(e.offsetX)
+      const rect = this.$refs.progressBar.getBoundingClientRect()
+      const offsetWidth = e.pageX - rect.left
+      this._offset(offsetWidth)
+      // 点击 progressBtn 的时候，e.offsetX获取不对
+      // this._offset(e.offsetX)
       this._triggerPercent()
     }
   },

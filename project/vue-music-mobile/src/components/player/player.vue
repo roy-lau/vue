@@ -80,7 +80,8 @@
       :src="currentSong.url"
       @timeupdate="updateTime"
       @canplay="ready"
-      @error="error"></audio>
+      @error="error"
+      @ended="end"></audio>
     <!-- 音乐播放器 end -->
   </div>
 </template>
@@ -267,9 +268,11 @@ export default {
     changeMode() {
       const mode = (this.mode + 1) % 3
       this.setPlayMode(mode)
+
       let list = null
       if (mode === playMode.random) list = shuffle(this.sequenceList)  // 随机播放
       else list = this.sequenceList // 顺序播放
+
       this.resetCurrentIndex(list)
       this.setPlayList(list)
     },
@@ -277,6 +280,16 @@ export default {
     resetCurrentIndex(list) {
       let index = list.findIndex((item) => item.id === this.currentSong.id)
       this.setCurrentIndex(index)
+    },
+    // 歌曲播放完毕
+    end() {
+      if (this.mode === playMode.loop) this.loop()
+      else this.next()
+    },
+    // 单曲循环
+    loop() {
+      this.$refs.audio.currentTime = 0
+      this.$refs.audio.play()
     }
   },
   watch: {
