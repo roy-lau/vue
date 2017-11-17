@@ -93,9 +93,7 @@ import ProgressBar from 'base/progress-bar/progress-bar'
 import ProgressCircle from 'base/progress-circle/progress-circle'
 import { playMode } from 'common/js/config'
 import { shuffle } from 'common/js/util'
-
 const transform = prefixStyle('transform')
-
 export default {
   data() {
     return {
@@ -152,7 +150,6 @@ export default {
     // 动画钩子 4个
     enter(el, done) {
       const { x, y, scale } = this._getPosAndScale()
-
       let animation = {
         0: {
           transform: `translate3d(${x}px,${y}px,0) scale(${scale})`
@@ -164,7 +161,6 @@ export default {
           transform: `translate3d(0,0,0) scale(1)`
         }
       }
-
       animations.registerAnimation({
         name: 'move',
         animation,
@@ -173,7 +169,6 @@ export default {
           easing: 'linear'
         }
       })
-
       animations.runAnimation(this.$refs.cdWrapper, 'move', done)
     },
     afterEnter() {
@@ -268,11 +263,9 @@ export default {
     changeMode() {
       const mode = (this.mode + 1) % 3
       this.setPlayMode(mode)
-
       let list = null
       if (mode === playMode.random) list = shuffle(this.sequenceList)  // 随机播放
       else list = this.sequenceList // 顺序播放
-
       this.resetCurrentIndex(list)
       this.setPlayList(list)
     },
@@ -312,13 +305,11 @@ export default {
     ProgressCircle
   }
 }
-
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   @import "~common/stylus/mixin"
-
   .player
     .normal-player
       position: fixed
@@ -401,7 +392,6 @@ export default {
                 width: 100%
                 height: 100%
                 border-radius: 50%
-
           .playing-lyric-wrapper
             width: 80%
             margin: 30px auto 0 auto
@@ -549,7 +539,6 @@ export default {
           position: absolute
           left: 0
           top: 0
-
   @keyframes rotate
     0%
       transform: rotate(0)

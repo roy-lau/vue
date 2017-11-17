@@ -1,3 +1,4 @@
+import { getLyric } from 'api/song'
 export default class Song {
   // @parm {singer:歌手,name:歌曲名,album:专辑名,duration:时长,image:图片,url:路径}
   constructor({ id, mid, singer, name, album, duration, image, url }) {
@@ -9,6 +10,14 @@ export default class Song {
     this.duration = duration
     this.image = image
     this.url = url
+  }
+  getLyric() {
+    getLyric(this.mid).then((res) => {
+      if (typeof res.retcode === 'number') {
+        this.lyric = res.lyric
+        console.log(res)
+      }
+    })
   }
 }
 
