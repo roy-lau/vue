@@ -28,8 +28,12 @@
             <div class="cd-wrapper" ref="cdWrapper">
               <div class="cd" :class="cdCls"><img :src="currentSong.image" :alt="currentSong.name" class="image" /></div>
             </div>
+            <!-- 缩略歌词（一句歌词） -->
+            <div class="playing-lyric-wrapper">
+              <div class="playing-lyric">{{playingLyric}}</div>
+            </div>
           </div>
-          <!-- 歌词部分 -->
+          <!-- 歌词部分（整个歌词） -->
           <Scroll class="middle-r" ref="lyricList" :data="currentLyric&&currentLyric.lines">
             <div class="lyric-wrapper">
               <div v-if="currentLyric">
@@ -128,7 +132,8 @@ export default {
       currentTime: 0,
       currentLyric: null,
       currentLineNum: 0, // 默认情况下的歌词
-      currentShow: 'cd'
+      currentShow: 'cd',
+      playingLyric: ''
     }
   },
   computed: {
@@ -241,23 +246,32 @@ export default {
     togglePlaying() {
       if (!this.songReady) return
       this.setPlayingState(!this.playing)
+      if (this.currentLyric) this.currentLyric.togglePlay()
     },
     // 上一曲
     prev() {
       if (!this.songReady) return
-      let index = this.currentIndex - 1
-      if (index === -1) index = this.playing.length - 1
-      this.setCurrentIndex(index)
-      if (!this.playing) this.togglePlaying()
+      if (this.playList.length === 1) {
+        this.loop()
+      } else {
+        let index = this.currentIndex - 1
+        if (index === -1) index = this.playing.length - 1
+        this.setCurrentIndex(index)
+        if (!this.playing) this.togglePlaying()
+      }
       this.songReady = false
     },
     // 下一曲
     next() {
       if (!this.songReady) return
-      let index = this.currentIndex + 1
-      if (index === this.playing.length) index = 0
-      this.setCurrentIndex(index)
-      if (!this.playing) this.togglePlaying()
+      if (this.playList.length === 1) {
+        this.loop()
+      } else {
+        let index = this.currentIndex + 1
+        if (index === this.playing.length) index = 0
+        this.setCurrentIndex(index)
+        if (!this.playing) this.togglePlaying()
+      }
       this.songReady = false
     },
     // 处理用户连续点击报错bug
@@ -290,10 +304,12 @@ export default {
     },
     // 监听进度条变换
     onProgressBarChange(percent) {
+      const currentTime = this.currentSong.duration * percent
       // 修改播放时间
-      this.$refs.audio.currentTime = this.currentSong.duration * percent
+      this.$refs.audio.currentTime = currentTime
       // 设置在暂停时拖动进度条后也能播放
       if (!this.playing) this.togglePlaying()
+      if (this.currentLyric) this.currentLyric.seek(currentTime * 1000)
     },
     // 改变播放模式
     changeMode() {
@@ -319,6 +335,7 @@ export default {
     loop() {
       this.$refs.audio.currentTime = 0
       this.$refs.audio.play()
+      if (this.currentLyric) this.currentLyric.seek(0)
     },
     // 获取歌词
     getLyric() {
@@ -327,6 +344,10 @@ export default {
         if (this.playing) {
           this.currentLyric.play()   // 播放歌词
         }
+      }).catch(() => {
+        this.currentLyric = null
+        this.playingLyric = ''
+        this.currentLineNum = 0
       })
     },
     // 歌词发生改变的回调函数
@@ -338,6 +359,8 @@ export default {
       } else {
         this.$refs.lyricList.scrollTo(0, 0, 1000)
       }
+      console.log(txt)
+      this.playingLyric = txt
     },
     //  切换cd和歌词的三个事件
     middleTouchStart(e) {
@@ -393,11 +416,12 @@ export default {
   watch: {
     currentSong(newSong, oldSong) {
       if (newSong.id === oldSong.id) return
+      if (this.currentLyric) this.currentLyric.stop()
       this.$refs.audio.load()
-      this.$nextTick(() => {
+      setTimeout(() => {
         this.$refs.audio.play()
         this.getLyric()
-      })
+      }, 1000)
     },
     playing(newPlaying) {
       const audio = this.$refs.audio
