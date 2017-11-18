@@ -106,6 +106,7 @@
     <!-- 音乐播放器 end -->
   </div>
 </template>
+
 <script type="text/ecmascript-6">
 import { mapGetters, mapMutations } from 'vuex'
 import animations from 'create-keyframe-animation'
