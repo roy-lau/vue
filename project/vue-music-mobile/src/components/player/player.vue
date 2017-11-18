@@ -359,7 +359,6 @@ export default {
       } else {
         this.$refs.lyricList.scrollTo(0, 0, 1000)
       }
-      console.log(txt)
       this.playingLyric = txt
     },
     //  切换cd和歌词的三个事件
