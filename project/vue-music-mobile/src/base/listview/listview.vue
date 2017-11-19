@@ -1,10 +1,10 @@
 <template>
   <scroll @scroll="scroll" :listen-scroll="listenScroll" :probe-type="probeType" :data="data" class="listview" ref="listview">
     <ul>
-      <li v-for="group in data" class="list-group" :key="group" ref="listGroup">
+      <li v-for="group in data" class="list-group" ref="listGroup">
         <h2 class="list-group-title" v-text="group.title"></h2>
         <uL>
-          <li @click="selectItem(item)" v-for="item in group.items" :key="item" class="list-group-item">
+          <li @click="selectItem(item)" v-for="item in group.items" class="list-group-item">
             <img class="avatar" v-lazy="item.avatar">
             <span class="name" v-text="item.name"></span>
           </li>
@@ -13,8 +13,8 @@
     </ul>
     <div class="list-shortcut" @touchstart="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove">
       <ul>
-        <li v-for="(item, index) in shortcutList" 
-        :data-index="index" class="item" :key="index"
+        <li v-for="(item, index) in shortcutList"
+        :data-index="index" class="item"
         :class="{'current':currentIndex===index}" v-text="item"></li>
       </ul>
     </div>
@@ -52,9 +52,6 @@ export default {
         return ''
       }
       return this.data[this.currentIndex] ? this.data[this.currentIndex].title : ''
-    },
-    refresh() {
-      this.$refs.listview.refresh()
     }
   },
   data() {

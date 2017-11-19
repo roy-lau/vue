@@ -2,7 +2,8 @@ import { commonParams } from './config'
 import axios from 'axios'
 
 export function getLyric(mid) {
-  const url = '/api/lyric'
+  // const url = '/api/lyric' 本地路径
+  const url = 'http://101.201.101.70:6962/api/lyric' // 服务器路径
 
   const data = Object.assign({}, commonParams, {
     songmid: mid,
