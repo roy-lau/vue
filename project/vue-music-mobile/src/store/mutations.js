@@ -21,6 +21,9 @@ const matutaions = {
   },
   [types.SET_CURRENT_INDEX](state, flag) {
     state.currentIndex = flag
+  },
+  [types.SET_DISC](state, disc) {
+    state.disc = disc
   }
 }
 
