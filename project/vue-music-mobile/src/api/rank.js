@@ -13,6 +13,7 @@ export function getTopList() {
   return jsonp(url, data, options)
 }
 
+// 数据来源页面 https://y.qq.com/w/toplist.html?ADTAG=myqq&from=myqq&channel=10007100&id=4&type=top
 export function getMusicList(topid) {
   const url = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg'
 
