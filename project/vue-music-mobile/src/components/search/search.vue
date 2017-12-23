@@ -1,13 +1,17 @@
 <template>
   <div class="search">
-    <div>搜索</div>
+    <div class="search-box-wrapper">
+      <search-box></search-box>
+    </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-
+  import SearchBox from 'base/search-box/search-box'
   export default {
-
+    components: {
+      SearchBox
+    }
   }
 </script>
 
