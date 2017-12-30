@@ -2,9 +2,10 @@
   <scroll class="suggest"
   :data="result"
   :pullup="pullup"
-  @scrollToEnd="searchMore">
+  @scrollToEnd="searchMore"
+  ref="suggest">
     <ul class="suggest-list">
-      <li class="suggest-item" v-for="item in result">
+      <li @click="selectItem(item)" class="suggest-item" v-for="item in result">
         <div class="icon">
           <i :class="getIconCls(item)"></i>
         </div>
@@ -22,6 +23,8 @@
   import { createSong } from 'common/js/song'
   import Scroll from 'base/scroll/scroll'
   import Loading from 'base/loading/loading'
+  import Singer from 'common/js/singer'
+  import { mapMutations } from 'vuex'
 
   const TYPE_SINGER = 'singer'
   const PERPAGE = 20
@@ -46,7 +49,9 @@
     },
     methods: {
       search() {
+        this.page = 1
         this.hasMore = true
+        this.$refs.suggest.scrollTo(0, 0)
         getSearchList(this.query, this.page, this.showSinger, PERPAGE).then(res => {
           if (res.code === ERR_OK) {
             this.result = this._genResult(res.data)
@@ -71,6 +76,32 @@
           this.hasMore = false
         }
       },
+      getDisplayName(item) {
+        if (item.type === TYPE_SINGER) {
+          return item.singername
+        } else {
+          return `${item.name}-${item.singer}`
+        }
+      },
+      selectItem(item) {
+        if (item.type === TYPE_SINGER) {
+          const singer = new Singer({
+            id: item.mid,
+            name: item.name
+          })
+          this.$router.push({
+            path: `/search/${singer.id}`
+          })
+          this.setSinger(singer)
+        }
+      },
+      getIconCls(item) {
+        if (item.type === TYPE_SINGER) {
+          return 'icon-mine'
+        } else {
+          return 'icon-music'
+        }
+      },
       _genResult(data) {
         let ret = []
         if (data.zhida && data.zhida.singerid) {
@@ -81,29 +112,18 @@
         }
         return ret
       },
-      getDisplayName(item) {
-        if (item.type === TYPE_SINGER) {
-          return item.songname
-        } else {
-          return `${item.name}-${item.singer}`
-        }
-      },
-      getIconCls(item) {
-        if (item.type === TYPE_SINGER) {
-          return 'icon-mine'
-        } else {
-          return 'icon-music'
-        }
-      },
       _normalizeSongs(list) {
         let ret = []
         list.forEach((musicData) => {
-          if (musicData.songid && musicData.albumid) {
+          if (musicData.songid && musicData.albummid) {
             ret.push(createSong(musicData))
           }
         })
         return ret
-      }
+      },
+      ...mapMutations({
+        setSinger: 'SET_SINGER'
+      })
     },
     watch: {
       query() {
