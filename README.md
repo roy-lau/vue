@@ -59,36 +59,38 @@ __对于这些在 ``enter/leave`` 过渡中切换的类名，``v-`` 是这些类
  
  7、vue的生命周期函数
  
-	   beforeCreate(){
-	      alert('beforeCreate' + '1')
-	   },
-	    created(){
-	      alert('created' + '2')
-	   },
-	    beforeMount(){
-	      alert('beforeMount' + '3')
-	   },
-	    mounted(){					// 比较常用
-	      alert('mounted' + '4')
-	   },
-	    beforeUpdate(){
-	      alert('beforeUpdate' + '5')
-	   },
-	    updated(){
-	      alert('updated' + '6')
-	   },
-	    beforeDestroy(){
-	      alert('beforeDestroy' + '7')
-	   },
-	    destroyed(){
-	      alert('destroyed' + '8')
-	   },
-	    activated(){
-	      alert('activated' + '9')
-	   },
-	    deactivated(){
-	      alert('deactivated' + '10')
-	   }
+	  // 在实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用。
+	  beforeCreate () {
+	    console.log('实例初始化...')
+	  },
+	  // 实例已经创建完成之后被调用
+	  created () {
+	    console.log('实例已经创建完成...')
+	  },
+	  // 在挂载开始之前被调用：相关的 render 函数首次被调用。
+	  beforeMount () {
+	    console.log('即将挂载...')
+	  },
+	  // el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子
+	  mounted () {
+	    console.log('已挂载到实例...')
+	  },
+	  // 数据更新时调用
+	  beforeUpdate () {
+	    console.log('数据更新中...')
+	  },
+	  // 由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。
+	  updated () {
+	    console.log('数据更改导致的虚拟 DOM 重新渲染...')
+	  },
+	  // 实例销毁之前调用。在这一步，实例仍然完全可用。
+	  beforeDestroy () {
+	    console.log('实例马上销毁...')
+	  },
+	  // Vue 实例销毁后调用
+	  destroyed () {
+	    console.log('实例已销毁...')
+	  }
 
   3、vue事件
   	@ 表事件
