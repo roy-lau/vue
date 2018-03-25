@@ -18,123 +18,125 @@
   </scroll>
 </template>
 <script type="text/ecmascript-6">
-  import { getSearchList } from 'api/search'
-  import { ERR_OK } from 'api/config'
-  import { createSong } from 'common/js/song'
-  import Scroll from 'base/scroll/scroll'
-  import Loading from 'base/loading/loading'
-  import Singer from 'common/js/singer'
-  import { mapMutations } from 'vuex'
+import { getSearchList } from 'api/search'
+import { ERR_OK } from 'api/config'
+import { createSong } from 'common/js/song'
+import Scroll from 'base/scroll/scroll'
+import Loading from 'base/loading/loading'
+import Singer from 'common/js/singer'
+import { mapMutations } from 'vuex'
 
-  const TYPE_SINGER = 'singer'
-  const PERPAGE = 20
-  export default {
-    props: {
-      query: {
-        type: String,
-        default: ''
-      },
-      showSinger: {
-        type: Boolean,
-        default: true
-      }
+const TYPE_SINGER = 'singer'
+const PERPAGE = 20
+export default {
+  props: {
+    query: {
+      type: String,
+      default: ''
     },
-    data() {
-      return {
-        page: 1,
-        result: [],
-        pullup: true,
-        hasMore: true
-      }
-    },
-    methods: {
-      search() {
-        this.page = 1
-        this.hasMore = true
-        this.$refs.suggest.scrollTo(0, 0)
-        getSearchList(this.query, this.page, this.showSinger, PERPAGE).then(res => {
-          if (res.code === ERR_OK) {
-            this.result = this._genResult(res.data)
-            this._checkMore(res.data)
-          }
-        })
-      },
-      // 搜索更多（滑动到底部触发）
-      searchMore() {
-        if (!this.hasMore) return
-        this.page ++
-        getSearchList(this.query, this.page, this.showSinger, PERPAGE).then(res => {
-          if (res.code === ERR_OK) {
-            this.result = this.result.concat(this._genResult(res.data))
-            this._checkMore(res.data)
-          }
-        })
-      },
-      _checkMore(data) {
-        const song = data.song
-        if (!song.list.length || (song.curnum + song.curpage * PERPAGE) > song.totlnum) {
-          this.hasMore = false
+    showSinger: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data() {
+    return {
+      page: 1,
+      result: [],
+      pullup: true,
+      hasMore: true
+    }
+  },
+  methods: {
+    search() {
+      this.page = 1
+      this.hasMore = true
+      this.$refs.suggest.scrollTo(0, 0)
+      getSearchList(this.query, this.page, this.showSinger, PERPAGE).then(res => {
+        if (res.code === ERR_OK) {
+          this.result = this._genResult(res.data)
+          this._checkMore(res.data)
         }
-      },
-      getDisplayName(item) {
-        if (item.type === TYPE_SINGER) {
-          return item.singername
-        } else {
-          return `${item.name}-${item.singer}`
-        }
-      },
-      selectItem(item) {
-        if (item.type === TYPE_SINGER) {
-          const singer = new Singer({
-            id: item.mid,
-            name: item.name
-          })
-          this.$router.push({
-            path: `/search/${singer.id}`
-          })
-          this.setSinger(singer)
-        }
-      },
-      getIconCls(item) {
-        if (item.type === TYPE_SINGER) {
-          return 'icon-mine'
-        } else {
-          return 'icon-music'
-        }
-      },
-      _genResult(data) {
-        let ret = []
-        if (data.zhida && data.zhida.singerid) {
-          ret.push({...data.zhida, ...{type: TYPE_SINGER}})
-        }
-        if (data.song) {
-          ret = ret.concat(this._normalizeSongs(data.song.list))
-        }
-        return ret
-      },
-      _normalizeSongs(list) {
-        let ret = []
-        list.forEach((musicData) => {
-          if (musicData.songid && musicData.albummid) {
-            ret.push(createSong(musicData))
-          }
-        })
-        return ret
-      },
-      ...mapMutations({
-        setSinger: 'SET_SINGER'
       })
     },
-    watch: {
-      query() {
-        this.search()
+    // 搜索更多（滑动到底部触发）
+    searchMore() {
+      if (!this.hasMore) return
+      this.page++
+      getSearchList(this.query, this.page, this.showSinger, PERPAGE).then(res => {
+        if (res.code === ERR_OK) {
+          console.log('res' + JSON.stringify(res))
+          this.result = this.result.concat(this._genResult(res.data))
+          this._checkMore(res.data)
+        }
+      })
+    },
+    _checkMore(data) {
+      const song = data.song
+      if (!song.list.length || (song.curnum + song.curpage * PERPAGE) > song.totlnum) {
+        this.hasMore = false
       }
     },
-    components: {
-      Scroll,
-      Loading
+    getDisplayName(item) {
+      if (item.type === TYPE_SINGER) {
+        return item.singername
+      } else {
+        return `${item.name}-${item.singer}`
+      }
+    },
+    selectItem(item) {
+      console.log(JSON.stringify(item))
+      if (item.type === TYPE_SINGER) {
+        const singer = new Singer({
+          id: item.mid,
+          name: item.name
+        })
+        this.$router.push({
+          path: `/search/${singer.id}`
+        })
+        this.setSinger(singer)
+      }
+    },
+    getIconCls(item) {
+      if (item.type === TYPE_SINGER) {
+        return 'icon-mine'
+      } else {
+        return 'icon-music'
+      }
+    },
+    _genResult(data) {
+      let ret = []
+      if (data.zhida && data.zhida.singerid) {
+        ret.push({ ...data.zhida, ...{ type: TYPE_SINGER } })
+      }
+      if (data.song) {
+        ret = ret.concat(this._normalizeSongs(data.song.list))
+      }
+      return ret
+    },
+    _normalizeSongs(list) {
+      let ret = []
+      list.forEach((musicData) => {
+        if (musicData.songid && musicData.albummid) {
+          ret.push(createSong(musicData))
+        }
+      })
+      return ret
+    },
+    ...mapMutations({
+      setSinger: 'SET_SINGER'
+    })
+  },
+  watch: {
+    query() {
+      this.search()
     }
+  },
+  components: {
+    Scroll,
+    Loading
   }
+}
 
 </script>
 
