@@ -10,7 +10,10 @@
             <div class="navbar">
                 <div class="navbar-left-container">
                     <a href="/">
-                      <img class="navbar-brand-logo" src="./imgs/logo-text.png"></a>
+                      <!-- <img class="navbar-brand-logo" src="./imgs/logo-text.png"></a> -->
+                      <img class="navbar-brand-logo" src="http://www.logofree.cn/uploads/image/20171110/18/47-01_2585.jpg" width="50">
+                      天器购物网
+                    </a>
                 </div>
                 <div class="navbar-right-container" style="display: flex;">
                     <div class="navbar-menu-container">
@@ -29,8 +32,8 @@
                     </div>
                 </div>
             </div>
-            <div class="md-modal modal-msg md-modal-transition" :class="{'md-show':showModal}">
-                <div class="md-modal-inner">
+            <div class="md-modal modal-msg md-modal-transition" :class="{'md-show':showModal}" >
+                <div class="md-modal-inner" >
                     <div class="md-top">
                         <div class="md-title">Login in </div>
                         <button class="md-close" @click="showModal=false">close</button>
@@ -41,11 +44,15 @@
                                 <span class="error error-show" v-show="errorTip">用户名或密码错误！</span>
                             </div>
                             <ul>
-                                <li class="regi_form_input"><i class="icon IconPeople"></i><input type="text" tabindex="1" name="loginname" autofocus autocomplete class="regi_login_input" v-model="userName"/></li>
-                                <li class="regi_form_input noMargin"><i class="icon IconPwd"></i><input type="password" tabindex="2" nanme="password" class="regi_login_input" v-model="userPwd"/></li>
+                                <form  @keyup.enter.native="login">
+                                <li class="regi_form_input"><i class="icon IconPeople"></i>
+                                    <input type="text" tabindex="1" name="loginname" autofocus autocomplete class="regi_login_input regi_login_input_left" v-model.trim="userName" required/></li>
+                                <li class="regi_form_input noMargin"><i class="icon IconPwd"></i>
+                                    <input type="password" tabindex="2" nanme="password" class="regi_login_input regi_login_input_left login-input-no input_text" v-model.trim="userPwd" required autocomplete /></li>
+                                </form>
                             </ul>
                         </div>
-                        <div class="login-wrap">
+                        <div class="login-wrap" >
                             <a href="javascript:;" class="btn-login" @click="login">登 陆</a>
                         </div>
                     </div>

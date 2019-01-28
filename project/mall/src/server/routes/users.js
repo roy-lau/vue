@@ -10,7 +10,7 @@ router.post('/login', (req, res, next) => {
             res.json({ status: 1, msg: err.message })
         } else {
             // console.log(req.body, 'doc>>>>>>',doc)
-            console.log(req.body, 'doc>>>>>>', doc.userId)
+            // console.log(req.body, 'userId >>>>>>', doc.userId)
             if (doc) {
                 res.cookie('userId', doc.userId, { path: '/', maxAge: 1000 * 60 * 60, httpOnly: true });
                 res.cookie('userName', doc.userName, { path: '/', maxAge: 1000 * 60 * 60, httpOnly: true });
