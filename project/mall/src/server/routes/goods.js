@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 let goods = require('../models/goods')
 
 // 连接 MongoDB 数据库
-mongoose.connect('mongodb://139.199.99.154/mall',{useNewUrlParser:true})
+mongoose.connect('mongodb://139.199.99.154/mall', { useNewUrlParser: true })
 
 mongoose.connection.on('connected', () => {
         console.log("数据库连接成功！")
@@ -74,6 +74,55 @@ router.get('/list', (req, res, next) => {
     })
 })
 
+// 新增 && 修改 商品
+let productId = 1
+router.post('/headleGoods', (req, res, next) => {
+    if (!req.body) return;
+    console.log(req.body)
+    if (req.body.productId) {
+        // 修改商品
+        goods.update({"productId":req.body.productId}, req.body, (err, doc) => {
+            if (err) {
+                res.json({ status: 1, msg: err.message })
+            } else {
+                res.json({ status: 0, msg: '修改商品_ok', result: 'success' })
+            }
+        })
+    } else {
+        // 新增商品
+        // let body = {
+        //     "productId": String(productId++),
+        //     "productName": "智能摄像机",
+        //     "salePrice": 389,
+        //     "productImage": "photo.jpg",
+        //     "productUrl": ""
+        // }
+        req.body.productId =  String(productId++)
+
+        let inGoods = new goods(req.body)
+        inGoods.save(function(err, doc) {
+            if (err) {
+                res.json({ status: 1, msg: err.message })
+            } else {
+                res.json({ status: 0, msg: '新增商品_ok', result: 'success' })
+            }
+        });
+    }
+})
+// 删除商品
+router.post('/del', (req, res, next) => {
+    if (!req.body.productId) return;
+    console.log(req.body)
+
+     goods.remove({"productId":req.body.productId}, (err, doc) => {
+            if (err) {
+                res.json({ status: 1, msg: err.message })
+            } else {
+                res.json({ status: 0, msg: '删除商品_ok', result: 'success' })
+            }
+        })
+
+})
 // 加入购物车
 router.post('/addCart', (req, res, next) => {
     let userId = '100000077',
@@ -102,7 +151,7 @@ router.post('/addCart', (req, res, next) => {
                         if (err) {
                             res.json({ status: 1, mag: err.message })
                         } else {
-                            res.json({status: 0,msg: '',result: 'success'})
+                            res.json({ status: 0, msg: '', result: 'success' })
                         }
                     })
                 } else {

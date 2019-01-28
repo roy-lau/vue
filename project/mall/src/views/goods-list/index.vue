@@ -52,7 +52,7 @@
                             <ul>
                                 <li v-for="(item,index) in goodsList" :key="index">
                                     <div class="pic">
-                                        <a href="javascript:void(0)"><img v-lazy="imgPrefix+item.productImage" :alt="item.productName"></a>
+                                        <a href="javascript:void(0)"><img v-lazy="item.productUrl" :alt="item.productName"></a>
                                     </div>
                                     <div class="main">
                                         <div class="name" v-text="item.productName"></div>
@@ -105,7 +105,6 @@ export default {
     },
     data() {
         return {
-            imgPrefix: process.env.VUE_APP_IMG_URL,
             goodsList: {
                 "status": "0",
                 "result": [{

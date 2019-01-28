@@ -6,6 +6,7 @@ let produtSchema = new Schema({
 	"productName": String,
 	"salePrice": Number,
 	"productImage":String,
+	"productUrl":String,
 	"productNum":Number
 })
 

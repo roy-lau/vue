@@ -17,6 +17,11 @@ export default new Router({
       path: '/cart',
       name: 'cart',
       component: () => import(/* webpackChunkName: "cart" */ './views/cart')
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import(/* webpackChunkName: "cart" */ './views/admin/goods')
     }
   ]
 })
