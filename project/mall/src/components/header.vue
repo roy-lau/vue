@@ -48,7 +48,7 @@
                                 <li class="regi_form_input"><i class="icon IconPeople"></i>
                                     <input type="text" tabindex="1" name="loginname" autofocus autocomplete class="regi_login_input regi_login_input_left" v-model.trim="userName" required/></li>
                                 <li class="regi_form_input noMargin"><i class="icon IconPwd"></i>
-                                    <input type="password" tabindex="2" nanme="password" class="regi_login_input regi_login_input_left login-input-no input_text" v-model.trim="userPwd" required autocomplete /></li>
+                                    <input type="password" tabindex="2" nanme="password" class="regi_login_input regi_login_input_left login-input-no input_text" v-model.trim="userPwd" @keyup.enter="login" required autocomplete /></li>
                                 </form>
                             </ul>
                         </div>

@@ -173,7 +173,7 @@ router.post('/addCart', (req, res, next) => {
                                     } else {
                                         res.json({
                                             status: 0,
-                                            msg: '',
+                                            msg: '成功加入购物车！',
                                             result: 'success'
                                         })
                                     }

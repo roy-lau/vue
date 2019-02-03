@@ -35,7 +35,7 @@
                             <dd>
                                 <a href="javascript:void(0)"
                                 :class="{'cur':priceChecked === 'all'}"
-                                @click="priceChecked = 'all'">All</a>
+                                @click="setPriceFilter('all')">All</a>
                             </dd>
                             <dd v-for="(price,index) in priceFilter">
                                 <a href="javascript:void(0)"
@@ -100,9 +100,7 @@ import Modal from '@/components/modal'
 export default {
     name: 'goodsList',
     directives: { infiniteScroll },
-    components: {
-        Modal
-    },
+    components: {Modal},
     data() {
         return {
             goodsList: {

@@ -5,23 +5,22 @@ import goodsList from './views/goods-list'
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'goodsList',
-      component: goodsList
-    },
-    {
-      path: '/cart',
-      name: 'cart',
-      component: () => import(/* webpackChunkName: "cart" */ './views/cart')
-    },
-    {
-      path: '/admin',
-      name: 'admin',
-      component: () => import(/* webpackChunkName: "cart" */ './views/admin/goods')
-    }
-  ]
+    // mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [{
+            path: '/',
+            name: 'goodsList',
+            component: goodsList
+        },
+        {
+            path: '/cart',
+            name: 'cart',
+            component: () => import( /* webpackChunkName: "cart" */ './views/cart')
+        },
+        {
+            path: '/admin',
+            name: 'admin',
+            component: () => import( /* webpackChunkName: "cart" */ './views/admin/goods')
+        }
+    ]
 })

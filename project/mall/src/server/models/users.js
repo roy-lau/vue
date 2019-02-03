@@ -11,6 +11,7 @@ let usersSchema = new Schema({
         "productName": String,
         "salePrice": String,
         "productImage": String,
+        "productUrl": String,
         "checked": String,
         "productNum": String
     }],
