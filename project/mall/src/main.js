@@ -5,10 +5,13 @@ import store from './store'
 import './registerServiceWorker'
 import axios from 'axios'
 import vueLazyload from 'vue-lazyload'
+import {currency} from '@/utils/currency.js'
 
 Vue.prototype.$axios = axios;
 axios.defaults.baseURL = 'http://localhost:3000/';
 axios.defaults.withCredentials = true;
+
+Vue.filter("currency",currency) // 全局过滤器，用于格式化价格
 Vue.use(vueLazyload,{
 	loading: require('./assets/loading/loading-bars.svg')
 })
