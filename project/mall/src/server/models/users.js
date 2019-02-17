@@ -15,7 +15,14 @@ let usersSchema = new Schema({
         "checked": String,
         "productNum": String
     }],
-    "addressList": Array
+    "addressList": [{
+        "addressId": String,
+        "userName": String,
+        "steetName": String,
+        "postCode": Number,
+        "tel": Number,
+        "isDefault": Boolean
+    }]
 })
 
 module.exports = mongoose.model("User", usersSchema)

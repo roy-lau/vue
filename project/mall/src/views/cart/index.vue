@@ -1,6 +1,7 @@
 <template>
   <div id="cart-list">
     <div class="checkout cart-page" >
+        <!-- 面包屑导航 start-->
         <div class="nav-breadcrumb-wrap">
             <div class="container">
                 <nav class="nav-breadcrumb">
@@ -9,6 +10,7 @@
                 </nav>
             </div>
         </div>
+        <!-- 面包屑导航 -->
         <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
                 <symbol id="icon-add" viewBox="0 0 32 32">
@@ -117,7 +119,7 @@
                                 Item total: <span class="total-price" >{{ totalPrice | currency('¥') }}</span>
                             </div>
                             <div class="btn-wrap">
-                                <a class="btn btn--red">Checkout</a>
+                                <a class="btn btn--red" :class="{'btn--dis':checkedCount===0}" @click="onCheckout">Checkout</a>
                             </div>
                         </div>
                     </div>
@@ -126,7 +128,7 @@
         </div>
     </div>
     <Modal :modalShow="modalConfirm" @close="closeModel">
-      <p slot="message"> 此数据删除将无法恢复，您确定要删除吗？ </p>
+      <p ="message"> 此数据删除将无法恢复，您确定要删除吗？ </p>
       <div slot="btnGroup" >
           <a class="btn btn--m" @click="delCat">确定</a>
           <a class="btn btn--m" @click="modalConfirm=false">关闭</a>
@@ -225,6 +227,14 @@ export default {
         },
         closeModel(){
           this.modalConfirm = false
+        },
+        // 跳转到地址栏
+        onCheckout(){
+            if (this.checkedCount>0) {
+                this.$router.push({
+                    path:"/address"
+                })
+            }
         }
     }
 }

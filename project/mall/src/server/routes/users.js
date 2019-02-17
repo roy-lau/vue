@@ -1,5 +1,5 @@
 const router = require('express')()
-
+require("../utils/dateFormat.js")
 let Users = require('../models/users')
 
 
@@ -70,8 +70,7 @@ router.post("/cart/edit", (req, res, next) => {
         productNum = req.body.productNum,
         checked = req.body.checked
 
-    Users.updateOne({ userId: userId, "cartList.productId": productId },
-        { "cartList.$.checked": checked ,"cartList.$.productNum": productNum },
+    Users.updateOne({ userId: userId, "cartList.productId": productId }, { "cartList.$.checked": checked, "cartList.$.productNum": productNum },
         (err, doc) => {
             if (err) {
                 res.json({ status: 1, msg: err.message, result: '' })
@@ -81,22 +80,22 @@ router.post("/cart/edit", (req, res, next) => {
         })
 })
 
-router.post("/cart/edit/checkAll",(req,res,next)=>{
+router.post("/cart/edit/checkAll", (req, res, next) => {
     let userId = req.cookies.userId,
         checkAll = req.body.checkAll
-    Users.findOne({userId:userId},(userErr,userDoc)=>{
+    Users.findOne({ userId: userId }, (userErr, userDoc) => {
         if (userErr) {
-            res.json({status:1,msg:userErr.message,result:''})
-        }else{
+            res.json({ status: 1, msg: userErr.message, result: '' })
+        } else {
             if (userDoc) {
-                userDoc.cartList.forEach(item =>{
+                userDoc.cartList.forEach(item => {
                     item.checked = checkAll
                 })
-                userDoc.save((err,doc)=>{
+                userDoc.save((err, doc) => {
                     if (err) {
-                        res.json(status:1,msg:err.message,result:'')
-                    }else{
-                        res.json({status:0,msg:'',result:'success'})
+                        res.json({ status: 1, msg: err.message, result: '' })
+                    } else {
+                        res.json({ status: 0, msg: '', result: 'success' })
                     }
                 })
             }
@@ -105,12 +104,155 @@ router.post("/cart/edit/checkAll",(req,res,next)=>{
 })
 
 
+// 查询用户地址接口
+router.get("/addressList", (req, res, next) => {
+    let userId = req.cookies.userId
+    Users.findOne({ userId: userId }, (err, doc) => {
+        if (err) {
+            res.json({ status: 1, msg: err.message, result: '' })
+        } else {
+            res.json({ status: 1, msg: '', result: doc.addressList })
+        }
+    })
+})
 
+// 设置用户默认地址
+router.post("/setDefaultAddress", (req, res, next) => {
+    let userId = req.cookies.userId,
+        addressId = req.body.addressId
 
+    if (!addressId) {
+        res.json({ status: 110, msg: 'addressId is null', result: '' })
+    }
+    Users.findOne({ userId: userId }, (err, doc) => {
+        if (err) {
+            res.json({ status: 1, msg: err.message, result: '' })
+        } else {
+            let addressList = doc.addressList
+            addressList.forEach(item => {
+                if (item.addressId === addressId) {
+                    item.isDefault = true
+                } else {
+                    item.isDefault = false
+                }
+            })
+            doc.save((err1, doc1) => {
+                if (err) {
+                    res.json({ status: 1, msg: err1.message, result: '' })
+                } else {
+                    res.json({ status: 0, msg: '', result: 'save success' })
+                }
+            })
+        }
+    })
+})
 
+// 删除用户地址接口
+router.post("/delAddress", (req, res, next) => {
+    let userId = req.cookies.userId,
+        addressId = req.body.addressId,
+        orderTotal = req.body.orderTotal
 
+    Users.updateOne({ userId: userId }, { $pull: { 'addressList': { addressId: addressId } } }, (err, doc) => {
+        if (err) {
+            res.json({ status: 1, msg: err.message, result: '' })
+        } else {
+            res.json({ status: 0, msg: '', result: 'del address success' })
+        }
+    })
+})
 
+// 支付 生成订单
+router.post("/payMent", (req, res, next) => {
+    let userId = req.cookies.userId,
+        addressId = req.body.addressId,
+        orderTotal = req.body.orderTotal
+    Users.findOne({ userId: userId }, (userErr, userDoc) => {
+        if (userErr) {
+            res.json({ status: 1, msg: userErr.message, result: '' })
+        } else {
+            let address = null,
+                goodsList = []
+            // 获取当前用户的地址信息
+            userDoc.addressList.forEach(item => {
+                if (addressId === item.addressId) {
+                    address = item
+                }
+            })
+            // 获取用户购物车的购买商品
+            userDoc.cartList.filter(item => {
+                if (item.checked === '1') {
+                    goodsList.push(item)
+                }
+            })
 
+            // 0到9之间的随机数
+            let r1 = Math.floor(Math.random() * 10),
+                r2 = Math.floor(Math.random() * 10),
+                // 系统时间
+                sysDate = new Date().Format('yyyyMMddhhmmss'),
+                // 订单的创建时间
+                createDate = new Date().Format('yyyy-MM-dd hh:mm:ss'),
+                // 平台代码（随便写的）
+                platform = '110',
+                // 生成订单id(21位)
+                orderId = platform + r1 + sysDate + r2
+
+            // 订单信息
+            const ORDER = {
+                orderId: orderId,
+                orderTotal: orderTotal,
+                addressInfo: address,
+                goodsList: goodsList,
+                orderStatus: 1,
+                createDate: createDate
+            }
+            // 保存订单列表
+            userDoc.orderList.push(ORDER)
+            userDoc.save((err, doc) => {
+                if (userErr) {
+                    res.json({ status: 1, msg: userErr.message, result: '' })
+                } else {
+                    res.json({
+                        status: 0,
+                        msg: 'payMent success',
+                        result: { orderId: ORDER.orderId, orderTotal: ORDER.orderTotal }
+                    })
+                }
+            })
+        }
+    })
+})
+
+// 根据订单id查询订单信息
+router.get("/orderDetail", (req, res, next) => {
+    let userId = req.cookies.userId,
+        orderId = req.query.orderId
+
+    Users.findOne({ userId: userId }, (userErr, userDoc) => {
+        if (userErr) {
+            res.json({ status: 1, msg: userErr.message, result: '' })
+        } else {
+            let orderList = userDoc.orderList
+            if (orderList.length > 0) {
+                let orderTotal = 0
+                orderList.forEach(item => {
+                    if (item.orderId = orderId) {
+                        orderTotal = item.orderTotal
+                    }
+                })
+                if (orderTotal > 0) {
+                    res.json({ status: 0, msg: 'success', result: { orderId: orderId, orderTotal: orderTotal } })
+                } else {
+                    res.json({ status: 120, msg: `没有此订单(${orderTotal})!`, result: '' })
+                }
+            } else {
+                res.json({ status: 120, msg: '当前用户未创建订单!', result: '' })
+
+            }
+        }
+    })
+})
 
 
 

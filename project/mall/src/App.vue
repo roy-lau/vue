@@ -7,6 +7,7 @@
 </template>
 <script>
 import '@/assets/css/base.css'
+import '@/assets/css/checkout.css'
 
 import headers from '@/components/header.vue'
 import footers from '@/components/footer.vue'
