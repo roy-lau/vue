@@ -37,6 +37,25 @@ router.post('/checkLogin', (req, res, next) => {
         res.json({ status: 1, msg: 'checkLogin: 当前用户未登陆！', result: '' })
     }
 })
+
+// 购物车商品数量
+router.get('/getCartCount', (req, res, next) => {
+    if (req.cookies && req.cookies.userId) {
+        let userId = req.cookies.userId
+        Users.findOne({ userId: userId }, (userErr, userDoc) => {
+            if (userErr) {
+                res.json({ status: 1, msg: err.message, result: '' })
+            }else{
+                let cartList = userDoc.cartList,
+                    cartCount = 0
+                cartList.map(item=>{
+                    cartCount += parseInt(item.productNum)
+                })
+                res.json({ status: 0, msg: '', result: cartCount })
+            }
+        })
+    }
+})
 // 查询当前用户的购物车数据
 router.get('/cartList', (req, res, next) => {
     let userId = req.cookies.userId

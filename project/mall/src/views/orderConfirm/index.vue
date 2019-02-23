@@ -156,7 +156,7 @@ export default {
     		cartList:[]
     	}
     },
-        mounted() {
+    mounted() {
         this.getCartList()
     },
 

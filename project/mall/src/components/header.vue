@@ -22,7 +22,7 @@
                         <a href="javascript:void(0)" class="navbar-link" @click="showModal=true" v-show="!nickName" >Login</a>
                         <a href="javascript:void(0)" class="navbar-link" @click="logout" v-show="nickName">Logout</a>
                         <div class="navbar-cart-container">
-                            <span class="navbar-cart-count"></span>
+                            <span class="navbar-cart-count" v-if="cartCount>0" >{{cartCount}}</span>
                             <a class="navbar-link navbar-cart-link" href="/#/cart">
                               <svg class="navbar-cart-logo">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-cart"></use>
@@ -75,8 +75,16 @@ export default {
         userPwd:'123456',
         showModal:false,
         errorTip: false,
-        nickName:''
+        // nickName:''
       }
+    },
+    computed:{
+        nickName(){
+            return this.$store.state.nickName
+        },
+        cartCount(){
+            return this.$store.state.cartCount
+        }
     },
     mounted(){
         this.checkLogin()
@@ -87,10 +95,13 @@ export default {
             this.$axios.post('users/checkLogin').then(res =>{
                 let data = res.data
                 if (!data.status) {
-                    this.nickName = data.result
+                    // this.nickName = data.result
+                    this.$store.commit('updateUserInfo',data.result)
+                    this.getCartCount()
                 }
             })
         },
+        // 登陆
         login(){
             if (!this.userName||!this.userPwd) {
                 this.errorTip = true
@@ -106,20 +117,30 @@ export default {
                 }else{
                     this.errorTip = false
                     this.showModal = false
-                    this.nickName = data.result.userName
+                    // this.nickName = data.result.userName
+                    this.checkLogin()
                     // to do
                 }
             })
         },
+        // 登出
         logout(){
             this.$axios.post('users/logout').then(res =>{
                 let data = res.data
                 if (data.status) {
                     alert("登出失败")
                 }else{
-                    this.nickName = ''
+                    // this.nickName = ''
+                    this.$store.commit('updateUserInfo','')
                     alert("登出成功！")
                 }
+            })
+        },
+        // 获取购物车商品数量
+        getCartCount(){
+            this.$axios.get('users/getCartCount').then(res =>{
+                let data = res.data
+                this.$store.commit('initCartCount',data.result)
             })
         }
     }
