@@ -17,7 +17,7 @@ router.post('/login', (req, res, next) => {
                 // req.session.user = doc
                 res.json({ status: 0, msg: '', result: { userName: doc.userName } })
             } else {
-                res.json({ status: 1, msg: '账号不存在！' })
+                res.json({ status: 1, msg: '账号不存在！',result:'' })
             }
         }
     })

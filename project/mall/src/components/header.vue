@@ -63,7 +63,7 @@
 </template>
 <script>
 import '@/assets/css/login.css'
-
+import {mapSate} from 'vuex'
 export default {
     name: 'headers',
     props: {
@@ -79,12 +79,13 @@ export default {
       }
     },
     computed:{
-        nickName(){
+        ...mapSate(['nickName','cartCount'])
+        /* nickName(){
             return this.$store.state.nickName
         },
         cartCount(){
             return this.$store.state.cartCount
-        }
+        } */
     },
     mounted(){
         this.checkLogin()

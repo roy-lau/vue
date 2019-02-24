@@ -134,6 +134,12 @@
             <a href="javascript:;" class="btn btn--m" @click="closeModel">取消</a>
           </div>
         </Modal>
+        <Modal :modalShow="isMdShow2" @close="closeModel2=false">
+          <p slot="message">地址列表至少需要一条数据，已无法继续删除！</p>
+          <div slot="btnGroup">
+            <a href="javascript:;" class="btn btn--m btn--red" @click="closeModel2=false">好的👌</a>
+          </div>
+        </Modal>
     </div>
 </template>
 <script>
@@ -147,6 +153,7 @@ export default {
         limit:3,
         checkIndex:0,
         isMdShow:false,
+        isMdShow2:false,
         selectedAddressId:'',
         addressId:'',
         addressList:[]
@@ -191,8 +198,12 @@ export default {
       },
       // 打开删除地址框
       delAddressConfirm(addressId){
-        this.isMdShow = true
-        this.addressId = addressId
+        if (this.addressList.length>1) {
+          this.isMdShow = true
+          this.addressId = addressId
+        }else{
+          this.isMdShow2 = true
+        }
       },
       // 删除地址
       delAddress(){
