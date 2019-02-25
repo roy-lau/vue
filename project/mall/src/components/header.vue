@@ -63,7 +63,7 @@
 </template>
 <script>
 import '@/assets/css/login.css'
-import {mapSate} from 'vuex'
+import {mapState} from 'vuex'
 export default {
     name: 'headers',
     props: {
@@ -79,7 +79,7 @@ export default {
       }
     },
     computed:{
-        ...mapSate(['nickName','cartCount'])
+        ...mapState(['nickName','cartCount'])
         /* nickName(){
             return this.$store.state.nickName
         },

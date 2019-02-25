@@ -59,7 +59,7 @@
                                 <li v-for="item in cartList">
                                     <div class="cart-tab-1">
                                         <div class="cart-item-check">
-                                            <a href="javascipt:;" class="checkbox-btn item-check-btn" :class="{'check':item.checked=='1'}" @click="editCart('checked',item)">
+                                            <a href="javaScript:;" class="checkbox-btn item-check-btn" :class="{'check':item.checked=='1'}" @click="editCart('checked',item)">
                     <svg class="icon icon-ok">
                       <use xlink:href="#icon-ok"></use>
                     </svg>
@@ -106,7 +106,7 @@
                         <div class="cart-foot-inner">
                             <div class="cart-foot-l">
                                 <div class="item-all-check">
-                                    <a href="javascipt:;" @click="toggleCheckAll">
+                                    <a href="javaScript:;" @click="toggleCheckAll">
                     <span class="checkbox-btn item-check-btn" :class="{'check':checkedAll}">
                         <svg class="icon icon-ok"><use xlink:href="#icon-ok"/></svg>
                     </span>
