@@ -3,23 +3,25 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
+import i18n from './locales'
 import axios from 'axios'
 import vueLazyload from 'vue-lazyload'
-import {currency} from '@/utils/currency.js'
+import { currency } from '@/utils/currency.js'
 
 Vue.prototype.$axios = axios;
 axios.defaults.baseURL = 'http://localhost:3000/';
 axios.defaults.withCredentials = true;
 
-Vue.filter("currency",currency) // 全局过滤器，用于格式化价格
-Vue.use(vueLazyload,{
-	loading: require('./assets/loading/loading-bars.svg')
+Vue.filter("currency", currency) // 全局过滤器，用于格式化价格
+Vue.use(vueLazyload, {
+    loading: require('./assets/loading/loading-bars.svg')
 })
 
 Vue.config.productionTip = false
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    i18n,
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')

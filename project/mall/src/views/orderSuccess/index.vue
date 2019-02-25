@@ -4,23 +4,23 @@
         <div class="nav-breadcrumb-wrap">
             <div class="container">
                 <nav class="nav-breadcrumb">
-                    <a href="/">Home</a>
-                    <span>order confirm</span>
+                    <a href="/">{{$t("home.nav1")}}</a>
+                    <span>{{$t("orderSuccess.orderConfirm")}}</span>
                 </nav>
             </div>
         </div>
         <!-- 面包屑导航 -->
   <div class="container">
     <div class="page-title-normal">
-      <h2 class="page-title-h2"><span>check out</span></h2>
+      <h2 class="page-title-h2"><span>{{$t("orderConfirm.checkOut")}}</span></h2>
     </div>
     <!-- 进度条 -->
     <div class="check-step">
       <ul>
-        <li class="cur"><span>Confirm</span> address</li>
-        <li class="cur"><span>View your</span> order</li>
-        <li class="cur"><span>Make</span> payment</li>
-        <li class="cur"><span>Order</span> confirmation</li>
+         <li class="cur">{{$t("address.confirmAddress")}}</li>
+          <li class="cur">{{$t("address.viewYourOrder")}}</li>
+          <li class="cur">{{$t("address.makePayment")}}</li>
+          <li class="cur">{{$t("address.orderConfirmation")}}</li>
       </ul>
     </div>
 
@@ -29,17 +29,17 @@
         <img src="http://imooc.51purse.com/static/ok-2.png" alt="">
       </div>
       <div class="order-create-main">
-        <h3>Congratulations! <br>Your order is under processing!</h3>
+        <h3 v-html='$t("orderSuccess.congratulations")'></h3>
         <p>
-          <span>Order ID: {{orderId}}</span>
-          <span>Order total：{{orderTotal|currency('¥')}}</span>
+          <span>{{$t("orderSuccess.orderID")}}: {{orderId}}</span>
+          <span>{{$t("orderSuccess.orderTotal")}}：{{orderTotal|currency('¥')}}</span>
         </p>
         <div class="order-create-btn-wrap">
           <div class="btn-l-wrap">
-            <router-link to="/cart" class="btn btn--m">Cart List</router-link>
+            <router-link to="/cart" class="btn btn--m">{{$t("orderSuccess.cartList")}}</router-link>
           </div>
           <div class="btn-r-wrap">
-            <router-link to="/" class="btn btn--m">Goods List</router-link>
+            <router-link to="/" class="btn btn--m">{{$t("orderSuccess.goodsList")}}</router-link>
           </div>
         </div>
       </div>

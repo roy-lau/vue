@@ -4,12 +4,12 @@
         <div class="nav-breadcrumb-wrap">
             <div class="container">
                 <nav class="nav-breadcrumb">
-                    <a href="/">Home</a>
-                    <span>order confirm</span>
+                    <a href="/">{{$t("home.nav1")}}</a>
+                    <span>{{$t("orderConfirm.viewYourOrder")}}</span>
                 </nav>
             </div>
         </div>
-        <!-- 面包屑导航 -->
+    <!-- 面包屑导航 -->
   <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
       <symbol id="icon-add" viewBox="0 0 32 32">
@@ -37,30 +37,29 @@
   <div class="container">
     <div class="checkout-order">
       <div class="page-title-normal">
-        <h2 class="page-title-h2"><span>check out</span></h2>
+        <h2 class="page-title-h2"><span>{{$t("orderConfirm.checkOut")}}</span></h2>
       </div>
       <!-- process step -->
       <div class="check-step">
         <ul>
-          <li class="cur"><span>Confirm</span> address</li>
-          <li class="cur"><span>View your</span> order</li>
-          <li><span>Make</span> payment</li>
-          <li><span>Order</span> confirmation</li>
+          <li class="cur">{{$t("address.confirmAddress")}}</li>
+          <li class="cur">{{$t("address.viewYourOrder")}}</li>
+          <li>{{$t("address.makePayment")}}</li>
+          <li>{{$t("address.orderConfirmation")}}</li>
         </ul>
       </div>
-
       <!-- order list -->
       <div class="page-title-normal checkout-title">
-        <h2><span>Order content</span></h2>
+        <h2><span>{{$t("orderConfirm.orderContent")}}</span></h2>
       </div>
       <div class="item-list-wrap confirm-item-list-wrap">
         <div class="cart-item order-item">
           <div class="cart-item-head">
             <ul>
-              <li>Order contents</li>
-              <li>Price</li>
-              <li>Quantity</li>
-              <li>Subtotal</li>
+              <li>{{$t("orderConfirm.orderContents")}}</li>
+              <li>{{$t("cartList.price")}}</li>
+              <li>{{$t("cartList.quantity")}}</li>
+              <li>{{$t("cartList.subtotal")}}</li>
             </ul>
           </div>
           <ul class="cart-item-list">
@@ -84,7 +83,7 @@
                       <span class="select-ipt" v-text="'x '+item.productNum"></span>
                     </div>
                   </div>
-                  <div class="item-stock item-stock-no">In Stock</div>
+                  <div class="item-stock item-stock-no">{{$t("orderConfirm.inStock")}}</div>
                 </div>
               </div>
               <div class="cart-tab-4">
@@ -94,34 +93,33 @@
           </ul>
         </div>
       </div>
-
       <!-- Price count -->
       <div class="price-count-wrap">
         <div class="price-count">
           <ul>
             <li>
             	<!-- 总计 -->
-              <span>Item subtotal:</span>
+              <span>{{$t("cartList.itemTotal")}}:</span>
               <span>{{subTotal|currency('¥')}}</span>
             </li>
             <li>
             	<!-- 配送费 -->
-              <span>Shipping:</span>
+              <span>{{$t("orderConfirm.Shipping")}}:</span>
               <span>{{shipping|currency('¥')}}</span>
             </li>
             <li>
             	<!-- 折扣 -->
-              <span>Discount:</span>
+              <span>{{$t("orderConfirm.Discount")}}:</span>
               <span>{{discount|currency('¥')}}</span>
             </li>
             <li>
             	<!-- 扣税 -->
-              <span>Tax:</span>
+              <span>{{$t("orderConfirm.Tax")}}:</span>
               <span>{{tax|currency('¥')}}</span>
             </li>
             <li class="order-total-price">
             	<!-- 总价格 = 总计 + 配送费 - 折扣 + 扣税 -->
-              <span>Order total:</span>
+              <span>{{$t("orderConfirm.orderTotal")}}:</span>
               <span>{{orderTotal|currency('¥')}}</span>
             </li>
           </ul>
@@ -130,10 +128,10 @@
 
       <div class="order-foot-wrap">
         <div class="prev-btn-wrap">
-          <router-link class="btn btn--m" to="/address">Previous</router-link>
+          <router-link class="btn btn--m" to="/address">{{$t("orderConfirm.previous")}}</router-link>
         </div>
         <div class="next-btn-wrap">
-          <button class="btn btn--m btn--red" @click="payMent">Proceed to payment</button>
+          <button class="btn btn--m btn--red" @click="payMent">{{$t("orderConfirm.proceedToPayment")}}</button>
         </div>
       </div>
     </div>

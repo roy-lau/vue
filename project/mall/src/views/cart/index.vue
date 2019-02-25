@@ -5,11 +5,13 @@
             <div class="nav-breadcrumb-wrap">
                 <div class="container">
                     <nav class="nav-breadcrumb">
-                        <a href="/">Home</a>
-                        <span>Carts</span>
+                        <a href="/">{{$t("home.nav1")}}</a>
+                        <span>{{$t("cartList.nav")}}</span>
                     </nav>
                 </div>
             </div>
+
+
             <!-- 面包屑导航 -->
             <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
@@ -42,17 +44,17 @@
             <div class="container">
                 <div class="cart">
                     <div class="page-title-normal">
-                        <h2 class="page-title-h2"><span>My Cart</span></h2>
+                        <h2 class="page-title-h2"><span>{{$t("cartList.title")}}</span></h2>
                     </div>
                     <div class="item-list-wrap">
                         <div class="cart-item">
                             <div class="cart-item-head">
                                 <ul>
-                                    <li>Items</li>
-                                    <li>Price</li>
-                                    <li>Quantity</li>
-                                    <li>Subtotal</li>
-                                    <li>Edit</li>
+                                    <li>{{$t("cartList.items")}}</li>
+                                    <li>{{$t("cartList.price")}}</li>
+                                    <li>{{$t("cartList.quantity")}}</li>
+                                    <li>{{$t("cartList.subtotal")}}</li>
+                                    <li>{{$t("cartList.edit")}}</li>
                                 </ul>
                             </div>
                             <ul class="cart-item-list">
@@ -110,16 +112,16 @@
                     <span class="checkbox-btn item-check-btn" :class="{'check':checkedAll}">
                         <svg class="icon icon-ok"><use xlink:href="#icon-ok"/></svg>
                     </span>
-                <span>Select all</span>
+                <span>{{$t('cartList.selectAll')}}</span>
               </a>
                                 </div>
                             </div>
                             <div class="cart-foot-r">
                                 <div class="item-total">
-                                    Item total: <span class="total-price" >{{ totalPrice | currency('¥') }}</span>
+                                    {{$t('cartList.itemTotal')}}: <span class="total-price" >{{ totalPrice | currency('¥') }}</span>
                                 </div>
                                 <div class="btn-wrap">
-                                    <a class="btn btn--red" :class="{'btn--dis':checkedCount===0}" @click="onCheckout">Checkout</a>
+                                    <a class="btn btn--red" :class="{'btn--dis':checkedCount===0}" @click="onCheckout">{{$t('cartList.checkout')}}</a>
                                 </div>
                             </div>
                         </div>

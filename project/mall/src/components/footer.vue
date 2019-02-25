@@ -5,24 +5,23 @@
                 <div class="footer__secondary">
                     <div class="footer__inner">
                         <div class="footer__region">
-                            <span>Region</span>
-                            <select class="footer__region__select">
-                                <option value="en-US">USA</option>
-                                <option value="zh-CN">China</option>
-                                <option value="in">India</option>
+                            <span>{{$t('home.changeLang')}} : </span>
+                            <select class="footer__region__select" @change="onChangeLang">
+                                <option value="zh_CN">中文</option>
+                                <option value="en_US">USA</option>
                             </select>
                         </div>
                         <div class="footer__secondary__nav">
-                            <span>Copyright © 2017 IMooc All Rights Reserved.</span>
-                            <a href="http://us.lemall.com/us/aboutUs.html">
-            About Us
-          </a>
-                            <a href="http://us.lemall.com/us/termsofUse.html">
-            Terms &amp; Conditions
-          </a>
-                            <a href="http://us.lemall.com/us/privacyPolicy.html">
-            Privacy Policy
-          </a>
+                            <span>{{$t('home.copyright')}}</span>
+                            <a href="https://github.com/roy-lau/vue/tree/master/project/mall">
+                                {{$t('home.about')}}
+                              </a>
+                            <a href="https://github.com/roy-lau">
+                                {{$t('home.dev')}}
+                              </a>
+                            <a href="https://github.com/roy-lau/vue/blob/master/LICENSE">
+                                {{$t('home.privacy')}}
+                              </a>
                         </div>
                     </div>
                 </div>
@@ -35,6 +34,13 @@ export default {
     name: 'footers',
     props: {
         msg: String
+    },
+    methods: {
+        // 切换语言
+        onChangeLang(e) {
+            this.$store.commit('changeLang', e.target.value)
+            this.$i18n.locale = e.target.value;
+        }
     }
 }
 </script>

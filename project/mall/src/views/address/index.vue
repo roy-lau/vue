@@ -4,8 +4,8 @@
         <div class="nav-breadcrumb-wrap">
             <div class="container">
                 <nav class="nav-breadcrumb">
-                    <a href="/">Home</a>
-                    <span>Address</span>
+                    <a href="/">{{$t('home.nav1')}}</a>
+                    <span>{{$t("address.title")}}</span>
                 </nav>
             </div>
         </div>
@@ -52,15 +52,16 @@
                     <!-- process step -->
                     <div class="check-step">
                         <ul>
-                            <li class="cur"><span>Confirm</span> address</li>
-                            <li><span>View your</span> order</li>
-                            <li><span>Make</span> payment</li>
-                            <li><span>Order</span> confirmation</li>
+                            <li class="cur">{{$t("address.confirmAddress")}}</li>
+                            <li>{{$t("address.viewYourOrder")}}</li>
+                            <li>{{$t("address.makePayment")}}</li>
+                            <li>{{$t("address.orderConfirmation")}}</li>
                         </ul>
                     </div>
+
                     <!-- address list -->
                     <div class="page-title-normal checkout-title">
-                        <h2><span>Shipping address</span></h2>
+                        <h2><span>{{$t("address.shippingAddress")}}</span></h2>
                     </div>
                     <div class="addr-list-wrap">
                         <div class="addr-list">
@@ -77,52 +78,52 @@
                                         </a>
                                     </div>
                                     <div class="addr-opration addr-set-default">
-                                        <a href="javascript:;" class="addr-set-default-btn" v-show="!item.isDefault" @click="setDefaultAddress(item.addressId)"><i>Set default</i></a>
+                                        <a href="javascript:;" class="addr-set-default-btn" v-show="!item.isDefault" @click="setDefaultAddress(item.addressId)"><i>{{$t("address.setDefault")}}</i></a>
                                     </div>
-                                    <div class="addr-opration addr-default"  v-show="item.isDefault" @click="setDefaultAddress(item.addressId)">Default address</div>
+                                    <div class="addr-opration addr-default"  v-show="item.isDefault" @click="setDefaultAddress(item.addressId)">{{$t("address.defaultAddress")}}</div>
                                 </li>
                                 <li class="addr-new">
                                     <div class="add-new-inner">
                                         <i class="icon-add">
-                      <svg class="icon icon-add"><use xlink:href="#icon-add"></use></svg>
-                    </i>
-                                        <p>Add new address</p>
+                                            <svg class="icon icon-add"><use xlink:href="#icon-add"></use></svg>
+                                          </i>
+                                        <p>{{$t("address.addNewAddress")}}</p>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                         <div class="shipping-addr-more">
                             <a class="addr-more-btn up-down-btn" href="javascript:;" @click="expand" :class="{'open':limit>3}">
-                more
-                <i class="i-up-down">
-                  <i class="i-up-down-l"></i>
-                  <i class="i-up-down-r"></i>
-                </i>
-              </a>
+                            {{$t("address.more")}}
+                            <i class="i-up-down">
+                              <i class="i-up-down-l"></i>
+                              <i class="i-up-down-r"></i>
+                            </i>
+                          </a>
                         </div>
                     </div>
                     <!-- shipping method-->
                     <div class="page-title-normal checkout-title">
-                        <h2><span>Shipping method</span></h2>
+                        <h2><span>{{$t("address.shippingMethod")}}</span></h2>
                     </div>
                     <div class="lemall-msg-info hidden">
-                        <span>The region you selected is not within our delivery area. Please select another shipping address within our delivery areas.</span>
+                        <span>{{$t("address.msgInfo")}}</span>
                     </div>
                     <div class="shipping-method-wrap">
                         <div class="shipping-method">
                             <ul>
                                 <li class="check">
-                                    <div class="name">Standard shipping</div>
-                                    <div class="price">Free</div>
+                                    <div class="name">{{$t("address.standardShipping")}}</div>
+                                    <div class="price">{{$t("address.free")}}</div>
                                     <div class="shipping-tips">
-                                        <p>Once shipped，Order should arrive in the destination in 1-7 business days</p>
+                                        <p>{{$t("address.tips")}}</p>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="next-btn-wrap">
-                        <router-link class="btn btn--m btn--red" :to="{path:'/orderConfirm',query:{'addressId':selectedAddressId}}">Next</router-link>
+                        <router-link class="btn btn--m btn--red" :to="{path:'/orderConfirm',query:{'addressId':selectedAddressId}}">{{$t("address.next")}}</router-link>
                     </div>
                 </div>
             </div>

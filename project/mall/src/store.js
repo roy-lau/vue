@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
   	nickName:'',
-  	cartCount:0
+  	cartCount:0,
+    lang: 'zh_CN'
   },
   mutations: {
   	updateUserInfo(state,nickName){
@@ -17,7 +18,11 @@ export default new Vuex.Store({
   	},
   	initCartCount(state,cartCount){
   		state.cartCount = cartCount
-  	}
+  	},
+    changeLang(state,lang){
+      console.log("lang:>>>>",lang)
+      state.lang = lang
+    }
   },
   actions: {
 

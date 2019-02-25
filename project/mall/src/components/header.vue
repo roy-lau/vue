@@ -12,15 +12,16 @@
                     <a href="/">
                       <!-- <img class="navbar-brand-logo" src="./imgs/logo-text.png"></a> -->
                       <img class="navbar-brand-logo" src="http://www.logofree.cn/uploads/image/20171110/18/47-01_2585.jpg" width="50">
-                      天器购物网
+                      <!-- 天器购物网 -->
+                      {{$t("home.title")}}
                     </a>
                 </div>
                 <div class="navbar-right-container" style="display: flex;">
                     <div class="navbar-menu-container">
                         <!--<a href="/" class="navbar-link">我的账户</a>-->
                         <span class="navbar-link" v-show="nickName" v-text="nickName"></span>
-                        <a href="javascript:void(0)" class="navbar-link" @click="showModal=true" v-show="!nickName" >Login</a>
-                        <a href="javascript:void(0)" class="navbar-link" @click="logout" v-show="nickName">Logout</a>
+                        <a href="javascript:void(0)" class="navbar-link" @click="showModal=true" v-show="!nickName" > {{$t("home.login")}}</a>
+                        <a href="javascript:void(0)" class="navbar-link" @click="logout" v-show="nickName"> {{$t("home.logout")}}</a>
                         <div class="navbar-cart-container">
                             <span class="navbar-cart-count" v-if="cartCount>0" >{{cartCount}}</span>
                             <a class="navbar-link navbar-cart-link" href="/#/cart">
@@ -35,8 +36,8 @@
             <div class="md-modal modal-msg md-modal-transition" :class="{'md-show':showModal}" >
                 <div class="md-modal-inner" >
                     <div class="md-top">
-                        <div class="md-title">Login in </div>
-                        <button class="md-close" @click="showModal=false">close</button>
+                        <div class="md-title"> {{$t("home.login")}}</div>
+                        <button class="md-close" @click="showModal=false"> {{$t("home.close")}}</button>
                     </div>
                     <div class="md-content">
                         <div class="confirm-tips">
@@ -53,7 +54,7 @@
                             </ul>
                         </div>
                         <div class="login-wrap" >
-                            <a href="javascript:;" class="btn-login" @click="login">登 陆</a>
+                            <a href="javascript:;" class="btn-login" @click="login"> {{$t("home.login")}}</a>
                         </div>
                     </div>
                 </div>

@@ -12,17 +12,17 @@
         <div class="nav-breadcrumb-wrap">
             <div class="container">
                 <nav class="nav-breadcrumb">
-                    <a href="/">Home</a>
-                    <span>Goods</span>
+                    <a href="/">{{$t("home.nav1")}}</a>
+                    <span>{{$t("home.nav2")}}</span>
                 </nav>
             </div>
         </div>
         <div class="accessory-result-page accessory-page">
             <div class="container">
                 <div class="filter-nav">
-                    <span class="sortby">Sort by:</span>
-                    <a href="javascript:void(0)" class="default" :class="{'cur':!filterCur}" @click="filterCur=false">Default</a>
-                    <a href="javascript:void(0)" class="price" :class="{'sort-up':!sortFlag,'cur':filterCur}" @click="sortGoods">Price
+                    <span class="sortby">{{$t("home.sortBy")}}:</span>
+                    <a href="javascript:void(0)" class="default" :class="{'cur':!filterCur}" @click="filterCur=false">{{$t("home.default")}}</a>
+                    <a href="javascript:void(0)" class="price" :class="{'sort-up':!sortFlag,'cur':filterCur}" @click="sortGoods">{{$t("home.priceBy")}}
                     <svg class="icon icon-arrow-short" ><use xlink:href="#icon-arrow-short"></use></svg>
                     </a>
                     <a href="javascript:void(0)" class="filterby stopPop" @click="showFilterPop">Filter by</a>
@@ -31,11 +31,11 @@
                     <!-- filter -->
                     <div class="filter stopPop" id="filter" :class="{'filterby-show':filterby}">
                         <dl class="filter-price">
-                            <dt>Price:</dt>
+                            <dt>{{$t("home.prices")}}:</dt>
                             <dd>
                                 <a href="javascript:void(0)"
                                 :class="{'cur':priceChecked === 'all'}"
-                                @click="setPriceFilter('all')">All</a>
+                                @click="setPriceFilter('all')">{{$t("home.all")}}</a>
                             </dd>
                             <dd v-for="(price,index) in priceFilter">
                                 <a href="javascript:void(0)"
@@ -58,7 +58,7 @@
                                         <div class="name" v-text="item.productName"></div>
                                         <div class="price" v-text="item.salePrice"></div>
                                         <div class="btn-area">
-                                            <a href="javascript:;" class="btn btn--m" @click="addCart(item.productId)">加入购物车</a>
+                                            <a href="javascript:;" class="btn btn--m" @click="addCart(item.productId)">{{$t("home.addCarts")}}</a>
                                         </div>
                                     </div>
                                 </li>
