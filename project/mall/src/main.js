@@ -9,8 +9,11 @@ import vueLazyload from 'vue-lazyload'
 import { currency } from '@/utils/currency.js'
 
 Vue.prototype.$axios = axios;
-axios.defaults.baseURL = 'http://localhost:3000/';
-axios.defaults.withCredentials = true;
+// console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === 'development') {
+	axios.defaults.baseURL = 'http://localhost:3000/';
+}
+axios.defaults.withCredentials = true; // 允许cookies
 
 Vue.filter("currency", currency) // 全局过滤器，用于格式化价格
 Vue.use(vueLazyload, {
