@@ -11,7 +11,7 @@ import { currency } from '@/utils/currency.js'
 Vue.prototype.$axios = axios;
 // console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'development') {
-	axios.defaults.baseURL = 'http://localhost:3000/';
+	axios.defaults.baseURL = 'http://localhost:3002/';
 }
 axios.defaults.withCredentials = true; // 允许cookies
 
