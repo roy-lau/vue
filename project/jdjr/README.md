@@ -1,5 +1,6 @@
 # jdjr(京东金融)
 
+(参考项目)[https://m.jr.jd.com/spe/qyy/main/index.html]
 ### 自适应 基本概念
 
 * CSS像素，设备像素，逻辑像素，设备像素比
