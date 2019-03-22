@@ -20,7 +20,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "../assets/css/element.scss";
+@import "@/assets/css/element.scss";
 .btn {
   @include btn;
 }

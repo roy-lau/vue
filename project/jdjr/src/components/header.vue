@@ -28,7 +28,7 @@ export default {
     font-size: 32px;
     background: #fff url(https://m.jr.jd.com/spe/qyy/main/images/jr-logo.png) center center no-repeat;
     background-size: auto 50%; // 背景图居中
-    z-index: 1;
+    z-index: 2;
     .left{
         font-size: 28px;
         height: 30px;
