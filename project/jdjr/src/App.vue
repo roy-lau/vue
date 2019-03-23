@@ -16,7 +16,7 @@ body {
   background-color: #f5f5f5;
 }
 ul,
-ol,p,h1,h2,h3,h4,h5 {
+ol,dd,p,h1,h2,h3,h4,h5 {
   margin: 0;
   padding: 0;
 }
