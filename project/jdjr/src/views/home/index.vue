@@ -8,6 +8,7 @@
     <Product />
     <Life />
     <Footer />
+    <NavBar />
   </div>
 </template>
 
@@ -15,6 +16,7 @@
 // @ is an alias to /src
 import Header from '@/components/header.vue'
 import Footer from '@/components/footer.vue'
+import NavBar from '@/components/navbar.vue'
 import HSlider from './hSlider.vue'
 import Novice from './novice.vue'
 import Borrow from './borrow.vue'
@@ -27,6 +29,7 @@ export default {
   components: {
     Header,
     Footer,
+    NavBar,
     HSlider,
     Novice,
     Borrow,
