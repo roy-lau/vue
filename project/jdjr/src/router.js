@@ -15,11 +15,15 @@ export default new Router({
     },
     {
       path: '/money',
-      name: 'money',
+      name: '理财',
       // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
+      // this generates a separate chunk (money.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/money')
-    }
+      component: () => import(/* webpackChunkName: "money" */ './views/money')
+    },{
+      path: '/ious',
+      name: '白条',
+      component: () => import(/* webpackChunkName: "ious" */ './views/ious')
+    },
   ]
 })
