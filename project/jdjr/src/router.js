@@ -24,6 +24,10 @@ export default new Router({
       path: '/ious',
       name: '白条',
       component: () => import(/* webpackChunkName: "ious" */ './views/ious')
+    },{
+      path: '/raise',
+      name: '众筹',
+      component: () => import(/* webpackChunkName: "raise" */ './views/raise')
     },
   ]
 })

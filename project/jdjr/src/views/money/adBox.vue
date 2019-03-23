@@ -21,7 +21,7 @@ export default {
             type: String,
             default:""
         },
-        heigh:{
+        height:{
             type:[String,Number],
             default:"100px"
         }

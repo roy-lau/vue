@@ -5,3 +5,10 @@
 	flex-direction: $direction;
 	flex-wrap:wrap;
 }
+
+.router-link-exact-active{
+	p{
+
+		color: red!important;
+	}
+}
