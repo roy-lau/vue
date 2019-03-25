@@ -43,7 +43,7 @@ export default {
       ],
       enters: [
         {
-          href: "https://github.com/roy-lau?"+Math.random(),
+          href: "download",
           title: "优惠券",
           img:
             "//img12.360buyimg.com/jrpmobile/jfs/t3991/64/2521945388/12110/93c0139/58d1e462Ncf294123.png"

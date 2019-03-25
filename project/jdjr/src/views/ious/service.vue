@@ -12,11 +12,9 @@
 </template>
 <script>
 import Panel from "@/components/panel";
-import Slider from "@/components/slider";
 export default {
   components: {
-    Panel,
-    Slider
+    Panel
   },
   data() {
     return {

@@ -28,6 +28,10 @@ export default new Router({
       path: '/raise',
       name: '众筹',
       component: () => import(/* webpackChunkName: "raise" */ './views/raise')
+    },{
+      path: '/download',
+      name: '下载',
+      component: () => import(/* webpackChunkName: "raise" */ './views/special/download')
     },
   ]
 })
