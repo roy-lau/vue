@@ -3,7 +3,7 @@
         <section :class="$style.content">
             <img :src="img" :alt="title" :height="height">
         </section>
-    </Panel>    
+    </Panel>
 </template>
 
 <script>

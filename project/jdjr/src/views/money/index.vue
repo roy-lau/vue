@@ -2,11 +2,11 @@
   <div class="home">
     <Header />
     <MSlider />
-    <AdBox title="神劵满" height="230px" img="//img12.360buyimg.com/jrpmobile/jfs/t5842/235/8356236245/38364/2112fd7e/597a95d4Ne01da140.png"/>
+    <AdBox title="神劵满" height="230px" img="./imgs/ads-1.png"/>
     <Money />
-    <AdBox title="理财专享" height="142px" img="//img12.360buyimg.com/jrpmobile/jfs/t10876/23/2566835181/40527/d7d27c08/59f97d68Ne53fda5b.png"/>
+    <AdBox title="理财专享" height="142px" img="./imgs/ads-2.png"/>
     <Finance />
-    <AdBox title="惊动智投" height="102px" img="//img12.360buyimg.com/jrpmobile/jfs/t7162/219/4755741/18941/4e51a5aa/597b066dNf6c7a972.jpg"/>
+    <AdBox title="惊动智投" height="102px" img="./imgs/ads-3.jpg"/>
     <Footer cname="m-footer"/>
     <NavBar />
   </div>

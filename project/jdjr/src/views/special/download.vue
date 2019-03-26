@@ -32,7 +32,7 @@ html,body{background:white;}
         height: 1136px;
         width: 100%;
         >div{
-            background: url(//img12.360buyimg.com/jrpmobile/jfs/t8956/285/1249806938/50853/8cd3c8f0/59b65f36N05367075.png?) center center no-repeat;
+            background: url(./index.png) center center no-repeat;
             background-size: 100% auto;
             margin-top: -400px;
             height: 800px;
