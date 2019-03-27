@@ -1,8 +1,8 @@
 <template>
   <Panel title="每日签到" :class="$style.panel">
     <section :class="$style.content">
-      <img src="./daily-1.jpg" alt>
-      <img src="./daily-2.jpg" alt>
+      <img src="./imgs/daily-1.jpg" alt>
+      <img src="./imgs/daily-2.jpg" alt>
       <p>不抢白不抢</p>
     </section>
   </Panel>

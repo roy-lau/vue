@@ -1,7 +1,7 @@
 <template>
     <Panel title="更多福利" :class="$style.panel" >
         <section :class="$style.content">
-            <img src="./imgs/more-2.jpg" alt="">
+            <img src="./imgs/more-1.jpg" alt="">
             <img src="./imgs/more-2.jpg" alt="">
             <img src="./imgs/more-3.jpg" alt="">
             <span>专享福利 > </span>

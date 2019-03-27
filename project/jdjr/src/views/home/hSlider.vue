@@ -22,61 +22,61 @@ export default {
       items: [
         {
           href: "https://github.com/roy-lau?"+Math.random(),
-          src: ""
+          src: require("./imgs/hSlider-1.jpg")
         },
         {
           href: "https://github.com/roy-lau?"+Math.random(),
-          src: "",
+          src: require("./imgs/hSlider-2.jpg")
         },
         {
           href: "https://github.com/roy-lau?"+Math.random(),
-          src: ""
+          src: require("./imgs/hSlider-3.jpg")
         },
         {
           href: "https://github.com/roy-lau?"+Math.random(),
-          src: ""
+          src: require("./imgs/hSlider-4.jpg")
         }
       ],
       enters: [
         {
           href: "download",
           title: "优惠券",
-          img: ""
+          img: require("./imgs/hSlider-enters-1.png")
         },
         {
           href: "https://github.com/roy-lau?"+Math.random(),
           title: "领福利",
-          img: ""
+          img: require("./imgs/hSlider-enters-2.png")
         },
         {
           href: "https://github.com/roy-lau?"+Math.random(),
           title: "抢锅蹦",
-          img: ""
+          img: require("./imgs/hSlider-enters-3.png")
         },
         {
           href: "https://github.com/roy-lau?"+Math.random(),
           title: "白条提额",
-          img: ""
+          img: require("./imgs/hSlider-enters-4.png")
         },
         {
           href: "https://github.com/roy-lau?"+Math.random(),
           title: "工资理财",
-          img: ""
+          img: require("./imgs/hSlider-enters-5.png")
         },
         {
           href: "https://github.com/roy-lau?"+Math.random(),
           title: "众筹",
-          img: ""
+          img: require("./imgs/hSlider-enters-6.png")
         },
         {
           href: "https://github.com/roy-lau?"+Math.random(),
           title: "租房",
-          img: ""
+          img: require("./imgs/hSlider-enters-7.png")
         },
         {
           href: "https://github.com/roy-lau?"+Math.random(),
           title: "车主服务",
-          img: ""
+          img: require("./imgs/hSlider-enters-8.png")
         }
       ]
     };

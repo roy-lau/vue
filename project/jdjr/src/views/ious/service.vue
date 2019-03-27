@@ -20,42 +20,42 @@ export default {
     return {
       items: [
         {
-          img:  require("./imgs/servie-1.png"),
+          img:  require("./imgs/service-1.png"),
           href: "https://github.com/roy-lau?" + Math.random(),
           text: "小白卡"
         },
         {
-          img:  require("./imgs/servie-2.png"),
+          img:  require("./imgs/service-2.png"),
           href: "https://github.com/roy-lau?" + Math.random(),
           text: "白条商城"
         },
         {
-          img: require("./imgs/servie-3.png"),
+          img: require("./imgs/service-3.png"),
           href: "https://github.com/roy-lau?" + Math.random(),
           text: "消费分期"
         },
         {
-          img:  require("./imgs/servie-4.png"),
+          img:  require("./imgs/service-4.png"),
           href: "https://github.com/roy-lau?" + Math.random(),
           text: "借钱"
         },
         {
-          img:  require("./imgs/servie-5.png"),
+          img:  require("./imgs/service-5.png"),
           href: "https://github.com/roy-lau?" + Math.random(),
           text: "白条提额"
         },
         {
-          img:  require("./imgs/servie-6.png"),
+          img:  require("./imgs/service-6.png"),
           href: "https://github.com/roy-lau?" + Math.random(),
           text: "白条闪付"
         },
         {
-          img:  require("./imgs/servie-7.png"),
+          img:  require("./imgs/service-7.png"),
           href: "https://github.com/roy-lau?" + Math.random(),
           text: "小白会玩"
         },
         {
-          img: require("./imgs/servie-8.png"),
+          img: require("./imgs/service-8.png"),
           href: "https://github.com/roy-lau?" + Math.random(),
           text: "钢镚"
         }

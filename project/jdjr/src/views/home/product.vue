@@ -19,23 +19,19 @@ export default {
       items: [
         {
           href: "home" + Math.random(),
-          src:
-            "//img12.360buyimg.com/jrpmobile/jfs/t13963/267/2355123229/48850/254f797a/5a3c59aeN9cb550f6.jpg"
+          src: require("./imgs/product-1.jpg")
         },
         {
           href: "home" + Math.random(),
-          src:
-            "//img12.360buyimg.com/jrpmobile/jfs/t13021/306/1996997425/21953/bda69db3/5a2f6a17N9da099b1.jpg"
+          src: require("./imgs/product-2.jpg")
         },
         {
           href: "home" + Math.random(),
-          src:
-            "//img12.360buyimg.com/jrpmobile/jfs/t14125/310/1997192193/46667/3c910f8b/5a2f6a36Nad95b650.jpg"
+          src: require("./imgs/product-3.jpg")
         },
         {
           href: "home" + Math.random(),
-          src:
-            "//img12.360buyimg.com/jrpmobile/jfs/t15784/188/381232069/39444/8878571d/5a2f6a4aNbd5a574c.jpg"
+          src: require("./imgs/product-4.jpg")
         }
       ],
       options: {
@@ -78,13 +74,12 @@ export default {
           width: 100%;
           display: block;
           height: 314px;
-          border: 1px solid #fafafa; 
+          border: 1px solid #fafafa;
         }
       }
     }
   }
 }
 </style>
- 
- 
- 
+
+
