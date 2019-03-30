@@ -3,7 +3,7 @@
         <span class="left">
             <em>注册</em>&nbsp;|&nbsp;<em>登陆</em>
         </span>
-        <btn class="btn-download">APP下载</btn>
+        <btn class="btn-download"><router-link to="download">APP下载</router-link></btn>
     </div>
 </template>
 
@@ -45,6 +45,7 @@ export default {
         padding: 0;
         border-radius: 4px;
         margin: 28px 24px 0 0;
+        >a{color:white;text-decoration:none}
     }
 }
 </style>
