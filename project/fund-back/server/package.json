@@ -1,0 +1,27 @@
+{
+  "name": "fund-backstage-api",
+  "version": "1.0.0",
+  "description": "restful api",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "./node_modules/.bin/nodemon server.js",
+    "test": "./node_modules/.bin/mocha ./tests/test.js --watch -s 5s"
+  },
+  "author": "roylau",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "gravatar": "^1.6.0",
+    "jsonwebtoken": "^8.2.1",
+    "mocha": "^6.0.2",
+    "mongoose": "^5.1.0",
+    "nodemon": "^1.18.10",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "supertest": "^4.0.2",
+    "validator": "^10.2.0"
+  }
+}
