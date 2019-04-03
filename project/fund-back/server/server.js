@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const app = express();
+const history = require('connect-history-api-fallback'); // 使 express 可以支持 spa 不带 # 的情况
+app.use(history())      // 这里千万要注意，要在static静态资源上面
 
 // 引入users.js
 const users = require('./routes/api/users');
