@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 let goods = require('../models/goods')
 
 // 连接 MongoDB 数据库
-mongoose.connect('mongodb://139.199.99.154/mall', { useNewUrlParser: true })
+mongoose.connect('mongodb+srv://dev:toor@roylaudb-16ntu.mongodb.net/mall', { useNewUrlParser: true })
 
 mongoose.connection.on('connected', () => {
         console.log("数据库连接成功！")
