@@ -2,7 +2,45 @@ const Koa = require('koa')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
+
+const mongoose = require('mongoose'),
+  bodyParser = require('koa-bodyparser'),
+  session = require('koa-generic-session'),
+  redisStore = require('koa-redis'),
+  json = require('koa-json'), 
+  dbConfig = require('./dbs/config'),
+  Passport = require('./api/utils/passport.js'),
+  users = require('./api/users.js')
+
 const app = new Koa()
+
+// session 相关配置
+app.keys = ['mt','shuibianxie']
+app.proxy = true
+app.use(
+  session({
+    key:'mt',
+    prefix:'mt:uid',
+    store:redisStore({
+      host:dbConfig.redis.host,
+      port:dbConfig.redis.prot
+    })
+  })
+  )
+// post类型接口处理 配置
+app.use(bodyParser({
+  extendTypes:['json','form','text']
+}))
+
+// 美化json
+app.use(json())
+
+// 连接数据库
+mongoose.connect(dbConfig.uri,{useCreateIndex: true,useNewUrlParser:true})
+
+app.use(Passport.initialize())
+app.use(Passport.session())
+
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
@@ -25,6 +63,8 @@ async function start() {
     await nuxt.ready()
   }
 
+  // 引入所有 users的路由表
+  app.use(users.routes()).use(users.allowedMethods())
   app.use(ctx => {
     ctx.status = 200
     ctx.respond = false // Bypass Koa's built-in response handling

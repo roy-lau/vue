@@ -1,4 +1,4 @@
-export default {
+module.exports =  {
     // MongoDB 数据库地址
     uri: 'mongodb+srv://dev:toor@roylaudb-16ntu.mongodb.net/mt',
     redis:{

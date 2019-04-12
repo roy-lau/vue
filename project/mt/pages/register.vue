@@ -25,7 +25,7 @@
         </el-form-item>
         <el-form-item label="邮箱" prop="email">
           <el-input v-model="registerForm.email"/>
-          <el-button size="mini" round @click="sendMsg">发送验证码</el-button>
+          <el-button size="mini" round @click="sendMsg('registerForm')">发送验证码</el-button>
           <span class="status" v-text="statusMsg"></span>
         </el-form-item>
         <el-form-item label="验证码" prop="code">
@@ -83,7 +83,46 @@ export default {
     };
   },
   methods: {
-    sendMsg() {},
+    //   发送邮件
+    sendMsg(formName) {
+        let namePass,emailPass
+
+        if(this.timerid){
+            return false
+        }
+        // 验证昵称
+        this.$refs[formName].validateField('name', valid =>{
+            namePass = valid
+        })
+        this.timerid = null
+        if(namePass){
+            return false
+        }
+
+        // 验证邮箱
+        this.$refs[formName].validateField('email', valid =>{
+            emailPass = valid
+        })
+        if(!namePass && !emailPass){
+            this.$axios.post('/users/verify',{
+                username: encodeURIComponent(this.registerForm.name),
+                email: this.registerForm.email
+            }).then(({status,data})=>{
+                if(status === 200 && data && data.code === 0){
+                    let count = 60;
+                    this.statusMsg = `验证码已发送，剩余${count--}秒`
+                    this.timerid = setInterval(() => {
+                        this.statusMsg = `验证码已发送，剩余${count--}秒`
+                        if(count===0){
+                            clearInterval(this.timerid)
+                        }
+                    }, 1000);
+                }else{
+                    this.statusMsg = data.msg
+                }
+            })
+        }
+    },
     register(formName){
         this.$refs[formName].validate((valid) => {
           if (valid) {
@@ -101,5 +140,3 @@ export default {
 <style lang="scss">
 @import "@/assets/css/register/index.scss";
 </style>
-
-

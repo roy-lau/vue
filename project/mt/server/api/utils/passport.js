@@ -2,7 +2,6 @@ const passport = require('passport'),
     LocalStrategy = require('passport-local'),
     UserModel = require('../../dbs/models/users.js')
 
-
 passport.use(new LocalStrategy(async (username,password,done)=>{
     let where = {
         username
@@ -11,7 +10,7 @@ passport.use(new LocalStrategy(async (username,password,done)=>{
     let result = await UserModel.findOne(where)
 
     // 判断是否有这个用户
-    if(result){
+    if(result!=null){
         // 判断数据库中的 password 和 传进来的 password 是否相同
         if(result.password === password){
             return done(null,result)

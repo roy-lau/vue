@@ -62,7 +62,7 @@ router.post('/singup', async ctx => {
         email
     })
     if (newUser) {
-        let res = awiat axios.post('/users/signin', { username, password })
+        let res = await axios.post('/users/signin', { username, password })
 
         if (res.data && res.data.code === 0) {
             ctx.body = {
@@ -82,7 +82,7 @@ router.post('/singup', async ctx => {
  *  登陆
  */
 router.post('/singin', async (ctx,next) =>{
-    return Passport.authenticate('local',(err,user,info,status)=>{
+    return Passport.authenticate('local', function(err, user, info, status) {
         if(err){
             ctx.body={code:-1,msg:err}
         }else{
@@ -95,3 +95,73 @@ router.post('/singin', async (ctx,next) =>{
         }
     })(ctx,next)
 })
+
+router.post('/verify',async (ctx,next) =>{
+    let username = ctx.request.body.username
+    // 获取过期时间
+    const saveExpire = await Store.hget(`nodemail:${username}`,'expire')
+
+    // 过期时间存在 且 当前时间减去过期时间大于0
+    if(saveExpire && new Date().getTime() - saveExpire < 0){
+        ctx.body = {
+            code: -1,
+            msg: '验证请求过于频繁！'
+        }
+        return false
+    }
+
+    // 创建发送邮件对象
+    let transporter = nodeMailer.createTransport({
+        host: Email.smtp.host,
+        port: 587,
+        secure: false,
+        auth:{
+            user: Email.stmp.user,
+            pass: Email.smtp.pass
+        }
+    })
+    // 给谁发
+    let ko = {
+        code:Email.smtp.code(),
+        expire: Email.smtp.expire,
+        email:ctx.request.body.email,
+        user:ctx.request.body.username
+    }
+    // 发件内容
+    let mailOptions = {
+        from:`"认证邮件：" <${Email.smtp.user}>`,
+        to:ko.email,
+        subject:'《美团网》注册码',
+        html: `您在《美团网》中注册，您的邀请码是${ko.code}`
+    }
+    // 发送邮件
+    await transporter.sendMail(mailOptions,(err,info)=>{
+        if(err){
+            return console.log("sendMail ERR:" + err)
+        }else{
+            Store.hmset(`nodemail:${ko.user}`,'code',ko.code,'expire',ko.expire,'email',ko.email)
+        }
+    })
+    ctx.body={code:0,msg:'验证码已发送，有效期1分钟！'}
+})
+
+router.get('/ext',async (ctx,next)=>{
+    await ctx.logout()
+    // 检查是否是登陆状态
+    if(!ctx.isAuthenticated()){
+        ctx.body = {code:0,msg:'退出成功！'}
+    } else {
+        ctx.body = {code:-1,msg:'退出失败！'}
+    }
+})
+
+router.get('/getUser',async ctx =>{
+    if(ctx.isAuthenticated()){
+        const {username,email} = ctx.session.passprot.user
+        ctx.body = {user:username,email}
+    }else{
+        ctx.body ={user:'',email:''}
+    }
+})
+
+module.exports = router
