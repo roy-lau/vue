@@ -6,7 +6,8 @@ import App from './App'
 import router from './router.js'
 import 'lib-flexible'
 
-import { AjaxPlugin,WechatPlugin } from 'vux'
+import WechatPlugin from './config/WeChat.js'
+import { AjaxPlugin } from 'vux'
 
 const FastClick = require('fastclick')
 FastClick.attach(document.body)
