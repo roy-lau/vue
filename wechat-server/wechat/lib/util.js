@@ -98,21 +98,25 @@ function tpl(content, message) {
 }
 
 /**
- * 创建 nonce （调用微信接口时需要用到）
- * @return {[type]} [description]
+ * 创建 nonce 
+ * @return {String} 随机字符串
  */
 function createNonce() {
     return Math.random().toString(36).substr(2, 15)
 }
 
 /**
- * 创建 Timestamp （调用微信接口时需要用到）
- * @return {String} 当前时间
+ * 创建 Timestamp
+ * @return {String} 当前时间戳
  */
 function createTimestamp() {
     return parseInt(new Date().getTime() / 1000, 0) + ''
 }
 
+/**
+ * 排序 转小写 拼接 截取
+ * @param {Object} args keys
+ */
 function raw(args) {
     let keys = Object.keys(args)
     let newArgs = {}
@@ -134,6 +138,14 @@ function raw(args) {
     return str.substr(1)
 }
 
+/**
+ * 签名算法
+ * @param {String} nonce 随机字符串
+ * @param {String} ticket 票据 
+ * @param {String} timestamp  时间戳
+ * @param {String} url 
+ * @returns {String} sha 加密值
+ */
 function signIt(nonce, ticket, timestamp, url) {
     const ret = {
         jsapi_ticket: ticket,
@@ -147,7 +159,17 @@ function signIt(nonce, ticket, timestamp, url) {
 
     return sha
 }
-
+/**
+ * 签名
+ * @param {String} ticket 票据
+ * @param {String} url 
+ * @returns
+ * {
+        noncestr: 随机字符串,
+        timestamp: 当前时间戳,
+        signature: 加密值
+    }
+ */
 function sign(ticket, url) {
     const nonce = createNonce()
     const timestamp = createTimestamp()

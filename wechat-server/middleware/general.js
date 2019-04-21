@@ -1,10 +1,13 @@
 const koaBody = require('koa-bodyparser'),
-    session = require('koa-session')
+    session = require('koa-session'),
+    cors = require('koa2-cors')
 
-module.exports = app => {
-    return async function(ctx, next) {
+
+module.exports.general = app => {
+    // return async function(ctx, next) {
 
         app.use(koaBody())
+        app.use(cors())
 
 
         app.keys = ['got']
@@ -18,6 +21,6 @@ module.exports = app => {
         app.use(session(CONFIG, app))
 
 
-        await next()
-    }
+    //     await next()
+    // }
 }

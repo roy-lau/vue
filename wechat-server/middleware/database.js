@@ -19,8 +19,8 @@ fs.readdirSync(models)
 // ../config
 // , save token
 
-module.exports = app => {
-    return async function(ctx, next) {
+module.exports.database = app => {
+
         if (config.env === 'development') {
             mongoose.set('debug', true)
         }
@@ -41,7 +41,4 @@ module.exports = app => {
             console.log('Connected to MongoDB', config.db)
 
         })
-        await next()
-    }
-
 }

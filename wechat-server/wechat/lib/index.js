@@ -5,13 +5,16 @@ const request = require('request-promise'),
     path = require('path'),
     { sign } = require('./util'),
 
+    // 接口文档 https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140183
     base = 'https://api.weixin.qq.com/cgi-bin/',
     api = {
         accessToken: base + 'token?grant_type=client_credential',
+        // 临时素材相关接口
         temporary: {
             upload: base + 'media/upload?',
             fetch: base + 'media/get?'
         },
+        // 永久 素材相关的接口列表
         permanent: {
             upload: base + 'material/add_material?',
             uploadNews: base + 'material/add_news?',
@@ -22,6 +25,7 @@ const request = require('request-promise'),
             count: base + 'material/get_materialcount?',
             batch: base + 'material/batchget_material?'
         },
+        // 标签相关的接口列表
         tag: {
             create: base + 'tags/create?',
             fetch: base + 'tags/get?',
@@ -32,6 +36,7 @@ const request = require('request-promise'),
             batchUnTag: base + 'tags/members/batchuntagging?',
             getTagList: base + 'tags/getidlist?'
         },
+        // 用户相关的接口列表
         user: {
             remark: base + 'user/info/updateremark?',
             info: base + 'user/info?',
@@ -124,24 +129,35 @@ module.exports = class Wechat {
 
         return data
     }
-
+    /**
+     * 获取 js-ticket（js票据）
+     * @param {String} token 
+     */
     async fetchTicket(token) {
+        // 获取 Ticket
         let data = await this.getTicket()
-
+        // 验证 Ticket
         if (!this.isValidToken(data, 'ticket')) {
-            data = await this.updateTicket(token)
+            // 更新 Ticket
+            data = await this._updateTicket(token)
         }
-
+        // 保存 Ticket
         await this.saveTicket(data)
 
         return data
     }
-
-    async updateTicket(token) {
+    /**
+     * 更新 js-ticket （js票据）
+     * @param {String} token 
+     */
+    async _updateTicket(token) {
         const url = api.ticket.get + '&access_token=' + token + '&type=jsapi'
 
         let data = await this.request({ url: url })
+        // 当前时间
         const now = (new Date().getTime())
+        // 更新 accessToken 的时间 = 当前时间 + 过期时间 - 2s
+        // 注： 2s 考虑到网络延迟 等一些情况（提前2s刷新）
         const expiresIn = now + (data.expires_in - 20) * 1000
 
         data.expires_in = expiresIn
@@ -149,7 +165,11 @@ module.exports = class Wechat {
         return data
     }
 
-    // 验证 token
+    /**
+     * 验证 token ticket
+     * @param {Object} data 微信返回的token数据
+     * @param {String} name 
+     */
     isValidToken(data, name) {
         if (!data || !data[name] || !data.expires_in) {
             return false
@@ -173,24 +193,40 @@ module.exports = class Wechat {
         return data
     }
 
+    /************** 素材相关 *************/
+
+    /**
+     * 新增素材
+     * @param {String} token 
+     * @param {String} type 素材类型
+     *      @description {
+     *          图片（image）: 2M，支持bmp/png/jpeg/jpg/gif格式
+                语音（voice）：2M，播放长度不超过60s，mp3/wma/wav/amr格式
+                视频（video）：10MB，支持MP4格式
+                缩略图（thumb）：64KB，支持JPG格式
+                }
+     * @param {Object} material  素材本身
+     * @param {Boolean} permanent 永久素材或临时素材
+     */
     uploadMaterial(token, type, material, permanent) {
         let form = {}
-        let url = api.temporary.upload
+        let url = api.temporary.upload // 临时素材url（默认）
 
         if (permanent) {
-            url = api.permanent.upload
+            url = api.permanent.upload // 永久素材url 
 
             _.extend(form, permanent)
         }
-
+        // 图片
         if (type === 'pic') {
-            url = api.permanent.uploadNewsPic
+            url = api.permanent.uploadNewsPic // 图片url
         }
-
+        // 图文
         if (type === 'news') {
-            url = api.permanent.uploadNews
+            url = api.permanent.uploadNews // 图文 url
             form = material
-        } else {
+        } else { 
+            // 媒体素材（语音，视频等）
             form.media = fs.createReadStream(material)
         }
 
@@ -209,20 +245,29 @@ module.exports = class Wechat {
             url: uploadUrl,
             json: true
         }
-
+        // 图文
         if (type === 'news') {
             options.body = form
+        // 表单
         } else {
             options.formData = form
         }
 
         return options
     }
-
+    /**
+     * 获取素材
+     * @param {String} token 凭证
+     * @param {String} mediaId 素材id
+     * @param {Sting} type 类型
+     * @param {Boolean} permanent 永久素材或临时素材
+     */
     fetchMaterial(token, mediaId, type, permanent) {
         let form = {}
+        // 临时素材（默认）
         let fetchUrl = api.temporary.fetch
 
+        // 永久素材
         if (permanent) {
             fetchUrl = api.permanent.fetch
         }
@@ -230,11 +275,13 @@ module.exports = class Wechat {
         let url = fetchUrl + 'access_token=' + token
         let options = { method: 'POST', url: url }
 
+        // 永久素材 需要给微信上传的参数
         if (permanent) {
             form.media_id = mediaId
             form.access_token = token
             options.body = form
         } else {
+            // 视频（video）素材 接口是 http协议
             if (type === 'video') {
                 url = url.replace('https://', 'http://')
             }
@@ -244,7 +291,11 @@ module.exports = class Wechat {
 
         return options
     }
-
+    /**
+     * 删除素材（只有永久素材需要删除，临时素材3天自动删除）
+     * @param {Sting} token 凭证
+     * @param {String} mediaId 素材id
+     */
     deleteMaterial(token, mediaId) {
         const form = {
             media_id: mediaId
@@ -253,7 +304,12 @@ module.exports = class Wechat {
 
         return { method: 'POST', url: url, body: form }
     }
-
+    /**
+     * 更新素材（永久素材）
+     * @param {String} token 凭证
+     * @param {String} mediaId 素材id
+     * @param {Object} news 新的素材数据
+     */
     updateMaterial(token, mediaId, news) {
         const form = {
             media_id: mediaId
@@ -264,13 +320,24 @@ module.exports = class Wechat {
 
         return { method: 'POST', url: url, body: form }
     }
-
+    /**
+     * 获取素材的数量（永久素材）
+     * @param {String} token 凭证
+     */
     countMaterial(token) {
         const url = api.permanent.count + 'access_token=' + token
 
         return { method: 'POST', url: url }
     }
-
+    /**
+     * 获取素材列表
+     * @param {String} token 凭证
+     * @param {Object} options {
+     *  type:	素材的类型，图片（image）、视频（video）、语音 （voice）、图文（news）,
+     *  offset:	从全部素材的该偏移位置开始返回，0表示从第一个素材 返回,
+     *  count:	返回素材的数量，取值在1到20之间,
+     * }
+     */
     batchMaterial(token, options) {
         options.type = options.type || 'image'
         options.offset = options.offset || 0
@@ -281,6 +348,13 @@ module.exports = class Wechat {
         return { method: 'POST', url: url, body: options }
     }
 
+    /************** 标签相关 *************/
+    
+    /**
+     * 创建标签
+     * @param {String} token 凭证
+     * @param {String} name 标签名字
+     */
     createTag(token, name) {
         const form = {
             tag: {
@@ -291,13 +365,22 @@ module.exports = class Wechat {
 
         return { method: 'POST', url: url, body: form }
     }
-
+    /**
+     * 获取标签列表
+     * @param {String} token 凭证
+     */
     fetchTags(token) {
         const url = api.tag.fetch + 'access_token=' + token
 
+        // 不写 method 默认就是 get
         return { url: url }
     }
-
+    /**
+     * 更新标签
+     * @param {String} token 
+     * @param {String} tagId 要更新的标签id
+     * @param {String} name 新标签名
+     */
     updateTag(token, tagId, name) {
         const form = {
             tag: {
@@ -310,7 +393,11 @@ module.exports = class Wechat {
 
         return { method: 'POST', url: url, body: form }
     }
-
+    /**
+     * 删除标签
+     * @param {String} token 
+     * @param {String} tagId 要删除标签id
+     */
     delTag(token, tagId) {
         const form = {
             tag: {
@@ -322,7 +409,12 @@ module.exports = class Wechat {
 
         return { method: 'POST', url: url, body: form }
     }
-
+    /**
+     * 获取标签下的用户列表
+     * @param {String} token 
+     * @param {String} tagId 标签id
+     * @param {String} openId 第一个拉取的 OPENID，不填默认从头开始拉取
+     */
     fetchTagUsers(token, tagId, openId) {
         const form = {
             tagid: tagId,
@@ -334,13 +426,22 @@ module.exports = class Wechat {
     }
 
     // unTag true|false
+    /**
+     * 批量为用户 打&&取消 标签
+     * @param {String} token 
+     * @param {Array} openIdList openId列表 
+     * @param {String} tagId 标签id
+     * @param {Boolean} unTag 打&&取消 标签
+     */
     batchTag(token, openIdList, tagId, unTag) {
         const form = {
             openid_list: openIdList,
             tagid: tagId
         }
+        // 打标签（默认）
         let url = api.tag.batchTag
 
+        // 取消标签
         if (unTag) {
             url = api.tag.batchUnTag
         }
@@ -349,7 +450,11 @@ module.exports = class Wechat {
 
         return { method: 'POST', url: url, body: form }
     }
-
+    /**
+     * 获取某个用户身上的标签列表
+     * @param {String} token 
+     * @param {String} openId 用户id
+     */
     getTagList(token, openId) {
         const form = {
             openid: openId
@@ -358,7 +463,15 @@ module.exports = class Wechat {
 
         return { method: 'POST', url: url, body: form }
     }
+    
+    /************** 用户相关 *************/
 
+    /**
+     * 修改用户的备注名（昵称）
+     * @param {String} token 
+     * @param {String} openId 用户id
+     * @param {String} remark 备注名
+     */
     remarkUser(token, openId, remark) {
         const form = {
             openid: openId,
@@ -368,14 +481,23 @@ module.exports = class Wechat {
 
         return { method: 'POST', url: url, body: form }
     }
-
+    /**
+     * 获取用户的基本信息
+     * @param {String} token 
+     * @param {String} openId 用户id
+     * @param {String} lang 语言（zh_CN 简体，zh_TW 繁体，en 英语）
+     */
     getUserInfo(token, openId, lang) {
         const url = `${api.user.info}access_token=${token}&openid=${openId}&lang=${lang || 'zh_CN'}`
 
         return { url: url }
     }
-
-    batchUserInfo(token, userList) {
+    /**
+     * 批量获取用户基本信息
+     * @param {String} token 
+     * @param {Array} userList 用户列表（openId，最多100个）
+     */
+    batchUsersInfo(token, userList) {
         const url = api.user.batchInfo + 'access_token=' + token
         const form = {
             user_list: userList
@@ -383,31 +505,98 @@ module.exports = class Wechat {
 
         return { method: 'POST', url: url, body: form }
     }
-
+    /**
+     * 获取用户列表
+     * @param {String} token 
+     * @param {Array} openId 第一个拉取的OPENID，不填默认从头开始拉取
+     */
     fetchUserList(token, openId) {
         const url = `${api.user.fetchUserList}access_token=${token}&next_openid=${openId || ''}`
 
         return { url: url }
     }
+    /**
+     * 获取公众号的黑名单列表
+     * @param {String} token 
+     * @param {String} openId 当 openid 为空时，默认从开头拉取。
+     */
+    getBlackList(token,openId){
+        const url = api.user.getBlackList + 'access_token=' + token,
+            from = {
+                begin_openid: openId || ''
+            }
 
+        return {method:'POST',url: url, body:from}
+        
+    }
+    /**
+     * 拉黑用户(单个或多个)
+     * @param {String} token 
+     * @param {Array} openId 需要拉入黑名单的用户的openid，一次拉黑最多允许20个
+     * @param {Boolean} unBlack ture 取消拉黑，false 拉黑
+     */
+    batchBlackUsers(token,openId,unBlack){
+        const from = {
+            openid_list: openId
+        }
+        // 拉黑用户（默认）
+        let url = api.user.batchBlackUsers
+        // 取消拉黑
+        if(unBlack){
+            url = api.user.batchUnBlackUsers
+        }
+        url += 'access_token=' + token
+
+
+        return {method:'POST',url: url, body:from}
+    }
+
+    /************** 菜单相关 *************/
+    
+    /**
+     * 创建菜单
+     * @param {String} token 
+     * @param {Object} menu 
+     */
     createMenu(token, menu) {
         const url = api.menu.create + 'access_token=' + token
 
         return { method: 'POST', url: url, body: menu }
     }
-
+    /**
+     * 获取菜单
+     * @param {String} token 
+     */
     getMenu(token) {
         const url = api.menu.get + 'access_token=' + token
 
         return { url: url }
     }
-
+    /**
+     * 删除菜单
+     * @param {String} token 
+     */
     delMenu(token) {
         const url = api.menu.del + 'access_token=' + token
 
         return { url: url }
     }
+    /**
+     * 获取菜单配置
+     * @param {String} token 
+     */
+    getCurrentMenuInfo(token) {
+        const url = api.menu.getInfo + 'access_token=' + token
 
+        return { url: url }
+    }
+    /**
+     * 新增个性化菜单
+     * @param {String} token 
+     * @param {Array} menu 菜单列表
+     * @param {Object} rule 自定义菜单规则
+     * @api https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455782296
+     */
     addConditionMenu(token, menu, rule) {
         const url = api.menu.addCondition + 'access_token=' + token
         const form = {
@@ -417,7 +606,11 @@ module.exports = class Wechat {
 
         return { method: 'POST', url: url, body: form }
     }
-
+    /**
+     * 删除个性化菜单
+     * @param {String} token 
+     * @param {String} menuId 菜单id
+     */
     delConditionMenu(token, menuId) {
         const url = api.menu.delCondition + 'access_token=' + token
         const form = {
@@ -426,13 +619,17 @@ module.exports = class Wechat {
 
         return { method: 'POST', url: url, body: form }
     }
-
-    getCurrentMenuInfo(token) {
-        const url = api.menu.getInfo + 'access_token=' + token
-
-        return { url: url }
-    }
-
+    /**
+     * 签名
+     * @param {String} ticket 票据
+     * @param {String} url 
+     * @returns
+     * {
+            noncestr: 随机字符串,
+            timestamp: 当前时间戳,
+            signature: 加密值
+        }
+    */
     sign(ticket, url) {
         return sign(ticket, url)
     }
