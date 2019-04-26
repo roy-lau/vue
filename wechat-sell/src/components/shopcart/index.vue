@@ -13,7 +13,7 @@
           <div class="price" :class="{'highlight':totalPrice>0}">￥{{totalPrice}}</div>
           <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
         </div>
-        <div class="content-right" @click.stop.prevent="pay">
+        <div class="content-right" @click.stop.prevent="toCreateOrder">
           <div class="pay" :class="payClass">
             {{payDesc}}
           </div>
@@ -58,6 +58,7 @@
 
 <script>
   import BScroll from 'better-scroll';
+  import { mapMutations } from 'vuex'
   import cartcontrol from '@/components/cartcontrol';
 export default {
     props: {
@@ -83,8 +84,6 @@ export default {
         type: Number,
         default: 0
       }
-    },
-    created(){
     },
     data() {
       return {
@@ -121,7 +120,7 @@ export default {
           let diff = this.minPrice - this.totalPrice;
           return `还差￥${diff}元起送`;
         } else {
-          return '去结算';
+          return '创建订单';
         }
       },
       payClass() {
@@ -177,8 +176,8 @@ export default {
           food.count = 0;
         });
       },
-      // 支付跳转
-      pay() {
+      // 跳转至 创建订单
+      toCreateOrder() {
         if (this.totalPrice < this.minPrice) {
           return;
         }
@@ -187,8 +186,8 @@ export default {
           avatar: this.seller.avatar,
           foodList: this.selectFoods
         }
-        sessionStorage.setItem('shopInfo',JSON.stringify(data))
-        this.$router.push({ path: '/payment'})
+        this.setOrderList(data)
+        this.$router.push({ path: '/create-order'})
       },
       addFood(target) {
         this.drop(target);
@@ -228,7 +227,10 @@ export default {
           ball.show = false;
           el.style.display = 'none';
         }
-      }
+      },
+       ...mapMutations({
+            setOrderList: 'SET_ORDER_LIST'
+        })
     },
     components: {
       cartcontrol

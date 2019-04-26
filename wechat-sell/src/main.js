@@ -4,10 +4,10 @@ import "@babel/polyfill"
 import Vue from 'vue'
 import App from './App'
 import router from './router.js'
-import 'lib-flexible'
+import store from './store'
+// import 'lib-flexible'
 
-import WechatPlugin from './config/WeChat.js'
-import { AjaxPlugin } from 'vux'
+import { AjaxPlugin ,WechatPlugin } from 'vux'
 
 const FastClick = require('fastclick')
 FastClick.attach(document.body)
@@ -22,6 +22,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

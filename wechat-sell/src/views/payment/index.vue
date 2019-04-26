@@ -30,7 +30,7 @@
     </div>
     <div class="footer">
       <div class="money">待支付¥{{this.allPay}}</div>
-      <div class="btn-pay" @click="pay">支付</div>
+      <div class="btn-pay" @click="createOrder">创建订单</div>
     </div>
   </div>
 </template>
@@ -58,8 +58,8 @@ export default {
 		this.shopInfo = JSON.parse(sessionStorage.getItem('shopInfo'))
   },
   methods: {
-    pay() {
-
+    // 创建订单
+    createOrder() {
 			location.href = process.env.openidUrl + '?returnUrl=' + encodeURIComponent(process.env.sellUrl + '/#/');
 			console.log(process.env.openidUrl + '?returnUrl=' + encodeURIComponent(process.env.sellUrl + '/#/'))
 			console.log(this.$route.query.openid)

@@ -18,7 +18,7 @@
           <li v-for="(item,idx) in goods" class="food-list" :key="idx" ref="foodList">
             <h1 class="title">{{item.name}}</h1>
             <ul>
-              <li v-for="(food,index) in item.foods" :key="index" class="food-item vux-1px-b">
+              <li v-for="(food,index) in item.foods" :key="index" class="food-item vux-1px-b" @click="selectFood(food,$event)">
                 <div class="icon">
                   <img :src="food.icon" />
                 </div>
@@ -42,7 +42,7 @@
       </div>
       <shop-cart ref="shopcart" :selectFoods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice" :seller="seller" />
     </div>
-    <food @add="addFood" :food="selectedFood" ref="food"></food>
+    <food-detailed @add="addFood" :food="selectedFood" ref="foodDetailed" />
   </div>
 </template>
 <script>
@@ -50,7 +50,6 @@ import BScroll from 'better-scroll';
 import shopCart from '@/components/shopcart';
 import cartControl from '@/components/cartcontrol';
 import food from './food';
-// import Cookies from '@/assets/js/js-cookie.js';
 const ERR_OK = 0;
 
 export default {
@@ -106,15 +105,15 @@ export default {
       // }
       //获取openid
       // if (Cookies.get('openid') == null) {
-        // this.$router.push({ query: { returnUrl: encodeURIComponent(process.env.sellUrl + '/#/')} })
-        // http://127.0.0.1?returnUrl=http%3A%2F%2F127.0.0.1%2F%23%2F
-        // console.log("url: ", process.env.openidUrl + '?returnUrl=' + encodeURIComponent(process.env.sellUrl + '/#/'))
-        // location.href = process.env.openidUrl + '?returnUrl=' + encodeURIComponent(process.env.sellUrl + '/#/');
+      // this.$router.push({ query: { returnUrl: encodeURIComponent(process.env.sellUrl + '/#/')} })
+      // http://127.0.0.1?returnUrl=http%3A%2F%2F127.0.0.1%2F%23%2F
+      // console.log("url: ", process.env.openidUrl + '?returnUrl=' + encodeURIComponent(process.env.sellUrl + '/#/'))
+      // location.href = process.env.openidUrl + '?returnUrl=' + encodeURIComponent(process.env.sellUrl + '/#/');
       // }
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
       // let selectedGoods = window.selectedGoods;
       // selectedGoods = selectedGoods ? JSON.parse(selectedGoods) : [];
-      this.$http.get('sell/buyer/product/list').then(({data}) => {
+      this.$http.get('sell/buyer/product/list').then(({ data }) => {
         if (data.code === ERR_OK) {
           // selectedGoods.map(item => {
           //   data.map((food, index) => {
@@ -130,10 +129,10 @@ export default {
           // });
           this.goods = data.data
           // 商品列表加载完成后。 触发滚动，计算高度
-           this.$nextTick(() => {
-		      this._initScroll();
-		      this._calculateHeight();
-		    });
+          this.$nextTick(() => {
+            this._initScroll();
+            this._calculateHeight();
+          });
         }
       });
 
@@ -151,7 +150,7 @@ export default {
         return;
       }
       this.selectedFood = food;
-      this.$refs.food.show();
+      this.$refs.foodDetailed.show();
     },
     addFood(target, food) {
       this._drop(target);
@@ -190,7 +189,7 @@ export default {
   components: {
     shopCart,
     cartControl,
-    food
+    'food-detailed': food
   }
 };
 
@@ -202,20 +201,23 @@ export default {
 .goods {
   display: flex;
   position: absolute;
-  top:1px;
+  top: 1px;
   bottom: 92px;
   width: 100%;
   overflow: hidden;
+
   .menu-wrapper {
     flex: 0 0 80px * 2;
     width: 80px * 2;
     background: #f3f5f7;
+
     .menu-item {
       display: table;
       height: 54px * 2;
       width: 56px * 2;
       padding: 0 12px * 2;
       line-height: 14px * 2;
+
       &.current {
         position: relative;
         z-index: 10;
@@ -223,28 +225,35 @@ export default {
         background: #fff;
         font-weight: 700;
       }
+
       .icon {
         display: inline-block;
         vertical-align: top;
         width: 12px * 2;
         height: 12px * 2;
         margin-right: 2px * 2;
-        &.decrease{
-			.block-icon(red,'减');
+
+        &.decrease {
+          .block-icon(red, '减');
         }
-        &.discount{
-			.block-icon-bg(#008c88,'折');
+
+        &.discount {
+          .block-icon-bg(#008c88, '折');
         }
-        &.guarantee{
-			.block-icon(#0c9,'保');
+
+        &.guarantee {
+          .block-icon(#0c9, '保');
         }
-        &.invoice{
-			.block-icon(#920783,'票');
+
+        &.invoice {
+          .block-icon(#920783, '票');
         }
-        &.special{
-        	.block-icon-bg(#00b43c,'特')
+
+        &.special {
+          .block-icon-bg(#00b43c, '特')
         }
       }
+
       .text {
         display: table-cell;
         width: 56px * 2;
@@ -252,20 +261,23 @@ export default {
         font-size: 12px * 2;
         // 原来 border-1px 样式
         position: relative;
-		  &:after{
-		    display: block;
-		    position: absolute;
-		    left: 0;
-		    bottom: 0;
-		    width: 100%;
-		    border-top: 1px solid rgba(7, 17, 27, 0.1);
-		    content: ' ';
-		  }
+
+        &:after {
+          display: block;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          border-top: 1px solid rgba(7, 17, 27, 0.1);
+          content: ' ';
+        }
       }
     }
   }
+
   .foods-wrapper {
     flex: 1;
+
     .title {
       padding-left: 14px * 2;
       height: 26px * 2;
@@ -275,23 +287,29 @@ export default {
       color: #93999f;
       background: #f3f5f7;
     }
+
     .food-item {
       display: flex;
       margin: 18px * 2;
       padding-bottom: 18px * 2;
+
       &:last-child {
         margin-bottom: 0;
       }
+
       .icon {
         flex: 0 0 57px * 2;
         margin-right: 10px * 2;
-        img{
+
+        img {
           width: 120px;
           height: 120px;
         }
       }
+
       .content {
         flex: 1;
+
         .name {
           margin: 2px 0 8px 0;
           height: 14px * 2;
@@ -299,29 +317,35 @@ export default {
           font-size: 14px * 2;
           color: #07111b;
         }
+
         .desc {
           line-height: 12px * 2;
           margin-bottom: 8px * 2;
         }
+
         .extra {
           .count {
             margin-right: 12px * 2;
           }
         }
+
         .price {
           font-weight: 700;
           line-height: 24px * 2;
+
           .now {
             margin-right: 8px * 2;
             font-size: 14px * 2;
             color: #f01414;
           }
+
           .old {
             text-decoration: line-through;
             font-size: 10px * 2;
             color: #93999f;
           }
         }
+
         .cartcontrol-wrapper {
           position: absolute;
           right: 0;
@@ -331,6 +355,7 @@ export default {
     }
   }
 }
+
 .goods .foods-wrapper .food-item .content .desc,
 .goods .foods-wrapper .food-item .content .extra {
   line-height: 10px * 2;

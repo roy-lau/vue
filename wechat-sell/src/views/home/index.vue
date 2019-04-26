@@ -8,8 +8,7 @@
     <div class="panel-box">
       <Flexbox>
         <flexbox-item>
-          <!-- 扫描二维码组件 -->
-          <scanit />
+          <div class="item-box" @click="onScanIt"><i class="icon iconfont icon-scanit"></i><span>扫一扫</span></div>
         </flexbox-item>
         <flexbox-item>
           <router-link :to="{'path':'shops'}">
@@ -17,7 +16,7 @@
           </router-link>
         </flexbox-item>
         <flexbox-item>
-          <div class="item-box"><i class="icon iconfont icon-people"></i><span>推荐好友</span></div>
+          <div class="item-box" @click="recommendFriends"><i class="icon iconfont icon-people"></i><span>推荐好友</span></div>
         </flexbox-item>
         <flexbox-item>
           <div class="item-box"><i class="icon iconfont icon-shop"></i><span>商铺位置</span></div>
@@ -95,17 +94,16 @@ import {
   Flexbox,
   FlexboxItem
 } from 'vux'
-import scanit from "./scanit.vue";
 
-import axios from "axios"
+import { mapActions } from 'vuex'
+
 export default {
   name: 'home',
   components: {
     Swiper,
     Panel,
     Flexbox,
-    FlexboxItem,
-    scanit
+    FlexboxItem
   },
   data() {
     return {
@@ -117,21 +115,49 @@ export default {
         img: require('./banner.jpg'),
         fallbackImg: require('./banner.jpg')
       }],
-      goods:[]
+      goods: []
     }
   },
   methods: {
-    // 获取商品列表
-   async getProductList() {
+    // 扫一扫
+    onScanIt() {
+      let url = window.location.href.split('#')[0]
 
-     let {data} = await this.$http.get('sell/buyer/product/list')
-     this.goods = data.data
-      console.log(this.goods)
-    }
+      this.setWechatConfig(url).then(res => {
+        alert(url,'wx 响应')
+        this.$wechat.scanQRCode({
+          needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+          scanType: ["qrCode"], // 可以指定扫二维码还是一维码，默认二者都有
+          success: function(res) {
+            var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+            alert("扫描结果：" + result);
+            window.location.href = result; //因为我这边是扫描后有个链接，然后跳转到该页面
+          }
+        });
+
+      })
+    },
+    // 推荐好友
+    recommendFriends() {
+      let url = window.location.href.split('#')[0]
+
+      this.setWechatConfig(url).then(res => {
+        alert(url,'wx 响应')
+        this.$wechat.onMenuShareTimeline({
+          title: 'hello VUX',
+          success: function() {
+            console.log('用户点击了分享后执行的回调函数')
+          }
+        })
+
+      })
+    },
+    ...mapActions([
+      'setWechatConfig',
+    ])
   },
-  mounted() {
-    this.getProductList()
-  },
+  created() {},
+  mounted() {}
 }
 
 </script>

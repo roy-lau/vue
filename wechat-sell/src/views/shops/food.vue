@@ -3,7 +3,7 @@
     <div v-show="showFlag" class="food" ref="food">
       <div class="food-content">
         <div class="image-header">
-          <img :src="food.image">
+          <img :src="food.icon">
           <div class="back" @click="hide">
             <i class="icon-arrow_lift"></i>
           </div>
@@ -42,7 +42,7 @@
               <li v-show="needShow(rating.rateType,rating.text)"
                   v-for="rating in food.ratings"
                   :key="rating.rateTime"
-                  class="rating-item border-1px *2">
+                  class="rating-item border-1px">
                 <div class="user">
                   <span class="name">{{rating.username}}</span>
                   <img class="avatar" width="12" height="12" :src="rating.avatar">

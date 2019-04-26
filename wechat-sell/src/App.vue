@@ -1,23 +1,26 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
-
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {},
+  beforeCreate() {}
 }
-</script>
 
+</script>
 <style lang="less">
 @import '~vux/src/styles/reset.less';
 @import './assets/less/icons.less';
 
-i{
+i {
   font-style: normal;
 }
-li{
+
+li {
   list-style: none;
 }
+
 </style>

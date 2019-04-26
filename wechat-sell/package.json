@@ -1,7 +1,7 @@
 {
-  "name": "wechat-sell-2",
+  "name": "wechat-sell",
   "version": "1.0.0",
-  "description": "a wechat sell plath",
+  "description": "a wechat sell platform",
   "author": "roy-lau <roy-lau@foxmail.com>",
   "private": true,
   "scripts": {
@@ -18,6 +18,8 @@
     "px2rem-loader": "^0.1.9",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
+    "vuex": "^3.1.0",
+    "vuex-persistedstate": "^2.5.4",
     "vux": "^2.9.3",
     "vux-loader": "^1.2.9"
   },
