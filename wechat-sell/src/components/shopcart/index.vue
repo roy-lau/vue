@@ -245,7 +245,7 @@ export default {
   bottom: 0;
   z-index: 50;
   width: 100%;
-  height: 48px *2;
+  height: 48px;
   .content {
     display: flex;
     background: #141d27;
@@ -257,11 +257,11 @@ export default {
         display: inline-block;
         vertical-align: top;
         position: relative;
-        top: -10px *2;
-        margin: 0 12px *2;
-        padding: 6px *2;
-        width: 56px *2;
-        height: 56px *2;
+        top: -10px;
+        margin: 0 12px;
+        padding: 6px;
+        width: 56px;
+        height: 56px;
         box-sizing: border-box;
         border-radius: 50%;
         background: #141d27;
@@ -275,8 +275,8 @@ export default {
             background: #00a0dc;
           }
           .icon-shopping_cart {
-            line-height: 44px *2;
-            font-size: 24px *2;
+            line-height: 44px;
+            font-size: 24px;
             color: #80858a;
             &.highlight {
               color: #fff;
@@ -287,27 +287,27 @@ export default {
           position: absolute;
           top: 0;
           right: 0;
-          width: 24px *2;
-          height: 16px *2;
-          line-height: 16px *2;
+          width: 24px;
+          height: 16px;
+          line-height: 16px;
           text-align: center;
-          border-radius: 16px *2;
-          font-size: 9px *2;
+          border-radius: 16px;
+          font-size: 9px;
           font-weight: 700;
           color: #fff;
           background: #f01414;
-          box-shadow: 0 4px *2 8px *2 0 rgba(0,0,0,0.4);
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
         }
       }
       .price {
         display: inline-block;
         vertical-align: top;
-        margin-top: 12px *2;
-        line-height: 24px *2;
-        padding-right: 12px *2;
+        margin-top: 12px;
+        line-height: 24px;
+        padding-right: 12px;
         box-sizing: border-box;
-        border-right: 1px *2 solid rgba(255,255,255,0.1);
-        font-size: 16px *2;
+        border-right: 1px solid rgba(255,255,255,0.1);
+        font-size: 16px;
         font-weight: 700;
         &.highlight {
           color: #fff;
@@ -316,19 +316,19 @@ export default {
       .desc {
         display: inline-block;
         vertical-align: top;
-        margin: 12px *2 0 0 12px *2;
-        line-height: 24px *2;
-        font-size: 10px *2;
+        margin: 12px 0 0 12px;
+        line-height: 24px;
+        font-size: 10px;
       }
     }
     .content-right {
-      flex: 0 0 105px *2;
-      width: 105px *2;
+      flex: 0 0 105px;
+      width: 105px;
       .pay {
-        height: 48px *2;
-        line-height: 48px *2;
+        height: 48px;
+        line-height: 48px;
         text-align: center;
-        font-size: 12px *2;
+        font-size: 12px;
         font-weight: 700;
         &.not-enough {
           background: #2b333b;
@@ -343,13 +343,13 @@ export default {
   .ball-container {
     .ball {
       position: fixed;
-      left: 32px *2;
-      bottom: 22px *2;
+      left: 32px;
+      bottom: 22px;
       z-index: 200;
       transition: all .4s cubic-bezier(.49,-.29,.75,.41);
       .inner {
-        width: 16px *2;
-        height: 16px *2;
+        width: 16px;
+        height: 16px;
         border-radius: 50%;
         background: #00a0dc;
         transition: all .4s linear;
@@ -364,30 +364,30 @@ export default {
     width: 100%;
     transform: translate3d(0,-100%,0);
     .list-header {
-      height: 40px *2;
-      line-height: 40px *2;
-      padding: 0 18px *2;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 18px;
       background: #f3f5f7;
-      border-bottom: 1px *2 solid rgba(7,17,27,0.1);
+      border-bottom: 1px solid rgba(7,17,27,0.1);
       .title {
         float: left;
-        font-size: 14px *2;
+        font-size: 14px;
         color: #07111b;
       }
       .empty {
         float: right;
-        font-size: 12px *2;
+        font-size: 12px;
         color: #00a0dc;
       }
     }
     .list-content {
-      padding: 0 18px *2;
-      max-height: 217px *2;
+      padding: 0 18px;
+      max-height: 217px;
       overflow: hidden;
       background: #fff;
       .food {
         position: relative;
-        padding: 12px *2 0;
+        padding: 12px 0;
         box-sizing: border-box;
         position: relative;
         &:after {
@@ -396,27 +396,27 @@ export default {
           left: 0;
           bottom: 0;
           width: 100%;
-          border-top: 1px *2 solid rgba(7,17,27,0.1);
+          border-top: 1px solid rgba(7,17,27,0.1);
           content: ' ';
         }
         .name {
-          line-height: 24px *2;
-          font-size: 14px *2;
+          line-height: 24px;
+          font-size: 14px;
           color: #07111b;
         }
         .price {
           position: absolute;
-          right: 90px *2;
-          bottom: 12px *2;
-          line-height: 24px *2;
-          font-size: 14px *2;
+          right: 90px;
+          bottom: 12px;
+          line-height: 24px;
+          font-size: 14px;
           font-weight: 700;
           color: #f01414;
         }
         .cartcontrol-wrapper {
           position: absolute;
           right: 0;
-          bottom: 6px *2;
+          bottom: 6px;
         }
       }
     }
@@ -435,7 +435,7 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 40;
-  backdrop-filter: blur(10px *2);
+  backdrop-filter: blur(10px);
   opacity: 1;
   background: rgba(7,17,27,0.6);
 }

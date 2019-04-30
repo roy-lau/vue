@@ -5,7 +5,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router.js'
 import store from './store'
-// import 'lib-flexible'
+import './assets/js/screen-adaptation'
 
 import { AjaxPlugin ,WechatPlugin } from 'vux'
 

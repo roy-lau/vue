@@ -207,21 +207,21 @@ export default {
   overflow: hidden;
 
   .menu-wrapper {
-    flex: 0 0 80px * 2;
-    width: 80px * 2;
+    flex: 0 0 80px;
+    width: 80px;
     background: #f3f5f7;
 
     .menu-item {
       display: table;
-      height: 54px * 2;
-      width: 56px * 2;
-      padding: 0 12px * 2;
-      line-height: 14px * 2;
+      height: 54px;
+      width: 56px;
+      padding: 0 12px;
+      line-height: 14px;
 
       &.current {
         position: relative;
         z-index: 10;
-        margin-top: -1px * 2;
+        margin-top: -1px;
         background: #fff;
         font-weight: 700;
       }
@@ -229,9 +229,9 @@ export default {
       .icon {
         display: inline-block;
         vertical-align: top;
-        width: 12px * 2;
-        height: 12px * 2;
-        margin-right: 2px * 2;
+        width: 12px;
+        height: 12px;
+        margin-right: 2px;
 
         &.decrease {
           .block-icon(red, '减');
@@ -256,9 +256,9 @@ export default {
 
       .text {
         display: table-cell;
-        width: 56px * 2;
+        width: 56px;
         vertical-align: middle;
-        font-size: 12px * 2;
+        font-size: 12px;
         // 原来 border-1px 样式
         position: relative;
 
@@ -279,31 +279,31 @@ export default {
     flex: 1;
 
     .title {
-      padding-left: 14px * 2;
-      height: 26px * 2;
-      line-height: 26px * 2;
+      padding-left: 14px;
+      height: 26px;
+      line-height: 26px;
       border-left: 2px solid #d9dde1;
-      font-size: 12px * 2;
+      font-size: 12px;
       color: #93999f;
       background: #f3f5f7;
     }
 
     .food-item {
       display: flex;
-      margin: 18px * 2;
-      padding-bottom: 18px * 2;
+      margin: 18px;
+      padding-bottom: 18px;
 
       &:last-child {
         margin-bottom: 0;
       }
 
       .icon {
-        flex: 0 0 57px * 2;
-        margin-right: 10px * 2;
+        flex: 0 0 57px;
+        margin-right: 10px;
 
         img {
-          width: 120px;
-          height: 120px;
+          width: 80px;
+          height: 80px;
         }
       }
 
@@ -312,36 +312,36 @@ export default {
 
         .name {
           margin: 2px 0 8px 0;
-          height: 14px * 2;
-          line-height: 14px * 2;
-          font-size: 14px * 2;
+          height: 14px;
+          line-height: 14px;
+          font-size: 14px;
           color: #07111b;
         }
 
         .desc {
-          line-height: 12px * 2;
-          margin-bottom: 8px * 2;
+          line-height: 12px;
+          margin-bottom: 8px;
         }
 
         .extra {
           .count {
-            margin-right: 12px * 2;
+            margin-right: 12px;
           }
         }
 
         .price {
           font-weight: 700;
-          line-height: 24px * 2;
+          line-height: 24px;
 
           .now {
-            margin-right: 8px * 2;
-            font-size: 14px * 2;
+            margin-right: 8px;
+            font-size: 14px;
             color: #f01414;
           }
 
           .old {
             text-decoration: line-through;
-            font-size: 10px * 2;
+            font-size: 10px;
             color: #93999f;
           }
         }
@@ -349,7 +349,7 @@ export default {
         .cartcontrol-wrapper {
           position: absolute;
           right: 0;
-          bottom: 12px * 2;
+          bottom: 12px;
         }
       }
     }
@@ -358,8 +358,8 @@ export default {
 
 .goods .foods-wrapper .food-item .content .desc,
 .goods .foods-wrapper .food-item .content .extra {
-  line-height: 10px * 2;
-  font-size: 10px * 2;
+  line-height: 10px;
+  font-size: 10px;
   color: #93999f;
 }
 

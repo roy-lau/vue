@@ -2,7 +2,7 @@
 <template>
   <div id="home">
     <!-- 轮播图 start -->
-    <Swiper :list="imgsList" :show-desc-mask="false" height="5rem" dots-position="center" :auto="true" :loop="true" />
+    <Swiper :list="imgsList" :show-desc-mask="false" dots-position="center" :auto="true" :loop="true" />
     <!-- 轮播图 end -->
     <!-- 八宫格 导航 start -->
     <div class="panel-box">
@@ -170,13 +170,14 @@ export default {
 
   .panel-box {
     background-color: white;
-    margin-top: 20px;
-    box-shadow: 0 12px 14px 12px #f3f3f3;
+    margin-top: 10px/2;
+    box-shadow: 0 6px/2 7px/2 6px/2 #f3f3f3;
+    font-size: 23px/2;
 
     li {
-      height: 100px;
-      line-height: 100px;
-      border-bottom: 2px solid #f3f3f3;
+      height: 100px/2;
+      line-height: 100px/2;
+      border-bottom: 1px/2 solid #f3f3f3;
     }
   }
 
@@ -187,10 +188,6 @@ export default {
     span {
       display: block;
       text-align: center;
-    }
-
-    i.icon {
-      font-size: 58px;
     }
 
     .icon-scanit {
@@ -218,50 +215,50 @@ export default {
   /* 店铺基本信息 */
   .base-info-list {
     i.icon {
-      margin: 0 16px;
+      font-size: 18px;
+      margin: 0 16px/2;
     }
 
     .tips {
       background-color: #50b2fc;
-      font-size: 22px;
       vertical-align: top;
       color: white;
-      padding: 5px;
-      border-radius: 5px;
+      padding: 3px/2;
+      font-size: 8px;
+      border-radius: 3px;
     }
   }
 
   // 优惠信息
   .discount-info-list {
     i {
-      padding: 3px;
+      padding: 3px/2;
       text-align: center;
-      margin: 0 16px;
-      font-size: 24px;
+      margin: 0 16px/2;
     }
 
     .icon-block-blue {
       color: #7eb4ed;
-      border: 3px solid #7eb4ed;
+      border: 2px/2 solid #7eb4ed;
     }
 
     .icon-block-red {
       color: white;
       background-color: #eb5532;
-      border: 3px solid #eb5532;
+      border: 2px/2 solid #eb5532;
     }
   }
 
   // 查看店铺
   .lookShop {
-    height: 80px;
-    line-height: 80px;
-    text-indent: 12px;
+    height: 80px/2;
+    line-height: 80px/2;
+    text-indent: 12px/2;
 
     .arrow-right {
       float: right;
-      margin-right: 20px;
-      margin-top: 20px;
+      margin-right: 20px/2;
+      margin-top: 20px/2;
       vertical-align: middle;
     }
   }
@@ -271,11 +268,11 @@ export default {
     position: fixed;
     right: 0;
     top: 35%;
-    width: 100px;
-    height: 430px;
-    padding: 15px 0;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+    width: 70px;
+    height: 230px;
+    padding: 8px 0;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
     z-index: 2;
     background-color: rgba(0, 0, 0, 0.6);
 
@@ -284,12 +281,8 @@ export default {
         color: white;
         display: block;
         text-align: center;
-        line-height: 70px;
-        border-bottom: 1px solid silver;
-
-        span {
-          font-size: 22px;
-        }
+        line-height: 60px/2;
+        border-bottom: 1px/2 solid silver;
       }
 
       li:last-child {
@@ -297,7 +290,7 @@ export default {
       }
 
       .icon {
-        font-size: 58px;
+        margin-top: 8px;
         text-align: center;
         display: block;
       }

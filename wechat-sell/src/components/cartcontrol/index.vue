@@ -49,13 +49,13 @@ export default {
   font-size: 0;
   .cart-decrease {
     display: inline-block;
-    padding: 6px *2;
+    padding: 6px;
     opacity: 1;
     transform: translate3d(0, 0, 0);
     .inner {
       display: inline-block;
-      line-height: 24px *2;
-      font-size: 24px *2;
+      line-height: 24px;
+      font-size: 24px;
       color: rgb(0, 160, 220);
       transition: all 0.4s linear;
       transform: rotate(0);
@@ -66,7 +66,7 @@ export default {
       &.move-enter,
       &.move-leave-active {
         opacity: 0;
-        transform: translate3d(24px *2, 0, 0);
+        transform: translate3d(24px, 0, 0);
         .inner {
           transform: rotate(180deg);
         }
@@ -75,18 +75,18 @@ export default {
     .cart-count {
       display: inline-block;
       vertical-align: top;
-      width: 12px *2;
-      padding-top: 6px *2;
-      line-height: 24px *2;
+      width: 12px;
+      padding-top: 6px;
+      line-height: 24px;
       text-align: center;
-      font-size: 10px *2;
+      font-size: 10px;
       color: rgb(147, 153, 159);
     }
     .cart-add {
       display: inline-block;
-      padding: 6px *2;
-      line-height: 24px *2;
-      font-size: 24px *2;
+      padding: 6px;
+      line-height: 24px;
+      font-size: 24px;
       color: rgb(0, 160, 220);
     }
 }
