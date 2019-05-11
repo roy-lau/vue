@@ -167,16 +167,16 @@ export default {
 
 #home {
   background-color: #f0f0f0;
-
+  font-size: 18px;
   .panel-box {
     background-color: white;
-    margin-top: 20px;
-    box-shadow: 0 12px 14px 12px #f3f3f3;
+    margin-top: 20px /1.3;
+    box-shadow: 0 12px /1.3 14px /1.3 12px /1.3 #f3f3f3;
 
     li {
-      height: 100px;
-      line-height: 100px;
-      border-bottom: 2px solid #f3f3f3;
+      height: 100px /1.3;
+      line-height: 100px /1.3;
+      border-bottom: 2px /1.3 solid #f3f3f3;
     }
   }
 
@@ -190,7 +190,7 @@ export default {
     }
 
     i.icon {
-      font-size: 58px;
+      font-size: 58px /1.3;
     }
 
     .icon-scanit {
@@ -218,50 +218,50 @@ export default {
   /* 店铺基本信息 */
   .base-info-list {
     i.icon {
-      margin: 0 16px;
+      margin: 0 16px /1.3;
     }
 
     .tips {
       background-color: #50b2fc;
-      font-size: 22px;
+      font-size: 22px /1.3;
       vertical-align: top;
       color: white;
-      padding: 5px;
-      border-radius: 5px;
+      padding: 5px /1.3;
+      border-radius: 5px /1.3;
     }
   }
 
   // 优惠信息
   .discount-info-list {
     i {
-      padding: 3px;
+      padding: 3px /1.3;
       text-align: center;
-      margin: 0 16px;
-      font-size: 24px;
+      margin: 0 16px /1.3;
+      font-size: 24px /1.3;
     }
 
     .icon-block-blue {
       color: #7eb4ed;
-      border: 3px solid #7eb4ed;
+      border: 3px /1.3 solid #7eb4ed;
     }
 
     .icon-block-red {
       color: white;
       background-color: #eb5532;
-      border: 3px solid #eb5532;
+      border: 3px /1.3 solid #eb5532;
     }
   }
 
   // 查看店铺
   .lookShop {
-    height: 80px;
-    line-height: 80px;
-    text-indent: 12px;
+    height: 80px /1.3;
+    line-height: 80px /1.3;
+    text-indent: 12px /1.3;
 
     .arrow-right {
       float: right;
-      margin-right: 20px;
-      margin-top: 20px;
+      margin-right: 20px /1.3;
+      margin-top: 20px /1.3;
       vertical-align: middle;
     }
   }
@@ -271,11 +271,11 @@ export default {
     position: fixed;
     right: 0;
     top: 35%;
-    width: 100px;
-    height: 430px;
-    padding: 15px 0;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+    width: 100px /1.3;
+    height: 430px /1.3;
+    padding: 15px /1.3 0;
+    border-bottom-left-radius: 20px /1.3;
+    border-top-left-radius: 20px /1.3;
     z-index: 2;
     background-color: rgba(0, 0, 0, 0.6);
 
@@ -284,11 +284,11 @@ export default {
         color: white;
         display: block;
         text-align: center;
-        line-height: 70px;
-        border-bottom: 1px solid silver;
+        line-height: 70px /1.3;
+        border-bottom: 1px /1.3 solid silver;
 
         span {
-          font-size: 22px;
+          font-size: 22px /1.3;
         }
       }
 
@@ -297,7 +297,7 @@ export default {
       }
 
       .icon {
-        font-size: 58px;
+        font-size: 58px /1.3;
         text-align: center;
         display: block;
       }

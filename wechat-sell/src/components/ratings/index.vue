@@ -140,69 +140,69 @@
   overflow: hidden;
   .overview {
     display: flex;
-    padding: 18px *2 0;
+    padding: 18px 0;
     .overview-left {
-      flex: 0 0 137px *2;
-      padding: 6px *2 0;
-      width: 137px *2;
-      border-right: 1px *2 solid rgba(7,17,27,0.1);
+      flex: 0 0 137px;
+      padding: 6px 0;
+      width: 137px;
+      border-right: 1px solid rgba(7,17,27,0.1);
       text-align: center;
       .title {
-        margin-bottom: 8px *2;
-        line-height: 12px *2;
-        font-size: 12px *2;
+        margin-bottom: 8px;
+        line-height: 12px;
+        font-size: 12px;
         color: #07111b;
       }
       .rank {
-        line-height: 10px *2;
-        font-size: 10px *2;
+        line-height: 10px;
+        font-size: 10px;
         color: #93999f;
       }
     }
     .overview-right {
       flex: 1;
-      padding: 6px *2 0 6px *2 24px *2;
+      padding: 6px 0 6px 24px;
       .score-wrapper {
         .title {
           display: inline-block;
-          line-height: 18px *2;
+          line-height: 18px;
           vertical-align: top;
-          font-size: 12px *2;
+          font-size: 12px;
           color: #07111b;
         }
         .star {
           display: inline-block;
-          margin: 0 12px *2;
+          margin: 0 12px;
           vertical-align: top;
         }
         .score {
           display: inline-block;
-          line-height: 18px *2;
+          line-height: 18px;
           vertical-align: top;
-          font-size: 12px *2;
+          font-size: 12px;
           color: #f90;
         }
       }
       .delivery-wrapper {
         font-size: 0;
         .title {
-          line-height: 18px *2;
-          font-size: 12px *2;
+          line-height: 18px;
+          font-size: 12px;
           color: #07111b;
         }
         .delivery {
-          margin-left: 12px *2;
-          font-size: 12px *2;
+          margin-left: 12px;
+          font-size: 12px;
           color: #93999f;
         }
       }
     }
   }
   .rating-wrapper {
-    padding: 0 18px *2;
+    padding: 0 18px;
     .rating-item {
       display: flex;
-      padding: 18px *2 0;
+      padding: 18px 0;
       position: relative;
       &:after {
         display: block;
@@ -210,13 +210,13 @@
         left: 0;
         bottom: 0;
         width: 100%;
-        border-top: 1px *2 solid rgba(7,17,27,0.1);
+        border-top: 1px solid rgba(7,17,27,0.1);
         content: ' ';
       }
       .avatar {
-        flex: 0 0 28px *2;
-        width: 28px *2;
-        margin-right: 12px *2;
+        flex: 0 0 28px;
+        width: 28px;
+        margin-right: 12px;
         img {
           border-radius: 50%;
         }
@@ -225,43 +225,43 @@
         position: relative;
         flex: 1;
         .name {
-          margin-bottom: 4px *2;
-          line-height: 12px *2;
-          font-size: 10px *2;
+          margin-bottom: 4px;
+          line-height: 12px;
+          font-size: 10px;
           color: #07111b;
         }
         .star-wrapper {
-          margin-bottom: 6px *2;
+          margin-bottom: 6px;
           font-size: 0;
           .star {
             display: inline-block;
-            margin-right: 6px *2;
+            margin-right: 6px;
             vertical-align: top;
           }
           .delivery {
             display: inline-block;
             vertical-align: top;
-            line-height: 12px *2;
-            font-size: 10px *2;
+            line-height: 12px;
+            font-size: 10px;
             color: #93999f;
           }
         }
         .text {
-          margin-bottom: 8px *2;
-          line-height: 18px *2;
+          margin-bottom: 8px;
+          line-height: 18px;
           color: #07111b;
-          font-size: 12px *2;
+          font-size: 12px;
         }
         .recommend {
-          line-height: 16px *2;
+          line-height: 16px;
           font-size: 0;
           .icon-thumb_up {
             color: #00a0dc;
           }
           .item {
-            padding: 0 6px *2;
-            border: 1px *2 solid rgba(7,17,27,0.1);
-            border-radius: 1px *2;
+            padding: 0 6px;
+            border: 1px solid rgba(7,17,27,0.1);
+            border-radius: 1px;
             color: #93999f;
             background: #fff;
           }
@@ -270,8 +270,8 @@
           position: absolute;
           top: 0;
           right: 0;
-          line-height: 12px *2;
-          font-size: 10px *2;
+          line-height: 12px;
+          font-size: 10px;
           color: #93999f;
         }
       }
@@ -283,10 +283,10 @@
 //     screen {
 //       and {
 //         (max-width {
-//           &:320px *2) {
-//             .ratings .overview .overview-left{flex: 0 0 120px *2;
-//             width: 120px *2;
-//             .ratings .overview .overview-right{padding-left: 6px *2;
+//           &:320px) {
+//             .ratings .overview .overview-left{flex: 0 0 120px;
+//             width: 120px;
+//             .ratings .overview .overview-right{padding-left: 6px;
 //           }
 //         }
 //       }
@@ -298,15 +298,15 @@
   .overview {
     .overview-left {
       .score {
-        margin-bottom: 6px *2;
-        line-height: 28px *2;
-        font-size: 24px *2;
+        margin-bottom: 6px;
+        line-height: 28px;
+        font-size: 24px;
         color: #f90;
       }
     }
     .overview-right {
       .score-wrapper {
-        margin-bottom: 8px *2;
+        margin-bottom: 8px;
         font-size: 0;
       }
     }
@@ -314,8 +314,8 @@
 }
 .ratings .rating-wrapper .rating-item .content .recommend .icon-thumb_up,.ratings .rating-wrapper .rating-item .content .recommend .item {
   display: inline-block;
-  margin: 0 8px *2 4px *2 0;
-  font-size: 9px *2;
+  margin: 0 8px 4px 0;
+  font-size: 9px;
 }
 
 </style>

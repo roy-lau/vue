@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import home from './views/home'
 import shops from './views/shops'
 import createOrder from './views/createOrder'
+import userInfo from './views/createOrder/userInfo'
 
 Vue.use(Router)
 
@@ -20,6 +21,10 @@ export default new Router({
       path: '/create-order',
       name: 'createOrder',
       component:createOrder
+    },{
+      path: '/user-info',
+      name: 'userInfo',
+      component:userInfo
     }
   ]
 })

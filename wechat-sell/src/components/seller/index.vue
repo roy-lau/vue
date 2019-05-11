@@ -131,7 +131,7 @@
           let picWidth = 120;
           let margin = 6;
           let width = (picWidth + margin) * this.seller.pics.length - margin;
-          this.$refs.picList.style.width = width + 'px *2';
+          this.$refs.picList.style.width = width + 'px';
           this.$nextTick(() => {
             if (!this.picScroll) {
               this.picScroll = new BScroll(this.$refs.picWrapper, {
@@ -163,34 +163,34 @@
   overflow: hidden;
   .overview {
     position: relative;
-    padding: 18px *2;
+    padding: 18px;
     .title {
-      margin-bottom: 8px *2;
-      line-height: 14px *2;
+      margin-bottom: 8px;
+      line-height: 14px;
       color: #07111b;
-      font-size: 14px *2;
+      font-size: 14px;
     }
     .desc {
-      padding-bottom: 18px *2;
+      padding-bottom: 18px;
       border-bottom: 1px solid rgba(7,17,27,0.1);
       font-size: 0;
       .star {
         display: inline-block;
-        margin-right: 8px *2;
+        margin-right: 8px;
         vertical-align: middle;
       }
       .text {
         display: inline-block;
-        margin-right: 12px *2;
-        line-height: 18px *2;
+        margin-right: 12px;
+        line-height: 18px;
         vertical-align: top;
-        font-size: 10px *2;
+        font-size: 10px;
         color: #4d555d;
       }
     }
     .remark {
       display: flex;
-      padding-top: 18px *2;
+      padding-top: 18px;
       .block {
         flex: 1;
         text-align: center;
@@ -199,54 +199,54 @@
           border: none;
         }
         h2 {
-          margin-bottom: 4px *2;
-          line-height: 10px *2;
-          font-size: 10px *2;
+          margin-bottom: 4px;
+          line-height: 10px;
+          font-size: 10px;
           color: #93999f;
         }
         .content {
-          line-height: 24px *2;
-          font-size: 10px *2;
+          line-height: 24px;
+          font-size: 10px;
           color: #07111b;
           .stress {
-            font-size: 24px *2;
+            font-size: 24px;
           }
         }
       }
     }
     .favorite {
       position: absolute;
-      width: 50px *2;
+      width: 50px;
       right: 11px;
-      top: 18px *2;
+      top: 18px;
       text-align: center;
       .icon-favorite {
         display: block;
-        margin-bottom: 4px *2;
-        line-height: 24px *2;
-        font-size: 24px *2;
+        margin-bottom: 4px;
+        line-height: 24px;
+        font-size: 24px;
         color: #d4d6d9;
         &.active {
           color: #f01414;
         }
       }
       .text {
-        line-height: 10px *2;
-        font-size: 10px *2;
+        line-height: 10px;
+        font-size: 10px;
         color: #4d555d;
       }
     }
   }
   .bulletin {
-    padding: 18px *2 18px *2 0 18px *2;
+    padding: 18px 18px 0 18px;
     .title {
-      margin-bottom: 8px *2;
-      line-height: 14px *2;
+      margin-bottom: 8px;
+      line-height: 14px;
       color: #07111b;
-      font-size: 14px *2;
+      font-size: 14px;
     }
     .content-wrapper {
-      padding: 0 12px *2 16px *2 12px *2;
+      padding: 0 12px 16px 12px;
       position: relative;
       &:after {
         display: block;
@@ -258,14 +258,14 @@
         content: ' ';
       }
       .content {
-        line-height: 24px *2;
-        font-size: 12px *2;
+        line-height: 24px;
+        font-size: 12px;
         color: #f01414;
       }
     }
     .supports {
       .support-item {
-        padding: 16px *2 12px *2;
+        padding: 16px 12px;
         position: relative;
         font-size: 0;
         &:after {
@@ -285,11 +285,11 @@
       }
       .icon {
         display: inline-block;
-        width: 16px *2;
-        height: 16px *2;
+        width: 16px;
+        height: 16px;
         vertical-align: top;
-        margin-right: 6px *2;
-        background-size: 16px *2 16px *2;
+        margin-right: 6px;
+        background-size: 16px 16px;
         background-repeat: no-repeat;
         &.decrease {
           background-image: url("decrease_4@2x.png");
@@ -298,12 +298,12 @@
     }
   }
   .pics {
-    padding: 18px *2;
+    padding: 18px;
     .title {
-      margin-bottom: 12px *2;
-      line-height: 14px *2;
+      margin-bottom: 12px;
+      line-height: 14px;
       color: #07111b;
-      font-size: 14px *2;
+      font-size: 14px;
     }
     .pic-wrapper {
       width: 100%;
@@ -313,9 +313,9 @@
         font-size: 0;
         .pic-item {
           display: inline-block;
-          margin-right: 6px *2;
-          width: 120px *2;
-          height: 90px *2;
+          margin-right: 6px;
+          width: 120px;
+          height: 90px;
           &:last-child {
             margin: 0;
           }
@@ -324,13 +324,13 @@
     }
   }
   .info {
-    padding: 18px *2 18px *2 0 18px *2;
+    padding: 18px 18px 0 18px;
     color: #07111b;
     .title {
-      padding-bottom: 12px *2;
-      line-height: 14px *2;
+      padding-bottom: 12px;
+      line-height: 14px;
       position: relative;
-      font-size: 14px *2;
+      font-size: 14px;
       &:after {
         display: block;
         position: absolute;
@@ -342,10 +342,10 @@
       }
     }
     .info-item {
-      padding: 16px *2 12px *2;
-      line-height: 16px *2;
+      padding: 16px 12px;
+      line-height: 16px;
       position: relative;
-      font-size: 12px *2;
+      font-size: 12px;
       &:after {
         display: block;
         position: absolute;
@@ -381,8 +381,8 @@
         }
       }
       .text {
-        line-height: 16px *2;
-        font-size: 12px *2;
+        line-height: 16px;
+        font-size: 12px;
         color: #07111b;
       }
     }

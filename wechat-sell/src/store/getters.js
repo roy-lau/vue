@@ -7,6 +7,7 @@ export const wechatConfig = state => state.wechatConfig
 
 export const orderList = state => state.orderList
 
+export const orderUserInfo = state => state.orderUserInfo
 
 /*
 * 参考信息

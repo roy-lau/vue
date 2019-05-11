@@ -109,7 +109,7 @@
   background: rgba(7,17,27,0.5);
   .content-wrapper {
     position: relative;
-    padding: 24px *2 12px *2 18px *2 24px *2;
+    padding: 24px 12px 18px 24px;
     font-size: 0;
     .avatar {
       display: inline-block;
@@ -122,32 +122,32 @@
     }
     .content {
       display: inline-block;
-      margin-left: 16px *2;
+      margin-left: 16px;
       .title {
-        margin: 2px *2 0 8px *2 0;
+        margin: 2px 0 8px 0;
         .brand {
           display: inline-block;
           vertical-align: top;
-          width: 30px *2;
-          height: 18px *2;
+          width: 30px;
+          height: 18px;
           background-image: url("./imgs/brand@3x.png");
-          background-size: 30px *2 18px *2;
+          background-size: 30px 18px;
           background-repeat: no-repeat;
         }
       }
       .description {
-        margin-bottom: 10px *2;
-        line-height: 12px *2;
-        font-size: 12px *2;
+        margin-bottom: 10px;
+        line-height: 12px;
+        font-size: 12px;
       }
       .support {
         .icon {
           display: inline-block;
           vertical-align: top;
-          width: 12px *2;
-          height: 12px *2;
-          margin-right: 4px *2;
-          background-size: 12px *2 12px *2;
+          width: 12px;
+          height: 12px;
+          margin-right: 4px;
+          background-size: 12px 12px;
           background-repeat: no-repeat;
           &.decrease {
             background-image: url("./imgs/decrease_1@3x.png");
@@ -157,30 +157,30 @@
     }
     .support-count {
       position: absolute;
-      right: 12px *2;
-      bottom: 14px *2;
-      padding: 0 8px *2;
-      height: 24px *2;
-      line-height: 24px *2;
-      border-radius: 14px *2;
+      right: 12px;
+      bottom: 14px;
+      padding: 0 8px;
+      height: 24px;
+      line-height: 24px;
+      border-radius: 14px;
       background: rgba(0,0,0,0.2);
       text-align: center;
       .count {
         vertical-align: top;
-        font-size: 10px *2;
+        font-size: 10px;
       }
       .icon-keyboard_arrow_right {
-        margin-left: 2px *2;
-        line-height: 24px *2;
-        font-size: 10px *2;
+        margin-left: 2px;
+        line-height: 24px;
+        font-size: 10px;
       }
     }
   }
   .bulletin-wrapper {
     position: relative;
-    height: 28px *2;
-    line-height: 28px *2;
-    padding: 0 22px *2 0 12px *2;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 22px 0 12px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -188,18 +188,18 @@
     .bulletin-title {
       display: inline-block;
       vertical-align: top;
-      margin-top: 8px *2;
-      width: 22px *2;
-      height: 12px *2;
+      margin-top: 8px;
+      width: 22px;
+      height: 12px;
       background-image: url("./imgs/bulletin@3x.png");
-      background-size: 22px *2 12px *2;
+      background-size: 22px 12px;
       background-repeat: no-repeat;
     }
     .icon-keyboard_arrow_right {
       position: absolute;
-      font-size: 10px *2;
-      right: 12px *2;
-      top: 8px *2;
+      font-size: 10px;
+      right: 12px;
+      top: 8px;
     }
   }
   .background {
@@ -209,7 +209,7 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    filter: blur(10px *2);
+    filter: blur(10px);
   }
   .detail {
     position: fixed;
@@ -219,58 +219,58 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    backdrop-filter: blur(10px *2);
+    backdrop-filter: blur(10px);
     opacity: 1;
     background: rgba(7,17,27,0.8);
     .detail-wrapper {
       width: 100%;
       min-height: 100%;
       .detail-main {
-        margin-top: 64px *2;
+        margin-top: 64px;
         .name {
-          line-height: 16px *2;
+          line-height: 16px;
           text-align: center;
-          font-size: 16px *2;
+          font-size: 16px;
           font-weight: 700;
         }
         .star-wrapper {
-          margin-top: 18px *2;
-          padding: 2px *2 0;
+          margin-top: 18px;
+          padding: 2px 0;
           text-align: center;
         }
         .title {
           display: flex;
           width: 80%;
-          margin: 28px *2 auto 24px *2 auto;
+          margin: 28px auto 24px auto;
           .line {
             flex: 1;
             position: relative;
-            top: -6px *2;
+            top: -6px;
             border-bottom: 1px solid rgba(255,255,255,0.2);
           }
           .text {
-            padding: 0 12px *2;
+            padding: 0 12px;
             font-weight: 700;
-            font-size: 14px *2;
+            font-size: 14px;
           }
         }
         .supports {
           width: 80%;
           margin: 0 auto;
           .support-item {
-            padding: 0 12px *2;
-            margin-bottom: 12px *2;
+            padding: 0 12px;
+            margin-bottom: 12px;
             font-size: 0;
             &:last-child {
               margin-bottom: 0;
             }
             .icon {
               display: inline-block;
-              width: 16px *2;
-              height: 16px *2;
+              width: 16px;
+              height: 16px;
               vertical-align: top;
-              margin-right: 6px *2;
-              background-size: 16px *2 16px *2;
+              margin-right: 6px;
+              background-size: 16px 16px;
               background-repeat: no-repeat;
               &.decrease {
                 background-image: url("./imgs/decrease_2@3x.png");
@@ -282,17 +282,17 @@
           width: 80%;
           margin: 0 auto;
           .content {
-            padding: 0 12px *2;
-            line-height: 24px *2;
-            font-size: 12px *2;
+            padding: 0 12px;
+            line-height: 24px;
+            font-size: 12px;
           }
         }
       }
     }
     .detail-close {
       position: relative;
-      width: 32px *2;
-      height: 32px *2;
+      width: 32px;
+      height: 32px;
       margin: -200px auto 0 auto;
       clear: both;
       .vux-x-icon.vux-x-icon-ios-close-empty{
@@ -307,9 +307,9 @@
     .content {
       .title {
         .name {
-          margin-left: 6px *2;
-          font-size: 16px *2;
-          line-height: 18px *2;
+          margin-left: 6px;
+          font-size: 16px;
+          line-height: 18px;
           font-weight: bold;
         }
       }
@@ -329,8 +329,8 @@
           }
         }
         .text {
-          line-height: 12px *2;
-          font-size: 10px *2;
+          line-height: 12px;
+          font-size: 10px;
         }
       }
     }
@@ -338,8 +338,8 @@
   .bulletin-wrapper {
     .bulletin-text {
       vertical-align: top;
-      margin: 0 4px *2;
-      font-size: 10px *2;
+      margin: 0 4px;
+      font-size: 10px;
     }
   }
   .detail {
@@ -362,8 +362,8 @@
               }
             }
             .text {
-              line-height: 16px *2;
-              font-size: 12px *2;
+              line-height: 16px;
+              font-size: 12px;
             }
           }
         }

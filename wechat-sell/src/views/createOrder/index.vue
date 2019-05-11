@@ -1,12 +1,12 @@
 <!-- 创建订单 -->
 <template>
   <div class="payment">
-    <Group label-width="4.5em" label-margin-right="2em" label-align="right">
-      <Cell title="Cell" value="value" is-link></Cell>
-      <Cell title="Cell" value="value" is-link value-align="left"></Cell>
-       <!-- <x-input title="上报人" v-model=""></x-input> -->
-     <x-input placeholder="I'm placeholder"></x-input>
-    </Group>
+    <group label-align="justify"> 
+      <cell title="预约时间：" is-link value-align="left" @click.native="toUserInfo">
+        <h4 class="title-date" v-text="orderUserInfo.time"></h4>
+        <span> {{orderUserInfo.name}} {{orderUserInfo.phone}}</span>
+      </cell>
+    </group><br />
     <!-- 菜品列表 start-->
     <div class="food-info">
       <div class="card-hd">
@@ -22,25 +22,39 @@
       </div>
     </div>
     <!-- 菜品列表 end-->
+    <!-- 人数及备注 start -->
+      <Group title="人数及备注" label-align="left">
+      <x-input title="人数" v-model="orderData.peopleNum" :required="true"></x-input>
+      <x-input title="备注" v-model="orderData.comment" ></x-input>
+    </Group>
+    <!-- 人数及备注 end -->
+    <!-- 辅助信息 start -->
+      <Group title="辅助信息" label-align="left">
+      <x-input title="满减优惠" v-model="orderData.discount" ></x-input>
+      <x-input title="商品小计" v-model="allPay" ></x-input>
+    </Group>
+    <!-- 辅助信息 end -->
     <div class="footer">
-      <div class="money">待支付¥{{this.allPay}}</div>
+      <div class="money">待支付  ¥ {{this.allPay}}</div>
       <div class="btn-pay" @click="createOrder">创建订单</div>
     </div>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
-import { Badge, Group, Cell, XInput } from 'vux'
+import { mapGetters } from "vuex";
+import { Badge, Group, Cell, XInput } from "vux";
 export default {
   data() {
     return {
-      name: "",
-      phone: "",
-      address: ""
+      orderData:{
+        peopleNum:'',
+        comment:'',
+        discount:'-¥ 0',
+      }
     };
   },
   computed: {
-    ...mapGetters(['orderList']),
+    ...mapGetters(["orderList","orderUserInfo"]),
     allPay() {
       return this.orderList.foodList.reduce((a, b) => {
         return a + b.count * b.price;
@@ -48,13 +62,15 @@ export default {
     }
   },
   created() {
-    document.title = "创建订单"
+    document.title = "创建订单";
   },
   methods: {
+    // 跳转至用户信息页面
+    toUserInfo(){
+      this.$router.push("/user-info")
+    },
     // 创建订单
-    createOrder() {
-
-    }
+    createOrder() {},
   },
   components: {
     Badge,
@@ -63,7 +79,6 @@ export default {
     XInput
   }
 };
-
 </script>
 <style lang="less">
 .payment {
@@ -71,58 +86,37 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #f5f5f5;
+  font-size: 16px;
 
-  .user-info {
-    margin-top: 10px * 2;
-    background-color: #fff;
-    margin-bottom: 20px * 2;
-
-    .item {
-      padding: 0 14px * 2;
-      display: flex;
-      border-bottom: 1px * 2 solid #eee;
-
-      label {
-        padding: 14px * 2 0;
-        display: inline-block;
-        flex-basis: 93px * 2;
-        color: #333;
-      }
-
-      input {
-        display: block;
-        flex: 1;
-        outline: 0;
-        color: #333;
-      }
-    }
+  // 预约时间
+  .title-date{
+    color: #3c3c3c;
   }
-
   .food-info {
     background-color: #fff;
 
     .avator {
-      width: 19px * 2;
-      height: 19px * 2;
-      margin-right: 10px * 2;
+      width: 19px;
+      height: 19px;
+      margin-right: 10px;
     }
 
     .card-hd {
       display: flex;
       align-items: center;
-      padding: 14px * 2;
-      border-bottom: 1px * 2 solid #eee;
+      padding: 14px;
+      border-bottom: 1px solid #eee;
     }
 
     .food-item {
-      padding: 0 14px * 2;
+      padding: 0 14px;
       display: flex;
       align-items: center;
-      border-bottom: 1px * 2 solid #eee;
+      border-bottom: 1px solid #eee;
 
       label {
         display: inline-block;
-        padding: 14px * 2 0;
+        padding: 14px 0;
         flex: 1;
         color: #666;
       }
@@ -133,7 +127,7 @@ export default {
         justify-content: flex-end;
 
         .number {
-          padding-right: 20px * 2;
+          padding-right: 20px;
         }
       }
     }
@@ -143,24 +137,23 @@ export default {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 44px * 2;
+    height: 44px;
     display: flex;
     background-color: #3c3c3c;
     color: #fff;
 
     .money {
       flex: 1;
-      padding-left: 20px * 2;
-      line-height: 44px * 2;
+      padding-left: 20px;
+      line-height: 44px;
     }
 
     .btn-pay {
-      flex-basis: 110px * 2;
-      line-height: 44px * 2;
+      flex-basis: 110px;
+      line-height: 44px;
       text-align: center;
       background-color: #56d176;
     }
   }
 }
-
 </style>

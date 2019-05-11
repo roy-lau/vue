@@ -1,27 +1,27 @@
 // 自定义函数
 .block-icon-bg(@bgcolor, @text) {
   background-color: @bgcolor;
-  line-height: 20px;
+  line-height: 20px/2;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 3px/2;
   font-weight: 500;
   &:after {
     content: @text;
-    font-size: 18px;
+    font-size: 18px/2;
     color: white;
   }
 }
 
 .block-icon(@color, @text) {
-  line-height: 20px;
+  line-height: 20px/2;
   text-align: center;
-  border-radius: 3px;
-  border: 2px solid @color;
+  border-radius: 3px/2;
+  border: 2px/2 solid @color;
   font-weight: 500;
 
   &:after {
     content: @text;
-    font-size: 18px;
+    font-size: 18px/2;
     color: @color;
   }
 }

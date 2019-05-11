@@ -14,7 +14,7 @@
           :key="index"
         >{{item}}</tab-item>
       </tab>
-      <swiper :show-dots="false" height="13.6rem" v-model="navBarIdx">
+      <swiper :show-dots="false" height="18rem" v-model="navBarIdx">
          <swiper-item>
           <goods class="tab-swiper vux-center" :seller="seller" />
         </swiper-item>
@@ -84,10 +84,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less" rel="stylesheet/less">
-div.tab-item-cls {
-  font-size: 32px;
-}
-
-</style>

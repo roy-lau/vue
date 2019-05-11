@@ -116,17 +116,17 @@ function getCookie(name) {
   background-color: #f5f5f5;
 
   .user-info {
-    margin-top: 10px * 2;
+    margin-top: 10px;
     background-color: #fff;
-    margin-bottom: 20px * 2;
+    margin-bottom: 20px;
     .item {
-      padding: 0 14px * 2;
+      padding: 0 14px;
       display: flex;
-      border-bottom: 1px * 2 solid #eee;
+      border-bottom: 1px solid #eee;
       label {
-        padding: 14px * 2 0;
+        padding: 14px 0;
         display: inline-block;
-        flex-basis: 93px * 2;
+        flex-basis: 93px;
         color: #333;
       }
       input {
@@ -140,24 +140,24 @@ function getCookie(name) {
   .food-info {
     background-color: #fff;
     .avator {
-      width: 19px * 2;
-      height: 19px * 2;
-      margin-right: 10px * 2;
+      width: 19px;
+      height: 19px;
+      margin-right: 10px;
     }
     .card-hd {
       display: flex;
       align-items: center;
-      padding: 14px * 2;
-      border-bottom: 1px * 2 solid #eee;
+      padding: 14px;
+      border-bottom: 1px solid #eee;
     }
     .food-item {
-      padding: 0 14px * 2;
+      padding: 0 14px;
       display: flex;
       align-items: center;
-      border-bottom: 1px * 2 solid #eee;
+      border-bottom: 1px solid #eee;
       label {
         display: inline-block;
-        padding: 14px * 2 0;
+        padding: 14px 0;
         flex: 1;
         color: #666;
       }
@@ -166,7 +166,7 @@ function getCookie(name) {
         flex: 1;
         justify-content: flex-end;
         .number {
-          padding-right: 20px * 2;
+          padding-right: 20px;
         }
       }
     }
@@ -175,18 +175,18 @@ function getCookie(name) {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 44px * 2;
+    height: 44px;
     display: flex;
     background-color: #3c3c3c;
     color: #fff;
     .money {
       flex: 1;
-      padding-left: 20px * 2;
-      line-height: 44px * 2;
+      padding-left: 20px;
+      line-height: 44px;
     }
     .btn-pay {
-      flex-basis: 110px * 2;
-      line-height: 44px * 2;
+      flex-basis: 110px;
+      line-height: 44px;
       text-align: center;
       background-color: #56d176;
     }
