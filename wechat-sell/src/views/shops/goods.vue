@@ -275,8 +275,8 @@ export default {
         margin-right: 10px;
 
         img {
-          width: 120px;
-          height: 120px;
+          width: 80px;
+          height: 80px;
         }
       }
 

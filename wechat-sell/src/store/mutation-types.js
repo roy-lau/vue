@@ -6,3 +6,5 @@ export const SET_WECHAT_CONFIG = 'SET_WECHAT_CONFIG'
 export const SET_ORDER_LIST = 'SET_ORDER_LIST'
 
 export const SET_ORDER_USER_INFO = 'SET_ORDER_USER_INFO'
+
+export const SET_PAY_INFO = 'SET_PAY_INFO'

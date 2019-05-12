@@ -14,7 +14,7 @@
           :key="index"
         >{{item}}</tab-item>
       </tab>
-      <swiper :show-dots="false" height="18rem" v-model="navBarIdx">
+      <swiper :show-dots="false" height="20.3rem" v-model="navBarIdx">
          <swiper-item>
           <goods class="tab-swiper vux-center" :seller="seller" />
         </swiper-item>
@@ -33,7 +33,7 @@
 <script>
 import { Tab, TabItem, Swiper, SwiperItem } from "vux";
 import { urlParse } from "@/assets/js/util";
-import header from "@/components/header/header.vue";
+import header from "./header";
 import Ratings from "@/components/ratings";
 import Seller from "@/components/seller";
 import Goods from "./goods.vue";

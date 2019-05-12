@@ -9,6 +9,8 @@ export const orderList = state => state.orderList
 
 export const orderUserInfo = state => state.orderUserInfo
 
+export const payInfo = state => state.payInfo
+
 /*
 * 参考信息
 */

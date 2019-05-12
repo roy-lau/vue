@@ -4,6 +4,8 @@ import home from './views/home'
 import shops from './views/shops'
 import createOrder from './views/createOrder'
 import userInfo from './views/createOrder/userInfo'
+import payment from './views/payment'
+import orderList from './views/orderList'
 
 Vue.use(Router)
 
@@ -25,6 +27,14 @@ export default new Router({
       path: '/user-info',
       name: 'userInfo',
       component:userInfo
+    },{
+      path: '/payment',
+      name: 'payment',
+      component:payment
+    },{
+      path: '/order-list',
+      name: 'orderList',
+      component:orderList
     }
   ]
 })

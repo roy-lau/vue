@@ -1,5 +1,5 @@
 <template>
-  <div class="payment">
+  <div class="user-info">
     <Toast v-model="toastShow" type="text" :time="800" is-show-mask :text="toastText"></Toast>
     <Group title="个人信息" label-align="left">
       <x-input title="姓名" v-model="name" :required="true"></x-input>
@@ -44,6 +44,9 @@ export default {
       toastShow: false,
       toastText: "hi"
     };
+  },
+  created() {
+    document.title = "用户信息";
   },
   methods: {
     // 时间变化 触发
