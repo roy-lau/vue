@@ -1,10 +1,10 @@
 <template>
     <div id="server-index">
         <el-row>
-            <el-col :span="3">
+            <el-col :span="4">
                 <left-menu />
             </el-col>
-            <el-col :span="21">
+            <el-col :span="20">
                 <router-view />
             </el-col>
         </el-row>

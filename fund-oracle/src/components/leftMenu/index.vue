@@ -17,24 +17,24 @@
                 </el-menu-item-group>
             </el-submenu>
             <span v-for="(nav,index) in tableList" :key="index">
-                <el-menu-item :index="'tables?name='+nav.tableName">
+                <el-menu-item :index="'tables?name='+nav.TABLE_NAME">
                     <i class="el-icon-document"></i>
-                    <span slot="title" v-text="nav.tableCName"></span>
-                </el-menu-item>
+                    <span slot="title" v-text="nav.TABLE_COMMENT"></span>
+            </el-menu-item>
             </span>
         </el-menu>
     </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 export default {
     data() {
         return {
-            menuList: []
+            tableList: []
         }
     },
     computed: {
-        ...mapGetters(["tableList"]),
+        // ...mapGetters(["tableList"]),
         defaultActive() {
             let pathStr = this.$route.path
             return pathStr.split('/')[pathStr.split('/').length - 1]
@@ -42,7 +42,14 @@ export default {
     },
     methods: {
         getMenu() {
-            // console.log(this.tableList)
+            this.$axios.get('queryTables').then(res => {
+                let { code, msg, result } = res.data
+                if (code) {
+                    this.$message.error(msg)
+                } else {
+                    this.tableList = result
+                }
+            })
         }
     },
     created() {
