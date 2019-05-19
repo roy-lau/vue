@@ -6,7 +6,6 @@ function formetRows(rows) {
     _obj.forEach(item => {
         _str += item.name + ' ' + item.type + ' ' + 'COMMENT "' + item.cname + '",'
     })
-    console.log(_str)
     return _str
 }
 /**
@@ -30,22 +29,20 @@ const createTable = async (tableName = 'user', tableCName = '用户表', rows) =
 
 
     let _rows = await db.query(create_table_sql)
-    console.log(_rows)
 }
 // 查询数据库下的所有表格
 const queryTables = async (dbName = 'oracle-test') => {
 
-    let query_tables_sql = `SELECT TABLE_NAME,TABLE_COMMENT,CREATE_TIME,UPDATE_TIME,TABLE_COLLATION FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='${dbName}' AND TABLE_TYPE='BASE TABLE';`
+    let query_tables_sql = `SELECT TABLE_NAME,TABLE_COMMENT,CREATE_TIME,UPDATE_TIME,TABLE_COLLATION
+                        FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='${dbName}'
+                        AND TABLE_TYPE='BASE TABLE';`
     let rows = await db.query(query_tables_sql)
 
-    // console.log(rows)
     return rows
 }
 
 // 修改表名称
 const updateTableName = async ({ oldName, newName, oldCName, newCName }) => {
-
-    console.log(oldName, newName, newCName)
 
     await db.query(`ALTER TABLE ${oldName} RENAME ${newName};`)
     await db.query(`ALTER TABLE ${newName} COMMENT "${newCName}";`)
@@ -67,8 +64,6 @@ const _queryRow = async (tableName) => {
 // 新增一列
 const _addRow = async (tableName, column) => {
 
-    console.log(tableName, column)
-
     let add_column_sql = `ALTER TABLE ${tableName}
                         ADD COLUMN ${column.name} ${column.type} COMMENT '${column.cname}';`
 
@@ -87,14 +82,28 @@ const _updateRow = async (tableName, oldRowName, column) => {
 
 // 新增一行
 const _addCol = async (tableName, data) => {
-    let keys = Object.keys(data).join("','"),
+    let keys = Object.keys(data).join(","),
         values = Object.values(data).join("','")
 
-    let add_col_sql = `INSERT INTO ${tableName} ('${keys}') VALUES ('${values}');`
-
-    console.log(add_col_sql)
+    let add_col_sql = `INSERT INTO ${tableName} (${keys}) VALUES ('${values}');`
 
     await db.query(add_col_sql)
+}
+
+// 修改一行
+const _updateCol = async (tableName, id, data) => {
+    let sqlStr = ''
+
+    for (let key in data) {
+        sqlStr += ` ${key}='${data[key]}',`
+    }
+    sqlStr = sqlStr.substr(0, sqlStr.length - 1);
+
+
+    let add_col_sql = `UPDATE ${tableName} SET ${sqlStr} WHERE ID=${id};`
+
+    let rows = await db.query(add_col_sql)
+    return rows
 }
 
 module.exports = {
@@ -113,7 +122,7 @@ module.exports = {
         try {
             const rows = await queryTables()
 
-            ctx.body = { code: 0, msg: '查询成功！', result: rows, }
+            ctx.body = { code: 0, msg: '查询成功！', result: rows }
         } catch (err) {
             ctx.body = { code: 1, msg: err }
         }
@@ -124,7 +133,7 @@ module.exports = {
         try {
             const rows = await updateTableName(data)
 
-            ctx.body = { code: 0, msg: '修改成功！', result: rows, }
+            ctx.body = { code: 0, msg: '修改成功！', result: rows }
         } catch (err) {
             ctx.body = { code: 1, msg: err }
         }
@@ -132,7 +141,7 @@ module.exports = {
     async del(ctx) {
         const { tableName } = ctx.request.query
         try {
-            await await db.execute(`DROP TABLE IF EXISTS ${tableName};`)
+            await db.execute(`DROP TABLE IF EXISTS ${tableName};`)
 
             ctx.body = { code: 0, msg: '删除成功！' }
         } catch (err) {
@@ -143,8 +152,7 @@ module.exports = {
         const { tableName } = ctx.request.query
         try {
             const row = await _queryRow(tableName)
-
-            ctx.body = { code: 0, msg: '查询成功！', result: row, }
+            ctx.body = { code: 0, msg: '查询成功！', result: row }
         } catch (err) {
             ctx.body = { code: 1, msg: err }
         }
@@ -154,7 +162,7 @@ module.exports = {
         try {
             const row = await _addRow(tableName, column)
 
-            ctx.body = { code: 0, msg: '新增成功！', result: row, }
+            ctx.body = { code: 0, msg: '新增成功！', result: row }
         } catch (err) {
             ctx.body = { code: 1, msg: err }
         }
@@ -165,7 +173,7 @@ module.exports = {
         try {
             const row = await _updateRow(tableName, oldRowName, column)
 
-            ctx.body = { code: 0, msg: '修改成功！', result: row, }
+            ctx.body = { code: 0, msg: '修改成功！', result: row }
         } catch (err) {
             ctx.body = { code: 1, msg: err }
         }
@@ -188,7 +196,7 @@ module.exports = {
         const { tableName, rowName } = ctx.request.query
         try {
             const row = await db.query(`ALTER TABLE ${tableName} DROP COLUMN ${rowName};`)
-            ctx.body = { code: 0, msg: '查询成功！', result: row, }
+            ctx.body = { code: 0, msg: '查询成功！', result: row }
 
         } catch (err) {
             ctx.body = { code: 1, msg: err }
@@ -201,10 +209,9 @@ module.exports = {
     async queryCols(ctx) {
         const { tableName } = ctx.request.query
         try {
-            const row = await db.query(`select * from ${tableName};`)
-            console.log(row)
 
-            ctx.body = { code: 0, msg: '查询成功！', result: row, }
+            const row = await db.query(`select * from ${tableName};`)
+            ctx.body = { code: 0, msg: '查询成功！', result: row }
 
         } catch (err) {
             ctx.body = { code: 1, msg: err }
@@ -215,7 +222,18 @@ module.exports = {
         try {
             const row = await _addCol(tableName, data)
 
-            ctx.body = { code: 0, msg: '删除成功！', result: row, }
+            ctx.body = { code: 0, msg: '删除成功！', result: row }
+
+        } catch (err) {
+            ctx.body = { code: 1, msg: err }
+        }
+    },
+    async updateCol(ctx) {
+        const { tableName, id, data } = ctx.request.body
+        try {
+            const row = await _updateCol(tableName, id, data)
+
+            ctx.body = { code: 0, msg: '修改成功！', result: row }
 
         } catch (err) {
             ctx.body = { code: 1, msg: err }
@@ -226,7 +244,7 @@ module.exports = {
         try {
             const row = await db.query(`DELETE FROM ${tableName} WHERE ID=${id};`)
 
-            ctx.body = { code: 0, msg: '删除成功！', result: row, }
+            ctx.body = { code: 0, msg: '删除成功！', result: row }
 
         } catch (err) {
             ctx.body = { code: 1, msg: err }

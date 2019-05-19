@@ -2,7 +2,7 @@
     <div id="left-menu">
         <el-menu :default-active="defaultActive" class="el-menu-vertica" router background-color="#304156" text-color="#fff" active-text-color="#ffd04b">
             <el-menu-item index="dashboard">
-                <i class="el-icon-document"></i>
+                <i class="el-icon-s-home"></i>
                 <span slot="title"> 首页 </span>
             </el-menu-item>
             <el-submenu index="2">

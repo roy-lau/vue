@@ -66,8 +66,9 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     this.$axios.post('createTable', this.createTebleFrom).then(res => {
-                        if (res.data.code) {
-                            this.$message.error(res.data.msg)
+                        let { code, msg, result } = res.data
+                        if (code) {
+                            this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                         } else {
                             this.$message.success("恭喜您！ 表格创建成功")
                         }

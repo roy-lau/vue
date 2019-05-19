@@ -68,7 +68,7 @@ export default {
             this.$axios.get('queryTables').then(res => {
                 let { code, msg, result } = res.data
                 if (code) {
-                    this.$message.error(msg)
+                    this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                 } else {
                     this.tableList = result
                 }
@@ -86,7 +86,7 @@ export default {
                 this.$axios.delete('delTable', { params: { tableName: row.TABLE_NAME } }).then(res => {
                     let { code, msg, result } = res.data
                     if (code) {
-                        this.$message.error(msg)
+                        this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                     } else {
                         this.getTable()
                         this.$message({ type: 'success', message: '删除成功!' });
@@ -114,7 +114,7 @@ export default {
             this.$axios.post('updateTable', data).then(res => {
                 let { code, msg, result } = res.data
                 if (code) {
-                    this.$message.error(msg)
+                    this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                 } else {
                     this.getTable()
                     this.updateTableDialog = false

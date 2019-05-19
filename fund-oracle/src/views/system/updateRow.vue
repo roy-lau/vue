@@ -103,7 +103,7 @@ export default {
             this.$axios.get('queryTables').then(res => {
                 let { code, msg, result } = res.data
                 if (code) {
-                    this.$message.error(msg)
+                    this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                 } else {
                     this.tableList = result
                     this.selectTalbe = result[0]
@@ -117,7 +117,7 @@ export default {
             this.$axios.get('queryRow', { params: { tableName: val } }).then(res => {
                 let { code, msg, result } = res.data
                 if (code) {
-                    this.$message.error(msg)
+                    this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                 } else {
                     this.tableData = result
                 }
@@ -128,7 +128,7 @@ export default {
             this.$axios.put('addRow', { tableName: this.selectTalbe, column: this.addRowFrom }).then(res => {
                 let { code, msg, result } = res.data
                 if (code) {
-                    this.$message.error(msg)
+                    this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                 } else {
                     this.getTable()
                     this.$message({ type: 'success', message: '新增成功!' });
@@ -156,7 +156,7 @@ export default {
             }).then(res => {
                 let { code, msg, result } = res.data
                 if (code) {
-                    this.$message.error(msg)
+                    this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                 } else {
                     this.getTable()
                     this.updateRowDialog = false
@@ -175,13 +175,12 @@ export default {
                 this.$axios.delete('delRow', { params: { tableName: this.selectTalbe, rowName: row.COLUMN_NAME } }).then(res => {
                     let { code, msg, result } = res.data
                     if (code) {
-                        this.$message.error(msg)
+                        this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                     } else {
                         this.getTable()
                         this.$message({ type: 'success', message: '删除成功!' });
                     }
                 })
-                this.$message({ type: 'success', message: '删除成功!' });
             }).catch(() => {
                 this.$message({
                     type: 'info',
