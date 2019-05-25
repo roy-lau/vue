@@ -203,7 +203,8 @@
               target="_blank">10107888</a></dd>
           </dl>
           <dl>
-            <dt>商家服务热线</dt><dd>外卖&amp;餐饮商家： <a
+            <dt>商家服务热线</dt>
+            <dd>外卖&amp;餐饮商家： <a
               rel="nofollow"
               href="https://www.github.com/roy-lau/"
               target="_blank">10105557</a></dd>
@@ -235,7 +236,8 @@
         <div class="footer-copyright-left">
           <p>©网团购 roylau.com <a href="https://www.github.com/roy-lau/">京ICP证070791号</a> <a href="https://www.github.com/roy-lau/">京ICP备10211739号</a> <a
             href="https://www.github.com/roy-lau/"
-            target="_blank">电子公告服务规则</a></p><p><a
+            target="_blank">电子公告服务规则</a></p>
+          <p><a
               href="https://www.github.com/roy-lau/"
               target="_blank">广播电视节目制作经营许可证（京）字第03889号</a></p>
         </div>
@@ -255,12 +257,13 @@
                 class="sp-ft sp-ft--12315"
                 href="https://www.github.com/roy-lau/"
                 title="12315消费争议"
-                target="_blank">12315消费争议</a></div></div>
+                target="_blank">12315消费争议</a></div>
+        </div>
       </div>
     </div>
   </footer>
 </template>
-
 <style lang="scss">
-  @import "@/assets/css/public/footer.scss";
+@import "@/assets/css/public/footer.scss";
+
 </style>

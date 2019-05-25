@@ -20,7 +20,7 @@
         <p><span>账号登录</span></p>
         <el-input
           v-model="username"
-          prefix-icon="profile" placeholder="邮箱"/>
+          prefix-icon="profile" placeholder="账号"/>
         <el-input
           v-model="password"
           prefix-icon="password"
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import CryptoJS from 'crypto-js'
+import {MD5} from 'crypto-js'
 export default {
   data(){
     return {
@@ -53,13 +53,14 @@ export default {
   layout: 'blank',
   methods: {
     login() {
-      this.$axios.post('/users/signin',{
+      this.$axios.post('/users/singin',{
         username:window.encodeURIComponent(this.username),
-        password:CryptoJS.MD5(this.password).toString()
+        password:MD5(this.password).toString()
       }).then(({status,data})=>{
         if(status===200){
           if(data&&data.code===0){
-            location.href='/'
+            this.$router.push('/')
+            this.$message.success(data.msg)
           }else{
             this.error=data.msg
           }
