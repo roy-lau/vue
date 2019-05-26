@@ -23,7 +23,6 @@ passport.use(new LocalStrategy(async function(username, password, done) {
 }))
 // 序列化（从session中读取）
 passport.serializeUser(function(user, done) {
-    console.log(user)
   done(null, user)
 })
 // 反序列化 （从session中读取）

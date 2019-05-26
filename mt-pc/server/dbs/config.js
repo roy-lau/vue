@@ -1,6 +1,6 @@
 module.exports = {
   // MongoDB 数据库地址
-  uri: 'mongodb+srv://dev:toor@roylaudb-16ntu.mongodb.net/mt',
+  uri: 'mongodb+srv://dev:toor@roylaudb-16ntu.mongodb.net/mt-pc',
   redis: {
     get host() {
       return '139.199.99.154'

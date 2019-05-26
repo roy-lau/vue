@@ -19,6 +19,22 @@ npx: 379 安装成功，用时 48.542 秒
 ? Choose a package manager yarn
 ```
 
+### 导入数据
+
+```bash
+
+mongoimport --host roylauDB-shard-0/roylaudb-shard-00-00-16ntu.mongodb.net:27017,roylaudb-shard-00-01-16ntu.mongodb.net:27017,roylaudb-shard-00-02-16ntu.mongodb.net:27017 --ssl --username dev --password toor --authenticationDatabase admin --db 'mt-pc' --collection areas --type json --file ./areas.dat
+mongoimport --host roylauDB-shard-0/roylaudb-shard-00-00-16ntu.mongodb.net:27017,roylaudb-shard-00-01-16ntu.mongodb.net:27017,roylaudb-shard-00-02-16ntu.mongodb.net:27017 --ssl --username dev --password toor --authenticationDatabase admin --db 'mt-pc' --collection category --type json --file ./category.dat
+mongoimport --host roylauDB-shard-0/roylaudb-shard-00-00-16ntu.mongodb.net:27017,roylaudb-shard-00-01-16ntu.mongodb.net:27017,roylaudb-shard-00-02-16ntu.mongodb.net:27017 --ssl --username dev --password toor --authenticationDatabase admin --db 'mt-pc' --collection cities --type json --file ./cities.dat
+mongoimport --host roylauDB-shard-0/roylaudb-shard-00-00-16ntu.mongodb.net:27017,roylaudb-shard-00-01-16ntu.mongodb.net:27017,roylaudb-shard-00-02-16ntu.mongodb.net:27017 --ssl --username dev --password toor --authenticationDatabase admin --db 'mt-pc' --collection maps --type json --file ./maps.dat
+mongoimport --host roylauDB-shard-0/roylaudb-shard-00-00-16ntu.mongodb.net:27017,roylaudb-shard-00-01-16ntu.mongodb.net:27017,roylaudb-shard-00-02-16ntu.mongodb.net:27017 --ssl --username dev --password toor --authenticationDatabase admin --db 'mt-pc' --collection menus --type json --file ./menus.dat
+mongoimport --host roylauDB-shard-0/roylaudb-shard-00-00-16ntu.mongodb.net:27017,roylaudb-shard-00-01-16ntu.mongodb.net:27017,roylaudb-shard-00-02-16ntu.mongodb.net:27017 --ssl --username dev --password toor --authenticationDatabase admin --db 'mt-pc' --collection pois --type json --file ./pois.dat
+mongoimport --host roylauDB-shard-0/roylaudb-shard-00-00-16ntu.mongodb.net:27017,roylaudb-shard-00-01-16ntu.mongodb.net:27017,roylaudb-shard-00-02-16ntu.mongodb.net:27017 --ssl --username dev --password toor --authenticationDatabase admin --db 'mt-pc' --collection provinces --type json --file ./provinces.dat
+mongoimport --host roylauDB-shard-0/roylaudb-shard-00-00-16ntu.mongodb.net:27017,roylaudb-shard-00-01-16ntu.mongodb.net:27017,roylaudb-shard-00-02-16ntu.mongodb.net:27017 --ssl --username dev --password toor --authenticationDatabase admin --db 'mt-pc' --collection regions --type json --file ./regions.dat
+mongoimport --host roylauDB-shard-0/roylaudb-shard-00-00-16ntu.mongodb.net:27017,roylaudb-shard-00-01-16ntu.mongodb.net:27017,roylaudb-shard-00-02-16ntu.mongodb.net:27017 --ssl --username dev --password toor --authenticationDatabase admin --db 'mt-pc' --collection topsearches --type json --file ./topsearches.dat
+
+mongoexport --host roylauDB-shard-0/roylaudb-shard-00-00-16ntu.mongodb.net:27017,roylaudb-shard-00-01-16ntu.mongodb.net:27017,roylaudb-shard-00-02-16ntu.mongodb.net:27017 --ssl --username dev --password toor --authenticationDatabase admin --db mall --collection goods --type json --out goods.json
+```
 
 ### Build Setup
 
