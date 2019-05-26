@@ -1,6 +1,7 @@
 const Router = require('koa-router'),
   axios = require('./utils/axios.js'),
-  Province = require('../dbs/models/province.js')
+  Province = require('../dbs/models/province.js'),
+  City = require('../dbs/models/city.js')
 
 
 
@@ -30,7 +31,7 @@ router.get('/getPosition', async (ctx) => {
   if (status === 200) {
     ctx.body = { code: 0, msg: '获取成功！', data }
   } else {
-    ctx.body = { code: 1, msg: '获取失败！', data }
+    ctx.body = { code: -1, msg: '获取失败！', data }
   }
 
 })
@@ -48,20 +49,118 @@ router.get('/menu', async (ctx) => {
   if (status === 200) {
     ctx.body = { code: 0, msg: '获取成功！', data: data.menu }
   } else {
-    ctx.body = { code: 1, msg: '获取失败！', data }
+    ctx.body = { code: -1, msg: '获取失败！', data }
+  }
+
+})
+/**
+ * 获取所有省份
+ * @param  {[type]} '/province' [description]
+ * @param  {[type]} async       (ctx          [description]
+ * @return {[type]}             [description]
+ */
+router.get('/province', async (ctx) => {
+
+  try {
+    const province = await Province.find()
+    ctx.body = { code: 0, msg: '获取成功！', data: province }
+
+  } catch (err) {
+    ctx.body = { code: -1, msg: '获取失败！', }
+
   }
 
 })
 
-router.get('/province', async (ctx) => {
+/**
+ * 根据省份id 获取城市
+ *
+ * @param  {[type]} '/province/:id' [description]
+ * @param  {[type]} async           (ctx          [description]
+ * @return {[type]}                 [description]
+ */
+router.get('/province/:id', async (ctx) => {
 
-  const province = await Province.find()
-  // if (status === 200) {
-  //   ctx.body = { code: 0, msg: '获取成功！', data: data.menu }
-  // } else {
-  //   ctx.body = { code: 1, msg: '获取失败！', data }
-  // }
+  try {
+    const city = await City.findOne({ id: ctx.params.id })
+    ctx.body = { code: 0, msg: '获取成功！', data: city }
+
+  } catch (err) {
+    ctx.body = { code: -1, msg: '获取失败！', }
+
+  }
+
+})
+/**
+ * 获取所有城市
+ * @param  {[type]} '/city' [description]
+ * @param  {[type]} async   (ctx          [description]
+ * @return {[type]}         [description]
+ */
+router.get('/city', async (ctx) => {
+
+  try {
+    let city = [],
+      result = await City.find()
+
+    result.forEach(item => { city = city.concat(item.value) })
+
+    ctx.body = {
+      code: 0,
+      msg: '获取成功！',
+      data: city.map(item => {
+        return {
+          province: item.province,
+          id: item.id,
+          name: item.name === '市辖区' || item.name === '省直辖县级行政区划' ?
+            item.province : item.name
+        }
+      })
+    }
+
+
+  } catch (err) {
+    ctx.body = { code: -1, msg: '获取失败！' + err, }
+
+  }
 
 })
 
+/**
+ * 热门城市
+ * @param  {[type]} '/hotCity' [description]
+ * @param  {[type]} async      (ctx          [description]
+ * @return {[type]}            [description]
+ */
+router.get('/hotCity', async (ctx) => {
+  try {
+    let list = [
+        '北京市',
+        '上海市',
+        '广州市',
+        '深圳市',
+        '天津市',
+        '西安市',
+        '杭州市',
+        '南京市',
+        '武汉市',
+        '成都市'
+      ],
+      nList = [],
+      result = await City.find()
+
+    result.forEach(item => {
+      nList = nList.concat(item.value.filter(k => list.includes(k.name) || list.includes(k.province)))
+    })
+
+    ctx.body = {
+      code: 0,
+      msg: '获取成功！',
+      data: nList
+    }
+  } catch (err) {
+    ctx.body = { code: -1, msg: '获取失败！' + err, }
+
+  }
+})
 module.exports = router

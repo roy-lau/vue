@@ -2,22 +2,26 @@
   <div class="m-menu">
     <dl class="nav" @mouseleave="onMouseleave">
       <dt>全部分类</dt>
-      <dd v-for="item in $store.state.home.menu" :key="item.type" @mouseenter="onMouseenter">
-        <i :class="item.type"/>
-        {{ item.name }}
-        <span class="arrow"/>
+      <dd v-for="(item,idx) in $store.state.home.menu" :key="idx" @mouseenter="onMouseenter">
+        <i :class="item.type"/>{{ item.name }}<span class="arrow"/>
       </dd>
     </dl>
-    <div class="detail" v-if="kind"
-        @mouseenter="sOver"
-        @mouseleave="sOut">
-         <template v-for="items in curDetail.child">
-            <h4 v-text="items.title"></h4>
-            <span v-for="item in items.child" :key="item" v-text="item"></span>
-        </template>
+    <div
+      v-if="kind"
+      class="detail"
+      @mouseenter="sOver"
+      @mouseleave="sOut">
+      <template
+        v-for="(item,idx) in curDetail.child">
+        <h4 :key="idx">{{ item.title }}</h4>
+        <span
+          v-for="v in item.child"
+          :key="v">{{ v }}</span>
+      </template>
     </div>
   </div>
 </template>
+
 <script>
 export default {
     data(){
@@ -42,16 +46,17 @@ export default {
     },
     computed:{
         curDetail(){
-            return this.$store.state.home.menu.filter(item => item.type === this.kind)[0]
+            return this.$store.state.home.menu.filter(item => item.type===this.kind)[0]
         }
     },
     methods:{
+
         // 鼠标离开事件
         onMouseleave(){
             let self = this
             self._timer = setTimeout(()=>{
                 self.kind = ''
-            },300)
+            },150)
         },
         // 鼠标移入事件
         onMouseenter(e){

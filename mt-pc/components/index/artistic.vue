@@ -47,34 +47,34 @@ export default {
       return this.list[this.kind];
     }
   },
-  // async mounted() {
-  //   let self = this;
-  //   let {
-  //     status,
-  //     data: { count, pois }
-  //   } = await self.$axios.get("/search/resultsByKeywords", {
-  //     params: {
-  //       keyword: "景点",
-  //       city: self.$store.state.geo.position.city
-  //     }
-  //   });
-  //   if (status === 200 && count > 0) {
-  //     let r = pois
-  //       .filter(item => item.photos.length)
-  //       .map(item => {
-  //         return {
-  //           title: item.name,
-  //           pos: item.type.split(";")[0],
-  //           price: item.biz_ext.cost || "暂无",
-  //           img: item.photos[0].url,
-  //           url: "//abc.com"
-  //         };
-  //       });
-  //     self.list[self.kind] = r.slice(0, 9);
-  //   } else {
-  //     self.list[self.kind] = [];
-  //   }
-  // },
+  async mounted() {
+    let self = this;
+    let {
+      status,
+      data: { count, pois }
+    } = await self.$axios.get("/search/resultsByKeywords", {
+      params: {
+        keyword: "景点",
+        city: self.$store.state.geo.position.city
+      }
+    });
+    if (status === 200 && count > 0) {
+      let r = pois
+        .filter(item => item.photos.length)
+        .map(item => {
+          return {
+            title: item.name,
+            pos: item.type.split(";")[0],
+            price: item.biz_ext.cost || "暂无",
+            img: item.photos[0].url,
+            url: "//github.com/roy-lau"
+          };
+        });
+      self.list[self.kind] = r.slice(0, 9);
+    } else {
+      self.list[self.kind] = [];
+    }
+  },
   methods: {
     over: async function(e) {
       let dom = e.target;
@@ -94,6 +94,7 @@ export default {
         });
         if (status === 200 && count > 0) {
           let r = pois
+            // 过滤掉没有图片的数据
             .filter(item => item.photos.length)
             .map(item => {
               return {
@@ -101,7 +102,7 @@ export default {
                 pos: item.type.split(";")[0],
                 price: item.biz_ext.cost || "暂无",
                 img: item.photos[0].url,
-                url: "//abc.com"
+                url: "//github.com/roy-lau"
               };
             });
           self.list[self.kind] = r.slice(0, 9);
