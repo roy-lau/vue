@@ -43,7 +43,6 @@ router.get('/top', async (ctx) => {
 
   // } catch (err) {
   //   ctx.body = { code: -1, msg: '获取失败！' + err, }
-
   // }
 
 
@@ -99,7 +98,7 @@ router.get('/hotPlace', async (ctx) => {
     data: {
       result
     }
-  } = await axios.get(baseUrl+'hotPlace', {
+  } = await axios.get(baseUrl + 'hotPlace', {
     params: {
       sign,
       city
@@ -121,7 +120,7 @@ router.get('/resultsByKeywords', async (ctx) => {
       count,
       pois
     }
-  } = await axios.get(baseUrl+'resultsByKeywords', {
+  } = await axios.get(baseUrl + 'resultsByKeywords', {
     params: {
       city,
       keyword,
@@ -143,7 +142,7 @@ router.get('/products', async (ctx) => {
       product,
       more
     }
-  } = await axios.get(baseUrl+'products', {
+  } = await axios.get(baseUrl + 'products', {
     params: {
       keyword,
       city,

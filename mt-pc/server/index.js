@@ -12,7 +12,8 @@ const mongoose = require('mongoose'),
   Passport = require('./api/utils/passport.js'),
   users = require('./api/users.js'),
   geo = require('./api/geo.js'),
-  search = require('./api/search.js')
+  search = require('./api/search.js'),
+  categroy = require('./api/categroy.js')
 
 
   const app = new Koa()
@@ -71,6 +72,7 @@ async function start() {
   app.use(users.routes()).use(users.allowedMethods())
     .use(geo.routes()).use(geo.allowedMethods())
     .use(search.routes()).use(search.allowedMethods())
+    .use(categroy.routes()).use(categroy.allowedMethods())
     .use(ctx => {
       ctx.status = 200
       ctx.respond = false // Bypass Koa's built-in response handling

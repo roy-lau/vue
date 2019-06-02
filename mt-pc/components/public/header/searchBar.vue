@@ -3,21 +3,26 @@
     <el-row class="m-header-searchbar">
       <el-col :span="3" class="left">
         <img src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png" alt="美团">
-            </el-col>
+      </el-col>
         <el-col :span="15" class="center">
           <div class="wrapper">
             <el-input placeholder="搜索商家地址" v-model="search" @focus="onFocusSearch" @blur="onBlurSearch" @input="onInputSearch" />
-            <button class="el-button el-button--primary"><i class="el-icon-search" /></button>
+            <button class="el-button el-button--primary" @click="onSearch"><i class="el-icon-search" /></button>
                     <dl class="hotPlace" v-if="isHotPlate">
                         <dt>热门搜索</dt>
-                        <dd v-for="(item,i) in $store.state.home.hotPlace.slice(0, 6)" :key="i" v-text="item.name"></dd>
+                        <dd v-for="(item,i) in $store.state.home.hotPlace.slice(0, 6)" :key="i">
+                          <a :href="'/products?keyword='+item.name" v-text="item.name"></a>
+                        </dd>
                     </dl>
                     <dl class="searchList" v-if="isSearchList">
-                        <dd v-for="(item,i) in searchList" :key="i" v-text="item.name"></dd>
+                        <dd v-for="(item,i) in searchList" :key="i">
+                          <a :href="'/products?keyword='+item.name" v-text="item.name"></a>
+                        </dd>
                     </dl>
                 </div>
                 <p class="suggest">
-                    <a v-for="(item,i) in $store.state.home.hotPlace" :key="i" v-text="item.name"></a>
+                    <a v-for="(item,i) in $store.state.home.hotPlace" :key="i"
+                    :href="'/products?keyword='+item.name" v-text="item.name"></a>
                 </p>
                 <ul class="nav">
                     <li><nuxt-link to="/" class="takeout">美团外卖</nuxt-link></li>
@@ -85,7 +90,14 @@ export default {
           this.searchList = data.data
         }
       }
-    }, 300)
+    }, 300),
+    // 点击搜索事件
+    onSearch(){
+      this.$router.push('/products?keyword='+this.search)
+    },
+  },
+  created(){
+    this.search = this.$route.query.keyword
   }
 }
 

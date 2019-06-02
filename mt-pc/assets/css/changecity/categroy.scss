@@ -51,12 +51,17 @@
 
   dd {
     flex: 1;
+    cursor: pointer;
 
     span {
       margin: 10px 20px;
       color: #666;
       display: inline-block;
       font-size: 14px;
+
+      &:hover,&.selected {
+        color: #13D1BE;
+      }
     }
   }
 }
