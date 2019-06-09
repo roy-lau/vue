@@ -13,7 +13,9 @@ const mongoose = require('mongoose'),
   users = require('./api/users.js'),
   geo = require('./api/geo.js'),
   search = require('./api/search.js'),
-  categroy = require('./api/categroy.js')
+  categroy = require('./api/categroy.js'),
+  cart = require('./api/cart.js'),
+  order = require('./api/order.js')
 
 
   const app = new Koa()
@@ -73,6 +75,8 @@ async function start() {
     .use(geo.routes()).use(geo.allowedMethods())
     .use(search.routes()).use(search.allowedMethods())
     .use(categroy.routes()).use(categroy.allowedMethods())
+    .use(cart.routes()).use(cart.allowedMethods())
+    .use(order.routes()).use(order.allowedMethods())
     .use(ctx => {
       ctx.status = 200
       ctx.respond = false // Bypass Koa's built-in response handling

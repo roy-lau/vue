@@ -6,11 +6,11 @@ const mongoose = require("mongoose"),
     },
     types: {
       type: Array,
-      require: true
+      required: true
     },
     areas: {
       type: Array,
-      require: true
+      required: true
     }
   })
 

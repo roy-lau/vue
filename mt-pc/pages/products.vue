@@ -54,7 +54,7 @@ export default {
               addr: item.addr,
               comment: Math.floor(Math.random() * 10000),
               rate: Number(item.biz_ext.rating),
-              price: item.biz_ext.lowest_price || 0,
+              price: Number(item.biz_ext.cost),
               scene: item.tag,
               tel: item.tel,
               status: '可定明日',

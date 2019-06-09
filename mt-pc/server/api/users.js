@@ -83,12 +83,12 @@ router.post('/singup', async ctx => {
  *  登陆
  */
 router.post('/singin', async (ctx, next) => {
-  return Passport.authenticate('local', function(err, user, info, status) {
+  return Passport.authenticate('local', (err, user, info, status) => {
     if (err) {
       ctx.body = { code: -1, msg: err }
     } else {
       if (user) {
-        ctx.body = { code: 0, msg: '登陆成功！', user }
+        ctx.body = { code: 0, msg: '登录成功', user }
         return ctx.login(user)
       } else {
         ctx.body = { code: 1, msg: info }

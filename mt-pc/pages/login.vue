@@ -33,6 +33,7 @@
           class="btn-login"
           type="success"
           size="mini"
+          :loading="loginLoading"
           @click="login">登录</el-button>
       </div>
     </div>
@@ -47,16 +48,19 @@ export default {
       checked: '',
       username: '',
       password: '',
-      error: ''
+      error: '',
+      loginLoading:false
     }
   },
   layout: 'blank',
   methods: {
     login() {
+      this.loginLoading=true
       this.$axios.post('/users/singin',{
         username:window.encodeURIComponent(this.username),
         password:MD5(this.password).toString()
       }).then(({status,data})=>{
+      this.loginLoading=false
         if(status===200){
           if(data&&data.code===0){
             this.$router.push('/')

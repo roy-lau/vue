@@ -5,7 +5,7 @@
       <el-rate
         v-model="rate"
         disabled />
-      <span>{{ Number(meta.biz_ext.rating)||rate }}分</span>
+      <span>{{ Number(meta.biz_ext.rate)||rate }}分</span>
       <span>人均￥{{ Number(meta.biz_ext.cost) }}</span>
       <ul>
         <li @click="openMap(meta.location)">地址：{{ meta.address }}</li>
