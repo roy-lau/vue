@@ -1,12 +1,13 @@
+# 部署流程
 
-## 项目列表
+下载vue部署分支，通过vue部署分支 下载各个分支的项目
 
+[pm2配置文件](pm2.config.js)
 
-<a href="mall" >天器商城</a>
-<a href="jdjr" >京东金融</a>
-<a href="mt-pc" >美团pc</a>
-<a href="fund-back" >金融后台</a>
-<a href="app-music-mobile" >音乐mobile</a>
-<a href="shopping" >商品网</a>
+```bash
+git clone git@github.com:roy-lau/vue.git --depth=1 -b deploy vue-project-deploy # 下载vue部署分支
+cd vue-project-deploy
+sudo ./git-clone.sh
 
-
+pm2 start pm2.config.js
+```
