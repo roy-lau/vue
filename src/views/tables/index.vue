@@ -31,7 +31,7 @@
                 <el-form-item label="id">
                     <el-input v-model="primaryId" autocomplete="off" disabled />
                 </el-form-item>
-                <el-form-item v-for="item in tableTitle" :label="item.COLUMN_COMMENT">
+                <el-form-item v-for="(item,idx) in tableTitle" :key="idx" :label="item.COLUMN_COMMENT">
                     <el-input v-model="updateColFrom[item.COLUMN_NAME]" />
                 </el-form-item>
             </el-form>
@@ -85,7 +85,7 @@ export default {
         // 新增
         addCol() {
             this.$axios.put('addCol', { tableName: this.$route.query.name, data: this.addColFrom }).then(res => {
-                let { code, msg, result } = res.data
+                let { code, msg} = res.data
                 if (code) {
                     this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                 } else {
@@ -113,7 +113,7 @@ export default {
                 id: this.primaryId,
                 data: this.updateColFrom
             }).then(res => {
-                let { code, msg, result } = res.data
+                let { code, msg } = res.data
                 if (code) {
                     this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                 } else {
@@ -130,7 +130,7 @@ export default {
                 type: 'warning'
             }).then(() => {
                 this.$axios.delete('delCol', { params: { tableName: this.$route.query.name, id: row.id } }).then(res => {
-                    let { code, msg, result } = res.data
+                    let { code, msg } = res.data
                     if (code) {
                         this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                     } else {

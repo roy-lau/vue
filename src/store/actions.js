@@ -1,5 +1,5 @@
 // actions方便做异步操作
-import * as types from './mutation-types'
+// import * as types from './mutation-types'
 // import { login } from '@/api/user'
 
 

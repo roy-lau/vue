@@ -126,7 +126,7 @@ export default {
         // 新增列
         addRow() {
             this.$axios.put('addRow', { tableName: this.selectTalbe, column: this.addRowFrom }).then(res => {
-                let { code, msg, result } = res.data
+                let { code, msg } = res.data
                 if (code) {
                     this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                 } else {
@@ -154,7 +154,7 @@ export default {
                 oldRowName: this.oldRowName,
                 column: this.updateRowFrom
             }).then(res => {
-                let { code, msg, result } = res.data
+                let { code, msg } = res.data
                 if (code) {
                     this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                 } else {
@@ -173,7 +173,7 @@ export default {
                 type: 'warning'
             }).then(() => {
                 this.$axios.delete('delRow', { params: { tableName: this.selectTalbe, rowName: row.COLUMN_NAME } }).then(res => {
-                    let { code, msg, result } = res.data
+                    let { code, msg } = res.data
                     if (code) {
                         this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                     } else {

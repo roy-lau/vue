@@ -84,7 +84,7 @@ export default {
                 // this.tableList.splice(i, 1)
                 // this.updateTeble(this.tableList)
                 this.$axios.delete('delTable', { params: { tableName: row.TABLE_NAME } }).then(res => {
-                    let { code, msg, result } = res.data
+                    let { code, msg } = res.data
                     if (code) {
                         this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                     } else {
@@ -112,7 +112,7 @@ export default {
             }
 
             this.$axios.post('updateTable', data).then(res => {
-                let { code, msg, result } = res.data
+                let { code, msg } = res.data
                 if (code) {
                     this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                 } else {

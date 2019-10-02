@@ -66,7 +66,7 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     this.$axios.post('createTable', this.createTebleFrom).then(res => {
-                        let { code, msg, result } = res.data
+                        let { code, msg } = res.data
                         if (code) {
                             this.$message.error(`${msg.errno} : ${msg.code}, ${msg.sqlMessage}`)
                         } else {
