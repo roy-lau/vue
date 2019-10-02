@@ -48,4 +48,4 @@ app.use('/goods', goods)
 app.use('/users', users)
 
 
-app.listen(3002, () => console.log('mall 项目启动成功，http://139.199.99.154:3002'))
+app.listen(3006, () => console.log('mall 项目启动成功，http://139.199.99.154:3006'))

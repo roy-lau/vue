@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.7d30928c3ea2495495045f34d434ed36.js"
+  "/precache-manifest.4b896fc6be040c5534d5e04b705dd978.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "mall"});
