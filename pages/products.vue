@@ -11,10 +11,10 @@
   </el-row>
 </template>
 <script>
-import Crumbs from "@/components/products/crumbs"
-import Categroy from "@/components/products/categroy"
-import List from "@/components/products/list"
-import Amap from "@/components/public/map.vue"
+import Crumbs from "@/components/products/crumbs";
+import Categroy from "@/components/products/categroy";
+import List from "@/components/products/list";
+import Amap from "@/components/public/map.vue";
 export default {
   components: {
     Crumbs,
@@ -27,20 +27,26 @@ export default {
       list: [],
       types: [],
       areas: [],
-      keyword: '',
-      point: [],
-    }
+      keyword: "",
+      point: []
+    };
   },
   async asyncData(ctx) {
     let keyword = encodeURIComponent(ctx.query.keyword),
       city = ctx.store.state.geo.position.city,
-      { status, data:data } = await ctx.$axios.get('search/resultsByKeywords', {
-        params: {
-          keyword,
-          city
+      { status, data: data } = await ctx.$axios.get(
+        "search/resultsByKeywords",
+        {
+          params: {
+            keyword,
+            city
+          }
         }
-      }),
-      { status: status1, data: data1 } = await ctx.$axios.get('categroy/crumbs', { params: { city } })
+      ),
+      { status: status1, data: data1 } = await ctx.$axios.get(
+        "categroy/crumbs",
+        { params: { city } }
+      );
 
     if (status === 200 && status1 === 200 && data.count > 0) {
       return {
@@ -57,25 +63,24 @@ export default {
               price: Number(item.biz_ext.cost),
               scene: item.tag,
               tel: item.tel,
-              status: '可定明日',
+              status: "可定明日",
               location: item.location,
-              module: item.type.split(';')[0]
-            }
+              module: item.type.split(";")[0]
+            };
           }),
         keyword,
-        areas: data1.data.areas.filter(item => item.type != '').slice(0, 5),
-        types: data1.data.types.filter(item => item.type != '').slice(0, 5),
-        point: (data.pois.find(item => item.location).location || '').split(',')
-      }
+        areas: data1.data.areas.filter(item => item.type != "").slice(0, 5),
+        types: data1.data.types.filter(item => item.type != "").slice(0, 5),
+        point: (data.pois.find(item => item.location).location || "").split(",")
+      };
     }
   }
-}
-
+};
 </script>
 <style lang="scss">
-.page-product{
-    .m-crumbs{
-        margin: 10px 0;
-    }
+.page-product {
+  .m-crumbs {
+    margin: 10px 0;
+  }
 }
 </style>

@@ -1,26 +1,26 @@
 <template>
   <section class="page-index">
-   <el-row>
-     <el-col :span="5">
-       <menu-list />
-     </el-col>
-    <el-col :span="19">
-        <life/>
+    <el-row>
+      <el-col :span="5">
+        <menu-list />
+      </el-col>
+      <el-col :span="19">
+        <life />
       </el-col>
     </el-row>
 
-    <el-row >
+    <el-row>
       <el-col :span="24">
-        <artistic/>
+        <artistic />
       </el-col>
     </el-row>
   </section>
 </template>
 
 <script>
-import menuList from '@/components/index/menu'
-import Life from '@/components/index/life.vue'
-import Artistic from '@/components/index/artistic.vue'
+import menuList from "@/components/index/menu";
+import Life from "@/components/index/life.vue";
+import Artistic from "@/components/index/artistic.vue";
 
 export default {
   components: {
@@ -28,10 +28,9 @@ export default {
     Life,
     Artistic
   }
-}
+};
 </script>
 
 <style lang="scss">
 @import "@/assets/css/index/index.scss";
-
 </style>

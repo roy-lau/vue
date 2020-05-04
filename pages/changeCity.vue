@@ -12,21 +12,20 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-      	<categroy />
+        <categroy />
       </el-col>
     </el-row>
   </div>
 </template>
 <script>
-import iSelect from "@/components/changeCity/iSelect.vue"
-import hot from "@/components/changeCity/hot.vue"
-import categroy from "@/components/changeCity/categroy.vue"
+import iSelect from "@/components/changeCity/iSelect.vue";
+import hot from "@/components/changeCity/hot.vue";
+import categroy from "@/components/changeCity/categroy.vue";
 export default {
   components: {
     iSelect,
     hot,
     categroy
   }
-}
-
+};
 </script>

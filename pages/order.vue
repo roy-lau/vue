@@ -5,19 +5,40 @@
         <h3>我的美团</h3>
         <dl>
           <dt>我的订单</dt>
-          <dd>全部订单<i class="el-icon-arrow-right"></i></dd>
-          <dd>待付款<i class="el-icon-arrow-right"></i></dd>
-          <dd>待使用<i class="el-icon-arrow-right"></i></dd>
+          <dd>
+            全部订单
+            <i class="el-icon-arrow-right"></i>
+          </dd>
+          <dd>
+            待付款
+            <i class="el-icon-arrow-right"></i>
+          </dd>
+          <dd>
+            待使用
+            <i class="el-icon-arrow-right"></i>
+          </dd>
         </dl>
         <dl>
           <dt>我的收藏</dt>
-          <dd>收藏的商家<i class="el-icon-arrow-right"></i></dd>
-          <dd>收藏的团购<i class="el-icon-arrow-right"></i></dd>
+          <dd>
+            收藏的商家
+            <i class="el-icon-arrow-right"></i>
+          </dd>
+          <dd>
+            收藏的团购
+            <i class="el-icon-arrow-right"></i>
+          </dd>
         </dl>
         <dl>
           <dt>抵用劵</dt>
-          <dd>可用券<i class="el-icon-arrow-right"></i></dd>
-          <dd>失效券<i class="el-icon-arrow-right"></i></dd>
+          <dd>
+            可用券
+            <i class="el-icon-arrow-right"></i>
+          </dd>
+          <dd>
+            失效券
+            <i class="el-icon-arrow-right"></i>
+          </dd>
         </dl>
       </el-col>
       <el-col :span="19" class="table">
@@ -37,77 +58,78 @@
   </div>
 </template>
 <script>
-import List from "@/components/order/list"
+import List from "@/components/order/list";
 export default {
   components: { List },
   data() {
     return {
-      activeName: 'all',
+      activeName: "all",
       list: [],
       cur: []
-    }
+    };
   },
   watch: {
     activeName(val) {
       this.cur = this.list.filter(item => {
-        if (val === 'unplay') {
-          return item.status === 0
-        } else if (val === 'all') {
-          return true
+        if (val === "unplay") {
+          return item.status === 0;
+        } else if (val === "all") {
+          return true;
         } else {
-          return false
+          return false;
         }
-      })
+      });
     },
     list() {
-      let val = this.name
+      let val = this.name;
       this.cur = this.list.filter(item => {
-        if (val === 'unplay') {
-          return item.status === 0
-        } else if (val === 'all') {
-          return true
+        if (val === "unplay") {
+          return item.status === 0;
+        } else if (val === "all") {
+          return true;
         } else {
-          return false
+          return false;
         }
-      })
+      });
     }
   },
   methods: {
     handleClick(tab) {
-      this.activeName = tab.name
+      this.activeName = tab.name;
     }
   },
   async asyncData(ctx) {
-    let { status, data: { code, list } } = await ctx.$axios.post('/order/getOrders')
+    let {
+      status,
+      data: { code, list }
+    } = await ctx.$axios.post("/order/getOrders");
     if (status === 200 && code === 0 && list.length) {
       return {
         list: list.map(item => {
           return {
-            img: item.imgs.length ? item.imgs[0].url : '/logo.png',
+            img: item.imgs.length ? item.imgs[0].url : "/logo.png",
             name: item.name,
             count: 1,
             total: item.total,
             status: item.status,
-            statusTxt: item.status === 0 ? '待付款' : '已付款'
-          }
+            statusTxt: item.status === 0 ? "待付款" : "已付款"
+          };
         }),
         cur: list.map(item => {
           return {
-            img: item.imgs.length ? item.imgs[0].url : '/logo.png',
+            img: item.imgs.length ? item.imgs[0].url : "/logo.png",
             name: item.name,
             count: 1,
             total: item.total,
             status: item.status,
-            statusTxt: item.status === 0 ? '待付款' : '已付款'
-          }
+            statusTxt: item.status === 0 ? "待付款" : "已付款"
+          };
         })
-      }
+      };
     }
   }
-}
-
+};
 </script>
 <style lang="scss">
 @import "@/assets/css/order/index.scss";
-
 </style>
