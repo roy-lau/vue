@@ -5,7 +5,7 @@
       <div class="product-board">
         <img :src="productIcon">
         <ul>
-          <router-link :to="{ path: item.path }" v-for="item in products" :key="item" tag="li" active-class="active">
+          <router-link :to="{ path: item.path }" v-for="(item,id) in products" :key="id" tag="li" active-class="active">
             {{ item.name }}
           </router-link>
         </ul>
@@ -114,7 +114,7 @@ export default {
   background: #fff;
 }
 
-.sales-board-form {}
+/* .sales-board-form {} */
 
 .sales-board-intro h2 {
   font-size: 20px;
@@ -187,5 +187,4 @@ export default {
   padding: 15px;
 }
 
-</st
-yle>
+</style>

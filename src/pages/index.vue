@@ -7,7 +7,7 @@
         <template v-for="product in productList">
           <h3>{{ product.title}}</h3>
           <ul>
-            <li v-for="item in product.list">
+            <li v-for="(item,idx) in product.list" :key="idx">
               <a :href="item.url">{{ item.name }}</a>
               <span v-if="item.hot" class="hot-tag">HOT</span>
             </li>
@@ -32,7 +32,7 @@
       <div class="index-board-list">
         <div
         class="index-board-item"
-        v-for="(item, index) in boardList"
+        v-for="(item, index) in boardList" :key="index"
         :class="[{'line-last' : index % 2 !== 0}, 'index-board-' + item.id]">
           <div class="index-board-item-inner" >
             <h2>{{ item.title }}</h2>

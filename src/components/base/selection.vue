@@ -2,17 +2,22 @@
 <!-- 下拉列表组件 -->
 
 <template>
-    <div class="selection-component">
-      <div class="selection-show" @click="toggleDrop">
-        <span>{{ selections[nowIndex].label }}</span>
-         <div class="arrow"></div> <!-- 箭头 -->
-      </div>
-      <div class="selection-list" v-if="isDrop">
-        <ul>
-          <li v-for="(item, index) in selections" @click="chooseSelection(index)">{{ item.label }}</li>
-        </ul>
-      </div>
+  <div class="selection-component">
+    <div class="selection-show" @click="toggleDrop">
+      <span>{{ selections[nowIndex].label }}</span>
+      <div class="arrow"></div>
+      <!-- 箭头 -->
     </div>
+    <div class="selection-list" v-if="isDrop">
+      <ul>
+        <li
+          v-for="(item, index) in selections"
+          @click="chooseSelection(index)"
+          :key="index"
+        >{{ item.label }}</li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -20,34 +25,36 @@ export default {
   props: {
     selections: {
       type: Array,
-      default: [{
-        label: 'test',
-        value: 0
-      }]
+      default: [
+        {
+          label: "test",
+          value: 0
+        }
+      ]
     }
   },
-  data () {
+  data() {
     return {
       isDrop: false,
       nowIndex: 0
-    }
+    };
   },
   methods: {
-    toggleDrop () {
-      this.isDrop = !this.isDrop  // 控制 显示/隐藏 下拉框
+    toggleDrop() {
+      this.isDrop = !this.isDrop; // 控制 显示/隐藏 下拉框
     },
-    chooseSelection (index) {
+    chooseSelection(index) {
       /*
         1. 将选中的值赋给noeIndex
         2. 选中后将下拉框隐藏
         3. 将选中的值传给 on-change事件(父组件)
         */
-      this.nowIndex = index  
-      this.isDrop = false
-      this.$emit('on-change', this.selections[this.nowIndex]) 
+      this.nowIndex = index;
+      this.isDrop = false;
+      this.$emit("on-change", this.selections[this.nowIndex]);
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -98,7 +105,6 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 .selection-list li:hover {
   background: #e3e3e3;

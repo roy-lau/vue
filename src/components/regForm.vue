@@ -1,16 +1,19 @@
 <template>
   <div class="login-form">
     <div class="g-form">
-      <div class="g-form-line" v-for="formLine in formData">
+      <div class="g-form-line" v-for="(formLine,index) in formData" :key="index">
         <span class="g-form-label">{{ formLine.label }}：</span>
         <div class="g-form-input">
-          <input type="text" 
-          v-model="formLine.model" placeholder="请输入用户名">
+          <input
+            :type="formLine.type || 'text'"
+            v-model="formLine.model"
+            :placeholder="formLine.placeholder"
+          />
         </div>
       </div>
       <div class="g-form-line">
         <div class="g-form-btn">
-          <a class="button" @click="onLogin">登录</a>
+          <a class="button" @click="closeMyself">注册</a>
         </div>
       </div>
     </div>
@@ -20,51 +23,68 @@
 <script>
 export default {
   props: {
-    'isShow': 'boolean'
+    isShow: "boolean"
   },
-  data () {
+  data() {
     return {
-      
-    }
+      formData: [
+        {
+          label: "用户名",
+          type: "text",
+          model: "",
+          placeholder: "请输入用户名"
+        },
+        {
+          label: "密码",
+          type: "password",
+          model: "",
+          placeholder: "请输入密码"
+        },
+        {
+          label: "确认密码",
+          type: "password",
+          model: "",
+          placeholder: "请确认密码"
+        }
+      ]
+    };
   },
   computed: {
-    userErrors () {
-      let status, errorText
+    userErrors() {
+      let status, errorText;
       if (!/@/g.test(this.usernameModel)) {
-        status = false
-        errorText = '必须包含@'
-      }
-      else {
-        status = true
-        errorText = ''
+        status = false;
+        errorText = "必须包含@";
+      } else {
+        status = true;
+        errorText = "";
       }
       return {
         status,
         errorText
-      }
+      };
     },
-    passwordErrors () {
-      let status, errorText
+    passwordErrors() {
+      let status, errorText;
       if (!/@/g.test(this.usernameModel)) {
-        status = false
-        errorText = '必须包含@'
-      }
-      else {
-        status = true
-        errorText = ''
+        status = false;
+        errorText = "必须包含@";
+      } else {
+        status = true;
+        errorText = "";
       }
       return {
         status,
         errorText
-      }
+      };
     }
   },
   methods: {
-    closeMyself () {
-      this.$emit('on-close')
+    closeMyself() {
+      this.$emit("on-close");
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -76,7 +96,7 @@ export default {
 }
 .dialog-cover {
   background: #000;
-  opacity: .3;
+  opacity: 0.3;
   position: fixed;
   z-index: 5;
   top: 0;

@@ -2,17 +2,17 @@
 <!-- 单选切换按钮 -->
 
 <template>
-    <div class="chooser-component">
-        <ul class="chooser-list">
-          <li
-          v-for="(item, index) in selections"
-          @click="chosenSelection(index)"
-          :title="item.label"
-          :class="{active:index === nowIndex}"
-          >{{ item.label }}</li>
-        </ul>
-      </div>
-    </div>
+  <div class="chooser-component">
+    <ul class="chooser-list">
+      <li
+        v-for="(item, index) in selections"
+        @click="chosenSelection(index)"
+        :key="index"
+        :title="item.label"
+        :class="{active:index === nowIndex}"
+      >{{ item.label }}</li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -20,24 +20,26 @@ export default {
   props: {
     selections: {
       type: Array,
-      default: [{
-        label: 'test',
-        value: 0
-      }]
+      default: [
+        {
+          label: "test",
+          value: 0
+        }
+      ]
     }
   },
-  data () {
+  data() {
     return {
       nowIndex: 0
-    }
+    };
   },
   methods: {
-    chosenSelection (index) {
-      this.nowIndex = index
-      this.$emit('on-change', this.selections[index])
+    chosenSelection(index) {
+      this.nowIndex = index;
+      this.$emit("on-change", this.selections[index]);
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -45,7 +47,7 @@ export default {
   position: relative;
   display: inline-block;
 }
-.chooser-list li{
+.chooser-list li {
   display: inline-block;
   border: 1px solid #e3e3e3;
   height: 25px;

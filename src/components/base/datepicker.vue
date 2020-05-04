@@ -133,12 +133,12 @@
                         </th>
                     </tr>
                     <tr class="date-days">
-                        <th v-for="day in days">{{day}}</th>
+                        <th v-for="day in days" :key="day">{{day}}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="i in 6">
-                        <td v-for="j in 7"
+                    <tr v-for="i in 6" :key="i">
+                        <td v-for="j in 7" :key="j"
                             :class="date[i * 7 + j] && date[i * 7 + j].status"
                             :date="date[i * 7 + j] && date[i * 7 + j].date"
                             @click="pickDate(i * 7 + j)">{{date[i * 7 + j] && date[i * 7 + j].text}}</td>
