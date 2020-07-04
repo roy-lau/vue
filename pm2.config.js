@@ -60,13 +60,12 @@ module.exports = {
     },{
         "name": "mt-pc",
         "cwd": "./mt-pc",
-        "script": "yarn start",
-        // "watch": true,
+        "script": "npm run start",
         "ignoreWatch": ["node_modules"],
         "log_date_format": "YYYY-MM-DD HH:mm:ss",
-        "log_file": "./log/mt-pc.log",
-        "error_file": "./log/mt-pc-err.log",
-        "out_file": "./log/mt-pc-out.log",
-        "pid_file": "./log/mt-pc.pid"
+        "log_file": "../log/mt-pc.log",
+        "error_file": "../log/mt-pc-err.log",
+        "out_file": "../log/mt-pc-out.log",
+        "pid_file": "../log/mt-pc.pid"
     }]
 }
