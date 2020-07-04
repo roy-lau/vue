@@ -1,13 +1,13 @@
 {
   "name": "mt-pc",
   "version": "1.0.0",
-  "description": "My awesome Nuxt.js project",
+  "description": "一个使用 Nuxt.js vue全局桶 element-UI MongoDB 构建的仿美团项目",
   "author": "roylau",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
+    "start": "cross-env NODE_ENV=production HOST=0.0.0.0 PORT=3007 node server/index.js",
     "generate": "nuxt generate"
   },
   "dependencies": {

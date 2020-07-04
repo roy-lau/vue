@@ -44,6 +44,7 @@ app.use(json())
 
 // 连接数据库
 mongoose.connect(dbConfig.uri, { useCreateIndex: true, useNewUrlParser: true })
+      .catch(err=>{console.error(err)})
 
 app.use(Passport.initialize())
 app.use(Passport.session())
