@@ -1,2 +1,8 @@
-*node_modules/
-*Collection-by-learning/
+# 忽略所有文件
+*
+
+# 不忽略目录
+!.git/
+!.gitigonre
+!*.md
+!pm2.config.js
