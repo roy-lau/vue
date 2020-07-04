@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
-    "build": "nuxt build",
+    "build": "API_URL_BROWSER=//:0.0.0.0:3007 nuxt build",
     "start": "cross-env NODE_ENV=production HOST=0.0.0.0 PORT=3007 node server/index.js",
     "generate": "nuxt generate"
   },
