@@ -12,7 +12,7 @@ yarn && yarn build
 cd ..
 git clone git@github.com:roy-lau/vue.git --depth 1 -b jdjr jdjr
 cd jdjr
-npm i && npm run build
+npm i && npm run build --mode dev
 cd ..
 git clone git@github.com:roy-lau/vue.git --depth 1 -b mall mall
 cd mall
