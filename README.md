@@ -15,6 +15,6 @@
 
 
 
-[vuex 核心概念](vuex.md)
+[vuex vuex 最佳实践(I think)](vuex.md)
 
 
