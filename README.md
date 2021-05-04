@@ -13,6 +13,7 @@
 
 * 商品网 [演示](https://roy-lau.github.io/web_list/vuejs-shopping/) [源码](https://github.com/roy-lau/vue/tree/vue2-shopping)
 
+* 网站主题切换 [源码](https://github.com/roy-lau/vue/tree/theme-sass)
 
 
 [vuex vuex 最佳实践(I think)](vuex.md)
