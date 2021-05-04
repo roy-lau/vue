@@ -1,0 +1,451 @@
+$color-white:               #FFF;                     // 白色
+$color-black:               #000;                     // 黑色
+
+$color-white-opacity1:    rgba(255, 255, 255, .1);    // 白色 - 透明度 - 1
+$color-white-opacity2:    rgba(255, 255, 255, .2);    // 白色 - 透明度 - 2
+$color-white-opacity3:    rgba(255, 255, 255, .3);    // 白色 - 透明度 - 3
+$color-white-opacity4:    rgba(255, 255, 255, .4);    // 白色 - 透明度 - 4
+$color-white-opacity5:    rgba(255, 255, 255, .5);    // 白色 - 透明度 - 5
+$color-white-opacity6:    rgba(255, 255, 255, .6);    // 白色 - 透明度 - 6
+$color-white-opacity7:    rgba(255, 255, 255, .7);    // 白色 - 透明度 - 7
+$color-white-opacity8:    rgba(255, 255, 255, .8);    // 白色 - 透明度 - 8
+$color-white-opacity9:    rgba(255, 255, 255, .9);    // 白色 - 透明度 - 9
+
+$color-black-opacity1:    rgba(0, 0, 0, .1);          // 黑色 - 透明度 - 1
+$color-black-opacity2:    rgba(0, 0, 0, .2);          // 黑色 - 透明度 - 2
+$color-black-opacity3:    rgba(0, 0, 0, .3);          // 黑色 - 透明度 - 3
+$color-black-opacity4:    rgba(0, 0, 0, .4);          // 黑色 - 透明度 - 4
+$color-black-opacity5:    rgba(0, 0, 0, .5);          // 黑色 - 透明度 - 5
+$color-black-opacity6:    rgba(0, 0, 0, .6);          // 黑色 - 透明度 - 6
+$color-black-opacity7:    rgba(0, 0, 0, .7);          // 黑色 - 透明度 - 7
+$color-black-opacity8:    rgba(0, 0, 0, .8);          // 黑色 - 透明度 - 8
+$color-black-opacity9:    rgba(0, 0, 0, .9);          // 黑色 - 透明度 - 9
+
+
+$color-primary:           #4588BF;                    // 颜色 - 整体主题
+$color-success:           #3BD2B9;                    // 颜色 - 成功
+$color-warning:           #F3A34E;                    // 颜色 - 提醒
+$color-danger:            #F5806C;                    // 颜色 - 失败
+$color-info:              #909399;                    // 颜色 - 信息
+
+$text-red:                #DD523F;                    // 整体 - 字体色 -  红
+$text-green:              #519792;                    // 整体 - 字体色 -  绿
+$text-orange:             #E79E4F;                    // 整体 - 字体色 -  橙
+
+// ------------------- Button -------------------
+$btn-primary-bg:          $color-primary;               // 按钮 - 主按钮 - 背景色 - 白天黑夜通用
+$btn-primary-bg-hover:    #6AA0CC;                    // 按钮 - 主按钮 - 背景色 - 白天黑夜通用
+$btn-primary-color:       #FFF;                       // 按钮 - 主按钮 - 字体色 - 白天黑夜通用
+
+$btn-text-color:          $color-primary;               // 按钮 - 纯文字按钮 - 白天黑夜通用
+$btn-text-color-hover:    #3B8AB1;                    // 按钮 - 纯文字按钮 - hover - 白天黑夜通用
+
+// ------------------- spot -------------------
+$spot-red:                #DD523F;
+$spot-green:              #52A28C;
+$spot-orange:             #E79E4F;
+$spot-gray:               #878787;
+
+
+$themes: (
+  /* 
+   * 白天版
+   */
+  light: (
+    /* font-size */
+    font-size-default: 14px,
+    font-size-lg: 16px,
+    font-size-sm: 12px,
+ 
+    bg-color-layout: #F0F3F7,             // 页面整体 - 背景色 - 白天版
+
+
+    // ------------------- Text -------------------
+
+    text-color-max: $color-black,                     // 整体 - 字体色 - 白天版 - 最明亮（纯黑）
+    text-color-title: $color-black-opacity8,          // 整体 - 字体色 - 白天版 - 较明亮（标题）
+    text-color-default: $color-black-opacity6,        // 整体 - 字体色 - 白天版 - 常规（默认）
+    text-color-secondary: $color-black-opacity5,      // 整体 - 字体色 - 白天版 - 较暗（二级）
+    text-color-minor: $color-black-opacity4,          // 整体 - 字体色 - 白天版 - 次暗（次级）
+    text-color-min: $color-black-opacity3,            // 整体 - 字体色 - 白天版 - 最暗
+    text-color-disabled: $color-black-opacity2,       // 整体 - 字体色 - 白天版 - disabled
+    text-color-placeholder: $color-black-opacity2,    // 整体 - 字体色 - 白天版 - placeholder
+
+    text-color-blue-minor: #6E8FA7,    // 字体色 - 白天版 - 次级蓝
+    text-color-red: #C04B4C,           // 字体色 - 白天版 - 红
+    text-color-green: #519792,         // 字体色 - 白天版 - 绿
+    text-color-orange: #E79E4F,        // 字体色 - 白天版 - 橙
+
+    bg-color-divider:#EBEEF5,           // 整体 - 分隔线颜色 - 白天版
+
+    // ------------------- Card -------------------
+    bg-color-card-header: #F6F9FD,                          // 卡片 - 白天版 - 背景色 - 标题
+    bg-color-card-header-bar: #3B8AB1,                      // 卡片 - 白天版 - 背景色 - 标题左边的小色块
+    bg-color-card-content: $color-white,                      // 卡片 - 白天版 - 背景色 - 内容
+    text-color-card-header: $color-black-opacity8,            // 卡片 - 白天版 - 字体色 - 标题
+    box-shadow-card: 0 0 10px 0 rgba(225, 225, 225,.5),     // 卡片 - 白天版 - 边框色 - 阴影
+
+
+    // ------------------- Button -------------------
+    text-color-btn:       #FFF,                            // 按钮 - 字体色 - 白天黑夜通用
+
+    bg-color-btn-primary: $color-primary,                      // 按钮 - 主要按钮 - 背景色
+    bg-color-btn-success: $color-success,                      // 按钮 - 成功按钮 - 背景色
+    bg-color-btn-warning: $color-warning,                      // 按钮 - 提醒按钮 - 背景色
+    bg-color-btn-danger: $color-danger,                        // 按钮 - 失败按钮 - 背景色
+    bg-color-btn-info: $color-info,                            // 按钮 - 信息按钮 - 背景色
+    bg-color-btn-primary-hover: lighten($color-primary,10%),   // 按钮 - 主要按钮 - hover背景色
+    bg-color-btn-success-hover: lighten($color-success,10%),   // 按钮 - 成功按钮 - hover背景色
+    bg-color-btn-warning-hover: lighten($color-warning,10%),   // 按钮 - 提醒按钮 - hover背景色
+    bg-color-btn-danger-hover: lighten($color-danger,10%),     // 按钮 - 失败按钮 - hover背景色
+    bg-color-btn-info-hover: lighten($color-info,10%),         // 按钮 - 信息按钮 - hover背景色
+    border-color-btn-primary: lighten($color-primary,5%),       // 按钮 - 主要按钮 - 边框色
+    border-color-btn-success: lighten($color-success,5%),       // 按钮 - 成功按钮 - 边框色
+    border-color-btn-warning: lighten($color-warning,5%),       // 按钮 - 提醒按钮 - 边框色
+    border-color-btn-danger: lighten($color-danger,5%),         // 按钮 - 失败按钮 - 边框色
+    border-color-btn-info: lighten($color-info,5%),             // 按钮 - 信息按钮 - 边框色
+    
+
+    bg-color-btn-default: #6E8FA7,                           // 按钮 - 默认按钮 - 背景色
+    bg-color-btn-default-icon: #6E8FA7,                      // 按钮 - 默认按钮 - 图标色
+    bg-color-btn-checked: #F8F9FA,                           // 按钮 - 默认按钮 - 选中状态 - checked勾
+    bg-color-btn-up-down: #DFE7F2,                           // 按钮 - 默认按钮 - 上下箭头
+    bg-color-btn-up-down-hover: #D9E2F4,                     // 按钮 - 默认按钮 - 上下箭头 hover
+
+    text-color-btn-default: $color-black-opacity8,              // 按钮 - 默认按钮 - 字体色
+    text-color-btn-default-disabled: $color-black-opacity2,     // 按钮 - 默认按钮 - 禁止状态 - 字体色
+    border-color-btn-default-disabled: $color-black-opacity2,   // 按钮 - 默认按钮 - 禁止状态 - 边框色
+    border-color-btn-default: #6E8FA7,                        // 按钮 - 默认按钮 - 边框色
+    border-color-btn-default-hover: #C7DBEC,                  // 按钮 - 默认按钮 - hover 边框色
+
+    // ------------------- Tab -------------------
+    bg-color-tab:                #E2E8F1,                     // Tab - 卡片型 - 背景色 - 白天版
+    bg-color-tab-active:         #4588BF,                     // Tab - 卡片型 - 背景色 - active状态
+    bg-color-tab-btn-active:     #6F94B0,                     // Tab - 按钮 - 选中状态 - 白天版
+    
+    text-color-tab:             $color-black-opacity5,          // Tab - 卡片型 - 字体色 - 白天版
+    text-color-tab-menu:        #909399,                      // 像Tab的Menu - 字体色 - 白天版
+    
+    border-color-tab:            #DDE3EA,                     // Tab - 按钮型 - 边框色 - 白天版
+    border-color-tab-bar:        #DFE7F2,                     // Tab - 底部横线 - 白天版
+    border-color-tab-menu:       #DFE7F2,                     // 像Tab的Menu - border - 白天版
+
+    // ------------------- 列表 -------------------
+    bg-color-list:          #F6F9FD,                          // 列表项 - 背景色 - 白天版
+
+    // ------------------- 下拉菜单 -------------------
+    bg-color-dropdown-item: #FFF,                             // 下拉菜单 - 选项 - hover状态 - 白天版
+    bg-color-dropdown-item-hover: #EDF1FA,                    // 下拉菜单 - 选项 - hover状态 - 白天版
+    
+    // ------------------- 进度条 -------------------
+    bg-color-progress-default-front:  #5993CC,                // 进度条 - 默认 - 前景色 - 白天版
+    bg-color-progress-default:  #C1D6EB,                      // 进度条 - 默认 - 前景色 - 白天版
+
+    // ------------------- Table -------------------
+    bg-color-table:               $color-white,               // 表格 - 背景色 - 整体 - 白天版
+    bg-color-table-header:        #EDF1FA,                    // 表格 - 背景色 - 表头 - 白天版
+    bg-color-table-strip:         #F6F9FD,                    // 表格 - 背景色 - 隔行 - 白天版
+    bg-color-table-tr-hover:      #EDF1FA,                    // 表格 - 背景色 - 行 - hover状态 - 白天版
+    bg-color-table-tr-active:     #D0DAEF,                    // 表格 - 背景色 - 行 - active状态 - 白天版 - TODO: 待改进
+    bg-color-table-footer:        #EDF1FA,                    // 表格 - 背景色 - 合计行 - 白天版
+    bg-color-ag-grid-tool-panel:  #F6F9FD,                    // Ag-grid - 背景色 - 侧边工具栏 - 白天版
+
+    text-color-table:            $color-black-opacity6,        // 表格 - 字体色 - 边框 - 白天版
+    text-color-table-header:     $color-black-opacity8,        // 表格 - 字体色 - 表头 - 白天版
+    border-color-table:           #DFE7F2,                     // 表格 - 边框颜色 - 白天版
+    // --------------------- 页码 -------------------
+    bg-color-pagination-input:   #F1F5FA,                      // 页码中的input - 背景色 - 白天版
+
+    // ------------------- Form -------------------
+    text-color-label:                 $color-black-opacity8,            // 表单 - lable - 字体色 - 白天版
+    bg-color-input:                   $color-white,                     // 表单 - input - 背景色 - 白天版
+    text-color-input:                 $color-black-opacity8,            // 表单 - input - 背景色 - 白天版
+    border-color-input:               #C4D0E0,                          // 表单 - input - 边框色 - 白天版
+    border-color-input-hover:         rgba(50, 120, 179, 0.6),          // 表单 - input - 边框色 - 白天版 注：原设计是#4588BF,但我觉得太深
+    border-color-input-disabled:      #DFE7F2,                          // 表单 - input - 边框色 - disabled状态 - 白天版
+    bg-color-input-color-icon:        $color-black-opacity6,            // 表单 - input - 背景色 - 白天版
+    bg-color-input-disabled:          #F6F9FD,                          // 表单 - input - disabled - 背景色 - 白天版
+    text-color-header-input-prefix:   $color-black-opacity3,            // 放在卡片头的input - 图标颜色 - 白天版
+    border-color-header-input:        #DFE7F2,                          // 放在卡片头的input - 边框颜色 - 白天版
+    text-color-select-option-hover:   $color-black-opacity8,            // 表单 - 下拉菜单 - 选项hover - 字体色 - 白天版
+    bg-color-select-option-hover:     #E6ECF7,                          // 表单 - 下拉菜单 - 选项hover - 背景色 - 白天版
+    bg-color-select-dropdown:         $color-white,                     // 表单 - 下拉菜单 - 背景色 - 白天版
+    box-shadow-select-dropdown: 0 10px 16px 0 rgba(55, 75, 94, 0.12),   // 表单 - 下拉菜单 - 阴影 - 白天版
+    text-color-selector:              rgba(50, 120, 179, 0.6),          // 看起来像文字hover才显示为input的选择框 -字体色 - 白天版
+    border-color-checkbox:            rgba(179, 194, 209, 0.5),         // 表单 - checkbox - 边框色 - 白天版
+    bg-color-checkbox-inner-checked:   $color-white,                    // 表单 - checkbox - 勾 - 白天版
+    bg-color-checkbox-checked:        #6E8FA7,                          // 表单 - checkbox - 背景色 - 选中状态 - 白天版
+    bg-color-checkbox-disabled:       rgba(111, 148, 176, 0.4),         // 表单 - checkbox - 背景色 - 禁用状态 - 白天版
+    border-color-checkbox-disabled:   rgba(179, 194, 209, 0.3),         // 表单 - checkbox - 边框色 - 禁用状态 - 白天版
+    bg-color-checkbox-checked-disabled:     #6E8FA7,                    // 表单 - checkbox - 背景色 - 选中状态 - 白天版
+    border-color-checkbox-checked-disabled: rgba(179, 194, 209, 0.3),   // 表单 - checkbox - 边框色 - 禁用状态 - 白天版
+    bg-color-radio-btn-checked:             #6F94B0,                    // 按钮型radio - 背景色 - 选中状态 - 白天版
+    bg-color-datepicker:                    $color-white,               // 表单 - datepicker - 背景色 - 白天版
+    bg-color-datepicker-color-disabled:     #1D1D1D,                    // 表单 - datepicker - 背景色 - 白天版
+    border-color-form-error:                $color-black-opacity1,      // switch切换按钮 - 背景色 - 非选中时 - 白天版
+    bg-color-switch-inactive:               $color-primary,             // switch切换按钮 - 背景色 - 选中时 - 黑白通用
+
+    // ------------------- tag -------------------
+    bg-color-tag-purple:            #7480C5,              // tag标签 - 背景色 - 紫色 - 白天版
+    bg-color-tag-red:               #DD523F,              // tag标签 - 背景色 - 红色 - 白天版
+    bg-color-tag-blue:              #3B8AB1,              // tag标签 - 背景色 - 蓝色 - 白天版
+    bg-color-tag-blue-light:        #24ACCB,              // tag标签 - 背景色 - 蓝色(亮) - 白天版
+    bg-color-tag-yellow:            #D8B475,              // tag标签 - 背景色 - 黄色 - 白天版
+    bg-color-tag-green:             #6BA07C,              // tag标签 - 背景色 - 绿色 - 白天版
+    bg-color-tag-orange:            #EA8336,              // tag标签 - 背景色 - 橙色 - 白天版
+
+    // ------------------- Dialog -------------------
+    text-color-dialog-title:        $color-black-opacity8,      // 弹窗 - 标题 - 字体色 - 白天版
+    box-shadow-dialog: 0 4px 8px 0  rgba(129, 172, 224, 0.12),  // 弹窗 - 内容 - 阴影 - 白天版
+
+    bg-color-dialog-mask:           rgba(255, 255, 255, 0.96),  // 弹窗 - 遮罩 - 背景色 - 白天版
+    bg-color-dialog:                $color-white,               // 弹窗 - 内容 - 背景色 - 白天版
+    bg-color-dialog-form-input:     #F6F9FD,                    // 弹窗 - 表单 - input - 背景色 - 白天版
+    bg-color-dialog-form-footer:    rgba(246, 249, 253, 0.3),   // 弹窗 - 表单 - footer - 背景色 - 白天版
+    bg-color-dialog-transfer:       #F6F9FD,                    // 弹窗 - 穿梭框 - 背景色 - 白天版
+    bg-color-transfer-close-hover:  #8FA9BC,                    // 弹窗 - 穿梭框 - 关闭按钮 - hover背景色 - 白天版
+
+    // ------------------- Loading -------------------
+    bg-color-loading:           rgba(248, 251, 255, 0.9),       // loading - 遮罩 - 背景色 - 白天版
+    bg-color-no-data:           rgba(248, 251, 255, 0.5),       // loading - 遮罩 - 背景色 - 白天版
+    // ------------------- 遮罩层mask -------------------
+    bg-color-mask:              #F6F9FD,                        // 遮罩层mask - 背景色 - 白天版
+
+    // ------------------- scrollbar -------------------
+    bg-color-scrollbar:            rgba(204, 204, 204, 0.3),       // 滚动条 - 颜色 - 白天版
+    bg-color-scrollbar-hover:      rgba(204, 204, 204, 0.4),       // 滚动条 - 颜色 - 白天版
+    bg-color-scrollbar-body:       rgba(204, 204, 204, 0.8),       // 滚动条 - body - 颜色 - 白天版
+    bg-color-scrollbar-body-hover: rgba(204, 204, 204, 0.9),       // 滚动条 - body - 颜色 - hover - 白天版
+    bg-color-scrollbar-md:         rgba(204, 204, 204, 0.7),       // 滚动条 - 颜色 - 白天版 - 更深
+    bg-color-scrollbar-md-hover:   rgba(204, 204, 204, 0.8),       // 滚动条 - 颜色 - 白天版 - 更深
+
+    // --------------------- sidebar -------------------
+    text-color-sidebar:           $color-black-opacity6,            // 左侧子菜单 - 字体色 - 白天版
+    text-color-sidebar-active:    $color-black,                     // 左侧子菜单 - 字体色 - active - 白天版
+
+    bg-color-sidebar:             $color-white,                     // 左侧子菜单 - 背景色 - 白天版
+    bg-color-sidebar-item-active: #F6F9FD,                          // 左侧子菜单 - 背景色 - active - 白天版
+    bg-color-sidebar-icon:        #C1C8D0,                          // 左侧子菜单 - 图标色 - 白天版
+    bg-color-sidebar-toggle-icon: #A3ADB8,                          // 左侧子菜单 - toggle按钮色 - 白天版
+
+    // --------------------- 文章 -------------------
+    text-color-article-top-order:   #999,                           // 文章排行数字  - 字体色 - 白天版
+    // --------------------- 折叠面板 -------------------
+    border-color-collapse:          #F0F3F7,                        // 折叠面板 - border - 白天版
+    box-shadowcollapse:  0 0 10px 0 rgba(225, 225, 225,.5),         // 折叠面板 - 阴影 - 白天版
+    // --------------------- 时间轴 -------------------
+    border-color-timeline-line:     #DFE7F2,                        // 时间轴 - 线颜色 - 白天版
+
+    // --------------------- message (微信消息) -------------------
+    bg-color-message-active:        #F6F9FD,                 // 微信消息 - 选中状态 - 白天版
+    bg-color-message-content:       #FFF,                    // 微信消息 - 聊天正文 - 白天版
+    bg-color-message-content-hover: #FFF,                    // 微信消息 - 聊天正文 - 白天版
+
+    // --------------------- 拖拽容器 -------------------
+    bg-color-drag-handler-hover:    rgba(69, 136, 191, 0.3),
+    // ------------------- tree -------------------
+    bg-color-tree-node-hover:       #EDF1FA,                     // 树 - 节点 - 背景色 - 白天版
+    text-color-tree-expand-icon:    #C0C4CC,                     // 树 - 节点icon - 字体色 - 白天版
+
+
+
+  ),
+  
+  /* 
+    * 黑夜版
+    */
+  dark: (
+    /* font-size */
+    font-size-default: 14px,
+    font-size-lg: 16px,
+    font-size-sm: 12px,
+
+    bg-color-layout: #000, // 页面整体 - 背景色 - 黑夜版
+
+
+    // ------------------- Text -------------------
+    text-color-max: $color-white,                     // 整体 - 字体色 - 黑夜版 - 最明亮（纯白）
+    text-color-title: $color-white-opacity8,          // 整体 - 字体色 - 黑夜版 - 较明亮（标题）
+    text-color-default: $color-white-opacity6,        // 整体 - 字体色 - 黑夜版 - 常规（默认）
+    text-color-secondary: $color-white-opacity5,      // 整体 - 字体色 - 黑夜版 - 较暗（二级）
+    text-color-minor: $color-white-opacity4,          // 整体 - 字体色 - 黑夜版 - 次暗（次级）
+    text-color-min: $color-white-opacity3,            // 整体 - 字体色 - 黑夜版 - 最暗
+    text-color-disabled: $color-white-opacity2,       // 整体 - 字体色 - 黑夜版 - disabled
+    text-color-placeholder: $color-white-opacity2,    // 整体 - 字体色 - 黑夜版 - placeholder
+
+    text-color-blue-minor: #6F94B0,    // 字体色 - 黑夜版 - 次级蓝
+    text-color-red: #E25858,           // 字体色 - 黑夜版 - 红
+    text-color-green: #60A27A,         // 字体色 - 黑夜版 - 绿
+    text-color-orange: #E79E4F,        // 字体色 - 黑夜版 - 橙
+
+    bg-color-divider: rgba(255, 255, 255, 0.12),                       // 整体 - 分隔线颜色 - 黑夜版
+
+    // ------------------- Card -------------------
+    bg-color-card-header: #0C0C0C,                    // 卡片 - 黑夜版 - 背景色 - 标题
+    bg-color-card-header-bar: #3B8AB1,                // 卡片 - 黑夜版 - 背景色 - 标题左边的小色块
+    bg-color-card-content: #171717,                   // 卡片 - 黑夜版 - 背景色 - 内容
+    text-color-card-header: $color-white-opacity8,    // 卡片 - 黑夜版 - 字体色 - 标题
+    box-shadow-card: 0 0 10px 0 rgba(0, 0, 0, .4),    // 卡片 - 黑夜版 - 边框色 - 阴影
+    
+    
+    // ------------------- Button -------------------
+    text-color-btn:       #FFF,                            // 按钮 - 字体色 - 白天黑夜通用
+
+    bg-color-btn-primary: darken($color-primary,5%),          // 按钮 - 主要按钮 - 背景色
+    bg-color-btn-success: darken($color-success,5%),          // 按钮 - 成功按钮 - 背景色
+    bg-color-btn-warning: darken($color-warning,5%),          // 按钮 - 提醒按钮 - 背景色
+    bg-color-btn-danger: darken($color-danger,5%),            // 按钮 - 失败按钮 - 背景色
+    bg-color-btn-info: darken($color-info,5%),                // 按钮 - 信息按钮 - 背景色
+    bg-color-btn-primary-hover: lighten($color-primary,5%),   // 按钮 - 主要按钮 - hover背景色
+    bg-color-btn-success-hover: lighten($color-success,5%),   // 按钮 - 成功按钮 - hover背景色
+    bg-color-btn-warning-hover: lighten($color-warning,5%),   // 按钮 - 提醒按钮 - hover背景色
+    bg-color-btn-danger-hover: lighten($color-danger,5%),     // 按钮 - 失败按钮 - hover背景色
+    bg-color-btn-info-hover: lighten($color-info,5%),         // 按钮 - 信息按钮 - hover背景色
+    border-color-btn-primary: $color-primary,                 // 按钮 - 主要按钮 - 边框色
+    border-color-btn-success: $color-success,                 // 按钮 - 成功按钮 - 边框色
+    border-color-btn-warning: $color-warning,                 // 按钮 - 提醒按钮 - 边框色
+    border-color-btn-danger: $color-danger,                   // 按钮 - 失败按钮 - 边框色
+    border-color-btn-info: $color-info,                       // 按钮 - 信息按钮 - 边框色
+
+    bg-color-btn-default: #6E8FA7,                              // 按钮 - 默认按钮 - 背景色
+    bg-color-btn-default-icon: #6F94B0,                         // 按钮 - 默认按钮 - 图标色
+    bg-color-btn-checked: #F8F9FA,                              // 按钮 - 默认按钮 - 选中状态 - checked勾
+    bg-color-btn-up-down: rgba(111, 148, 176, 0.2),             // 按钮 - 默认按钮 - 上下箭头
+    bg-color-btn-up-down-hover: rgba(111, 148, 176, 0.6),       // 按钮 - 默认按钮 - 上下箭头 hover
+
+    text-color-btn-default: $color-white-opacity8,              // 按钮 - 默认按钮 - 字体色
+    text-color-btn-default-disabled: $color-white-opacity2,     // 按钮 - 默认按钮 - 禁止状态 - 字体色
+    border-color-btn-default-disabled: $color-white-opacity2,   // 按钮 - 默认按钮 - 禁止状态 - 边框色
+    border-color-btn-default: #6E8FA7,                          // 按钮 - 默认按钮 - 边框色
+    border-color-btn-default-hover: #4E5861,                    // 按钮 - 默认按钮 - hover 边框色
+
+
+    // ------------------- Tab -------------------
+    bg-color-tab:              #252525,                         // Tab - 卡片型 - 背景色 - 黑夜版
+    bg-color-tab-active:       #4588BF,                         // Tab - 卡片型 - 背景色 - active状态
+    bg-color-tab-btn-active:   #6F94B0,                         // Tab - 按钮 - 选中状态 - 黑夜版
+
+    text-color-tab:           $color-white-opacity5,              // Tab - 卡片型 - 字体色 - 黑夜版
+    text-color-tab-menu:      #909399,                          // 像Tab的Menu - 字体色 - 黑夜版
+
+    border-color-tab:          rgba(223, 231, 242, 0.1),        // Tab - 按钮型 - 边框色 - 黑夜版
+    border-color-tab-bar:      rgba(223, 231, 242, 0.16),       // Tab - 底部横线 - 黑夜版
+    border-color-tab-menu:     #424E63,                         // 像Tab的Menu - border - 黑夜版
+
+    // ------------------- 列表 -------------------
+    bg-color-list:          #1A1A1A,                            // 列表项 - 背景色 - 黑夜版
+
+    // ------------------- 下拉菜单 -------------------
+    bg-color-dropdown-item: #2C2C2C,                            // 下拉菜单 - 选项 - hover状态 - 黑夜版
+    bg-color-dropdown-item-hover: #353535,                      // 下拉菜单 - 选项 - hover状态 - 黑夜版
+
+    // ------------------- 进度条 -------------------
+    bg-color-progress-default-front: #4588BF,                   // 进度条 - 默认 - 前景色 - 黑夜版
+    bg-color-progress-default: #8A8F94,                         // 进度条 - 默认 - 背景色 - 黑夜版
+
+    // ------------------- Table -------------------
+    bg-color-table:            #171717,                        // 表格 - 背景色 - 整体 - 黑夜版
+    bg-color-table-header:     #2E2E2E,                        // 表格 - 背景色 - 表头 - 黑夜版
+    bg-color-table-strip:      #0D0D0D,                        // 表格 - 背景色 - 隔行 - 黑夜版
+    bg-color-table-tr-hover:   #353535,                        // 表格 - 背景色 - 行 - hover状态 - 黑夜版
+    bg-color-table-tr-active:   #404040,                       // 表格 - 背景色 - 行 - active状态 - 黑夜版 - TODO: 待改进 rgba(69,148,209,.4)
+    bg-color-table-footer:      #353535,                       // 表格 - 背景色 - 合计行 - 黑夜版
+    bg-color-ag-grid-tool-panel:  #171717,                     // Ag-grid - 背景色 - 侧边工具栏 - 黑夜版
+    bg-color-ag-grid-strip:    #1F1F1F,                        // Ag-grid - 背景色 - 隔行 - 黑夜版
+
+    text-color-table:         $color-white-opacity6,            // 表格 - 字体色 - 边框 - 黑夜版
+    text-color-table-header:  $color-white-opacity8,            // 表格 - 字体色 - 表头 - 黑夜版
+    border-color-table:  rgba(223, 231, 242, 0.16),             // 表格 - 边框颜色 - 黑夜版 rgba(223, 231, 242, 0.16)
+    // --------------------- 页码 -------------------
+    bg-color-pagination-input:   #0A0A0A,                      // 页码中的input - 背景色 - 黑夜版
+
+    // ------------------- Form -------------------
+    text-color-label:         $color-white-opacity8,           // 表单 - lable - 字体色 - 黑夜版
+    bg-color-input:            #0D0D0D,                       // 表单 - input - 背景色 - 黑夜版
+    text-color-input:         $color-white-opacity8,      // 表单 - input - 背景色 - 黑夜版
+    border-color-input:        rgba(223, 231, 242, 0.16),     // 表单 - input - 边框色 - 黑夜版
+    border-color-input-hover:  #519EDD,                       // 表单 - input - 边框色 - 黑夜版
+    border-color-input-disabled:  rgba(189, 195, 199, 0.1),   // 表单 - input - 边框色 - disabled状态 - 黑夜版
+    bg-color-input-color-icon:    rgba(255, 255, 255, 0.6),      // 表单 - input - 背景色 - 黑夜版
+    bg-color-input-disabled:   $color-black,                          // 表单 - input - disabled - 背景色 - 黑夜版
+    text-color-header-input-prefix: $color-white-opacity3,    // 放在卡片头的input - 图标颜色 - 黑夜版
+    border-color-header-input: rgba(255, 255, 255, 0.12),     // 放在卡片头的input - 边框颜色 - 黑夜版
+    text-color-select-option-hover:   $color-white-opacity8,   // 表单 - 下拉菜单 - 选项hover - 字体色 - 黑夜版
+    bg-color-select-option-hover:   #303030,                  // 表单 - 下拉菜单 - 选项hover - 背景色 - 黑夜版
+    bg-color-select-dropdown:       #1D1D1D,                  // 表单 - 下拉菜单 - 背景色 - 黑夜版
+    box-shadow-select-dropdown: 0 10px 16px 0 $color-black-opacity5,      // 表单 - 下拉菜单 - 阴影 - 黑夜版
+    text-color-selector: #6F94B0,                       // 看起来像文字hover才显示为input的选择框 -字体色 - 黑夜版
+    border-color-checkbox:     rgba(179, 194, 209, 0.5),      // 表单 - checkbox - 边框色 - 黑夜版
+    bg-color-checkbox-inner-checked: $color-black,                 // 表单 - checkbox - 勾 - 黑夜版
+    bg-color-checkbox-checked:  #6F94B0,                      // 表单 - checkbox - 背景色 - 选中状态 - 黑夜版
+    bg-color-checkbox-disabled: rgba(111, 148, 176, 0.4),     // 表单 - checkbox - 背景色 - 禁用状态 - 黑夜版
+    border-color-checkbox-disabled: rgba(179, 194, 209, 0.3), // 表单 - checkbox - 边框色 - 禁用状态 - 黑夜版
+    bg-color-checkbox-checked-disabled: #6F94B0,              // 表单 - checkbox - 背景色 - 选中状态 - 黑夜版
+    border-color-checkbox-checked-disabled: rgba(179, 194, 209, 0.3), // 表单 - checkbox - 边框色 - 禁用状态 - 黑夜版
+    bg-color-radio-btn-checked:         #6F94B0,             // 按钮型radio - 背景色 - 选中状态 - 黑夜版
+    bg-color-datepicker:               #1D1D1D,              // 表单 - datepicker - 背景色 - 黑夜版
+    bg-color-datepicker-color-disabled:  $color-white-opacity2, // 表单 - datepicker - 背景色 - 黑夜版
+    border-color-form-error:      #E25858,                           // 表单 - 出错 - border - 黑夜版
+    bg-color-switch-inactive: #888,       // switch切换按钮 - 背景色 - 非选中时 - 黑夜版
+
+    // ------------------- tag -------------------
+    bg-color-tag-purple:          #626DA9,              // tag标签 - 背景色 - 紫色 - 黑夜版
+    bg-color-tag-red:             #CA523C,              // tag标签 - 背景色 - 红色 - 黑夜版
+    bg-color-tag-blue:            #357EA3,              // tag标签 - 背景色 - 蓝色 - 黑夜版
+    bg-color-tag-blue-light:      #2096B2,              // tag标签 - 背景色 - 蓝色(亮) - 黑夜版
+    bg-color-tag-yellow:          #B19020,              // tag标签 - 背景色 - 黄色 - 黑夜版
+    bg-color-tag-green:           #5D8B6B,              // tag标签 - 背景色 - 绿色 - 黑夜版
+    bg-color-tag-orange:          #E27F35,              // tag标签 - 背景色 - 橙色 - 黑夜版
+
+    // ------------------- Dialog -------------------
+    text-color-dialog-title: #FFF,                           // 弹窗 - 标题 - 字体色 - 黑夜版
+    box-shadow-dialog: none,                                  // 弹窗 - 内容 - 阴影 - 黑夜版
+
+    bg-color-dialog-mask:    rgba(0, 0, 0, 0.96),             // 弹窗 - 遮罩 - 背景色 - 黑夜版
+    bg-color-dialog:         #171717,                         // 弹窗 - 内容 - 背景色 - 黑夜版
+    bg-color-dialog-form-input: #0D0D0D,                      // 弹窗 - 表单 - input - 背景色 - 黑夜版
+    bg-color-dialog-form-footer: #121212,                     // 弹窗 - 表单 - footer - 背景色 - 黑夜版
+    bg-color-dialog-transfer:  #0A0A0A,                       // 弹窗 - 穿梭框 - 背景色 - 黑夜版
+    bg-color-transfer-close-hover:  #6C8FAA,                  // 弹窗 - 穿梭框 - 关闭按钮 - hover背景色 - 黑夜版
+
+    // ------------------- Loading -------------------
+    bg-color-loading:         rgba(0, 0, 0, 0.9),             // loading - 遮罩 - 背景色 - 黑夜版
+    bg-color-no-data:         rgba(0, 0, 0, 0.5),             // loading - 遮罩 - 背景色 - 黑夜版
+    // ------------------- 遮罩层mask -------------------
+    bg-color-mask:          #000,                                // 遮罩层mask - 背景色 - 黑夜版
+
+    // ------------------- scrollbar -------------------
+    bg-color-scrollbar:     rgba(204, 204, 204, 0.2),       // 滚动条 - 颜色 - 黑夜版
+    bg-color-scrollbar-hover: rgba(204, 204, 204, 0.3),       // 滚动条 - 颜色 - 黑夜版
+    bg-color-scrollbar-body:  rgba(204, 204, 204, 0.8),         // 滚动条 - body - 颜色 - 黑夜版
+    bg-color-scrollbar-body-hover:   rgba(204, 204, 204, 0.9),       // 滚动条 - body - 颜色 - hover - 黑夜版
+    bg-color-scrollbar-md:     rgba(204, 204, 204, 0.3),       // 滚动条 - 颜色 - 黑夜版 - 更深
+    bg-color-scrollbar-md-hover: rgba(204, 204, 204, 0.4),       // 滚动条 - 颜色 - 黑夜版 - 更深
+
+    // --------------------- sidebar -------------------
+    text-color-sidebar:       $color-white-opacity6,             // 左侧子菜单 - 字体色 - 黑夜版
+    text-color-sidebar-active: $color-white,                // 左侧子菜单 - 字体色 - active - 黑夜版
+
+    bg-color-sidebar:       #171717,                          // 左侧子菜单 - 背景色 - 黑夜版
+    bg-color-sidebar-item-activ: #0C0C0C,                     // 左侧子菜单 - 背景色 - active - 黑夜版
+    bg-color-sidebar-icon:  rgba(255, 255, 255, 0.3),        // 左侧子菜单 - 图标色 - 黑夜版
+    bg-color-sidebar-toggle-icon:  #A9A9A9,                 // 左侧子菜单 - toggle按钮色 - 黑夜版
+
+    // --------------------- 文章 -------------------
+    text-color-article-top-order: #767676,                   // 文章排行数字  - 字体色 - 黑夜版
+    // --------------------- 折叠面板 -------------------
+    border-color-collapse: rgba(255, 255, 255, 0.12),         // 折叠面板 - border - 黑夜版
+    box-shadowcollapse: 0 0 10px 0 rgba(0, 0, 0, .4),     // 折叠面板 - 阴影 - 黑夜版
+    // --------------------- 时间轴 -------------------
+    border-color-timeline-line: #424E63,                             // 时间轴 - 线颜色 - 黑夜版
+    // --------------------- message (微信消息) -------------------
+    bg-color-message-active:          #222,                    // 微信消息 - 选中状态 - 黑夜版
+    bg-color-message-content:         #111,                    // 微信消息 - 聊天正文 - 黑夜版
+    bg-color-message-content-hover:   #111,                    // 微信消息 - 聊天正文 - 黑夜版
+    // ------------------- tree -------------------
+    bg-color-tree-node-hovert:  #353535,                  // 树 - 节点 - 背景色 - 黑夜版
+    text-color-tree-expand-icon:  #666,                   // 树 - 节点icon - 字体色 - 黑夜版
+    
+    
+  ),
+);

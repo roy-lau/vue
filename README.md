@@ -1,20 +1,25 @@
+# vue-theme-sass(vue做的 sass 主题项目)
 
-## 项目列表
+## Project setup
+```
+yarn install
+```
 
-* 京东金融 [演示](https://roy-lau.github.io/web_list/jdjr/) [源码](https://github.com/roy-lau/vue/tree/jdjr)
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
 
-* 天器商城 [源码](https://github.com/roy-lau/vue/tree/mall)
+### Compiles and minifies for production
+```
+yarn build
+```
 
-* 美团pc [源码](https://github.com/roy-lau/vue/tree/mt-pc)
+### Lints and fixes files
+```
+yarn lint
+```
 
-* 金融后台 [源码](https://github.com/roy-lau/vue/tree/fund-back)
+### 下载
 
-* 音乐mobile [源码](https://github.com/roy-lau/vue/tree/app-music-mobile)
-
-* 商品网 [演示](https://roy-lau.github.io/web_list/vuejs-shopping/) [源码](https://github.com/roy-lau/vue/tree/vue2-shopping)
-
-
-
-[vuex vuex 最佳实践(I think)](vuex.md)
-
-
+git clone git@github.com:roy-lau/vue.git --depth=1 -b theme-sass vue-theme-sass

@@ -1,0 +1,454 @@
+//=========================
+// 通用
+//=========================
+//$font-family: Chinese Quote,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
+$font-family: Chinese Quote, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Helvetica Neue", Helvetica,  "Hiragino Sans GB", "Microsoft YaHei", Arial, SimSun, sans-serif;
+
+$color-up: #EF6262;                       // 颜色-涨
+$color-down: #7DB174;                     // 颜色-跌
+
+$color-primary: #4588BF;                  // 颜色 - 整体主题
+$color-success: #3BD2B9;                  // 颜色 - 成功
+$color-warning: #F3A34E;                  // 颜色 - 提醒
+$color-danger: #F5806C;                   // 颜色 - 失败
+$color-info: #909399;                     // 颜色 - 信息
+
+$spacer:                    16px;                         // 页面整体 - 间距
+
+
+//=========================
+// 主题 - 颜色
+//=========================
+$color-primary-day:         #4588BF;                       // 主题色 - 白天版
+$color-primary-night:       #4588BF;                       // 主题色 - 黑夜版
+$color-primary-darker:      #3B8AB1;                       // 主题色 - 黑夜版
+
+$color-white:               #FFF;                          // 白色
+$color-black:               #000;                          // 黑色
+
+$layout-bg-day:             #F0F3F7;                       // 页面整体 - 背景色 - 白天版
+$layout-bg-night:           #000;                          // 页面整体 - 背景色 - 黑夜版
+
+$text-default-day:          rgba(0, 0, 0, 0.6);            // 整体 - 字体色 - 正常 - 白天版
+$text-default-night:        rgba(255, 255, 255, 0.6);      // 整体 - 字体色 - 正常 - 黑夜版
+
+$text-max-day:              #000;                          // 整体 - 字体色 - 最明亮 - 白天版
+$text-max-night:            #FFF;                          // 整体 - 字体色 - 最明亮 - 黑夜版
+
+$text-title-day:            rgba(0, 0, 0, 0.8);            // 整体 - 字体色 - 较明亮 - 白天版
+$text-title-night:          rgba(255, 255, 255, 0.8);      // 整体 - 字体色 -  较明亮 - 黑夜版
+
+$text-secondary-day:        rgba(0, 0, 0, 0.5);            // 整体 - 字体色 - 较暗 - 白天版
+$text-secondary-night:      rgba(255, 255, 255, 0.5);      // 整体 - 字体色 - 较暗 - 黑夜版
+
+$text-minor-day:            rgba(0, 0, 0, 0.4);            // 整体 - 字体色 - 较暗 - 白天版
+$text-minor-night:          rgba(255, 255, 255, 0.4);      // 整体 - 字体色 - 较暗 - 黑夜版
+
+$text-min-day:              rgba(0, 0, 0, 0.3);            // 整体 - 字体色 - 最暗 - 白天版
+$text-min-night:            rgba(255, 255, 255, 0.3);      // 整体 - 字体色 - 最暗 - 黑夜版
+
+$text-disabled-day:         rgba(0, 0, 0, 0.2);            // 整体 - 字体色 - disabled - 白天版
+$text-disabled-night:         rgba(255, 255, 255, 0.2);      // 整体 - 字体色 - disabled - 黑夜版
+
+$text-placeholder-day:     rgba(0, 0, 0, 0.2);            // 整体 - 字体色 - placeholder - 白天版
+$text-placeholder-night:   rgba(255, 255, 255, 0.2);      // 整体 - 字体色 - placeholder - 黑夜版
+
+$text-red:                 #DD523F;                       // 整体 - 字体色 -  红
+$text-green:               #519792;                       // 整体 - 字体色 -  绿
+$text-orange:               #E79E4F;                       // 整体 - 字体色 -  橙
+
+$text-red-day:             #C04B4C;
+$text-red-night:           #E25858;
+
+$text-green-day:             #519792;
+$text-green-night:           #60A27A;
+
+$text-orange-day:           #E79E4F;
+$text-orange-night:         #E79E4F;
+
+$text-blue-minor-day:       #6E8FA7;                      // 字体 - 次级蓝 - 白天版
+$text-blue-minor-night:     #6F94B0;                      // 字体 - 次级蓝 - 黑夜版
+
+$text-highlight-day:      #FF962E;                        // 高亮 - 字体色 - 白天版
+$text-highlight-night:    #FF962E;
+
+$border-color-day:          #BBC7D8;                       // 整体 - 边框色 - 白天版
+$border-color-night:        rgba(223, 231, 242, 0.16);     // 整体 - 边框色 - 黑夜版
+
+// TODO
+$border-color-light-night:        #E4E7ED;
+$border-color-lighter-night:      #EBEEF5;
+$border-color-extra-light-day:  #F7F7F7;
+$border-color-extra-light-night:  rgba(255, 255, 255, 0.12);
+
+$divider-color-day:         #EBEEF5;                       // 整体 - 分隔线颜色 - 白天版
+$divider-color-night:       rgba(255, 255, 255, 0.12);     // 整体 - 分隔线颜色 - 黑夜版
+
+// ------------------- Card -------------------
+$card-header-bar-color:     #3B8AB1;                       // 卡片 - 标题左边的小色块
+
+$card-bg-day:               #FFF;                          // 卡片 - 背景色 - 白天版
+$card-bg-night:             #171717;                       // 卡片 - 背景色 - 黑夜版 - 注：原来#141414但屏幕分辨率会看不清，我调为#171717
+
+$card-box-shadow-day:  0 0 10px 0 rgba(225, 225, 225,.5); // 卡片 - 阴影 - 白天版
+$card-box-shadow-night: 0 0 10px 0 rgba(0, 0, 0, .4);     // 卡片 - 阴影 - 黑夜版
+
+$card-header-color-day:     rgba(0, 0, 0, 0.8);            // 卡片 - 标题 - 字体色 - 白天版
+$card-header-color-night:   rgba(255, 255, 255, 0.8);      // 卡片 - 标题 - 字体色 - 黑夜版
+
+$card-header-bg-day:        #F6F9FD;                       // 卡片 - 标题 - 背景色 - 白天版
+$card-header-bg-night:      #0C0C0C;                       // 卡片 - 标题 - 背景色 - 黑夜版
+
+// ------------------- Button -------------------
+$btn-primary-bg:            $color-primary;                // 按钮 - 主按钮 - 背景色 - 白天黑夜通用
+$btn-primary-bg-hover:      #6AA0CC;                       // 按钮 - 主按钮 - 背景色 - 白天黑夜通用
+$btn-primary-color:         #FFF;                          // 按钮 - 主按钮 - 字体色 - 白天黑夜通用
+
+$btn-text-color:            $color-primary;                // 按钮 - 纯文字按钮 - 白天黑夜通用
+$btn-text-color-hover:      #3B8AB1;                       // 按钮 - 纯文字按钮 - hover - 白天黑夜通用
+
+$btn-default-bg-hover-day:       $color-primary;           // 按钮 - 默认按钮 - hover - 白天版 #ECF3F9
+$btn-default-bg-hover-night:     $color-primary;           // 按钮 - 默认按钮 - hover - 黑夜版 rgba(4, 17, 29, 0.7)
+
+$btn-default-color-hover-day:    #FFF;                     // 按钮 - 默认按钮 - hover - 白天版
+$btn-default-color-hover-night:  #000;                     // 按钮 - 默认按钮 - hover - 黑夜版
+
+$btn-default-border-hover-day:   $color-primary;           // 按钮 - 默认按钮 - hover - 白天版  #C7DBEC
+$btn-default-border-hover-night: $color-primary;           // 按钮 - 默认按钮 - hover - 黑夜版 #4E5861
+
+$btn-default-disabled-color-day:     $text-disabled-day;   // 按钮 - 默认按钮 - 禁止状态 - 字体色 - 白天版
+$btn-default-disabled-color-night:   $text-disabled-night; // 按钮 - 默认按钮 - 禁止状态 - 字体色 - 白天版
+
+$btn-default-disabled-border-day:    $text-disabled-day;   // 按钮 - 默认按钮 - 禁止状态 - 边框色 - 白天版
+$btn-default-disabled-border-night:  $text-disabled-night; // 按钮 - 默认按钮 - 禁止状态 - 边框色 - 白天版
+
+$btn-icon-color-day:         #6E8FA7;                       // 按钮 - 只有图标的按钮 - 白天版
+$btn-icon-color-night:       #6F94B0;                       // 按钮 - 只有图标的按钮 - 黑夜版
+
+$btn-up-down-bg-day:        #DFE7F2;                        // 按钮 - 超小的只有向上向下箭头的按钮 - 白天版
+$btn-up-down-bg-night:      rgba(111, 148, 176, 0.2);       // 按钮 - 超小的只有向上向下箭头的按钮 - 黑夜版
+$btn-up-down-bg-hover-day:   #D9E2F4;                       // 按钮 - 超小的只有向上向下箭头的按钮 - 白天版
+$btn-up-down-bg-hover-night: rgba(111, 148, 176, 0.6);      // 按钮 - 超小的只有向上向下箭头的按钮 - 黑夜版
+
+$checked-btn-hover-bg-day:        #F8F9FA;                        // 按钮 - 左上角有checked勾勾的按钮 - 白天版
+$checked-btn-hover-bg-night:      #F8F9FA;                        // 按钮 - 左上角有checked勾勾的按钮 - 黑夜版
+
+// ------------------- Tab -------------------
+$tab-bar-day:               #DFE7F2;                       // Tab - 底部横线 - 白天版
+$tab-bar-night:             rgba(223, 231, 242, 0.16);     // Tab - 底部横线 - 白天版
+
+$tab-btn-active-bg-day:     #6F94B0;                       // Tab - 按钮 - 选中状态 - 白天版
+$tab-btn-active-bg-night:   #6F94B0;                       // Tab - 按钮 - 选中状态 - 黑夜版
+
+$tab-menu-color-day:        #909399;                       // 像Tab的Menu - 字体色 - 白天版
+$tab-menu-color-night:      #909399;                       // 像Tab的Menu - 字体色 - 黑夜版
+
+$tab-menu-border-day:       #DFE7F2;                       // 像Tab的Menu - border - 白天版
+$tab-menu-border-night:     #424E63;                       // 像Tab的Menu - border - 白天版
+
+$tab-bg-day:                #E2E8F1;                       // Tab - 卡片型 - 背景色 - 白天版
+$tab-bg-night:              #252525;                       // Tab - 卡片型 - 背景色 - 黑夜版
+$tab-color-day:             rgba(0, 0, 0, 0.5);            // Tab - 卡片型 - 字体色 - 白天版
+$tab-color-night:           rgba(255, 255, 255, 0.5);      // Tab - 卡片型 - 字体色 - 黑夜版
+$tab-bg-active:             #4588BF;                       // Tab - 卡片型 - 背景色 - active状态
+
+$tab-border-day:            #DDE3EA;                       // Tab - 按钮型 - 边框色 - 白天版
+$tab-border-night:          rgba(223, 231, 242, 0.1);     // Tab - 按钮型 - 边框色 - 黑夜版
+
+
+// ------------------- Table -------------------
+$table-bg-day:              $card-bg-day;                       // 表格 - 整体 - 背景色 - 白天版
+$table-bg-night:            $card-bg-night;                // 表格 - 整体 - 背景色 - 黑夜版 #1A1A1A
+
+$table-border-day:          #DFE7F2;                       // 表格 - 边框 - 颜色 - 白天版
+//$table-border-night:        #000;                          // 表格 - 边框 - 颜色 - 黑夜版 rgba(223, 231, 242, 0.16)
+$table-border-night:        rgba(255, 255, 255, 0.08);                          // 表格 - 边框 - 颜色 - 黑夜版 rgba(223, 231, 242, 0.16)
+$table-border-light-night:  rgba(223, 231, 242, 0.16);     // 表格 - 边框 - 颜色 - 黑夜版 rgba(223, 231, 242, 0.16)
+
+$table-color-day:           $text-default-day;                // 表格 - 边框 - 字体色 - 白天版
+$table-color-night:         $text-default-night;              // 表格 - 边框 - 字体色 - 黑夜版
+
+$table-header-bg-day:       #EDF1FA;                       // 表格 - 表头 - 背景色 - 白天版
+$table-header-bg-night:     #2E2E2E;                       // 表格 - 表头 - 背景色 - 黑夜版
+
+$table-header-color-day:    rgba(0, 0, 0, 0.8);            // 表格 - 表头 - 字体色 - 白天版
+$table-header-color-night:  rgba(255, 255, 255, 0.8);      // 表格 - 表头 - 字体色 - 黑夜版
+
+$table-strip-bg-day:        #F6F9FD;                       // 表格 - 隔行 - 背景色 - 白天版
+$table-strip-bg-night:      #0D0D0D;                       // 表格 - 隔行 - 背景色 - 黑夜版
+$ag-grid-strip-bg-night:    #1F1F1F;                       // Ag-grid - 隔行 - 背景色 - 黑夜版
+
+$table-tr-hover-bg-day:     #EDF1FA;                       // 表格 - 行 - 背景色 - hover状态 - 白天版
+$table-tr-hover-bg-night:   #353535;                       // 表格 - 行 - 背景色 - hover状态 - 黑夜版
+
+$table-tr-active-bg-day:     #D0DAEF;                      // 表格 - 行 - 背景色 - active状态 - 白天版 - TODO: 待改进
+$table-tr-active-bg-night:   #404040;                      // 表格 - 行 - 背景色 - active状态 - 黑夜版 - TODO: 待改进 rgba(69,148,209,.4)
+
+$table-footer-bg-day:      #EDF1FA;                        // 表格 - 合计行- 背景色 - 白天版
+$table-footer-bg-night:    #353535;                        // 表格 - 合计行- 背景色 - 黑夜版
+
+$ag-grid-tool-panel-bg-day:  #F6F9FD;                       // Ag-grid - 侧边工具栏 - 背景色 - 白天版
+$ag-grid-tool-panel-bg-night:  #171717;                     // Ag-grid - 侧边工具栏 - 背景色 - 黑夜版
+
+// ------------------- Form -------------------
+$label-color-day:           $text-title-day;                // 表单 - lable - 字体色 - 白天版
+$label-color-night:         $text-title-night;              // 表单 - lable - 字体色 - 白天版
+
+$input-bg-day:              #FFF;                          // 表单 - input - 背景色 - 白天版
+$input-bg-night:            #0D0D0D;                       // 表单 - input - 背景色 - 黑夜版
+
+$input-color-day:           rgba(0, 0, 0, 0.8);            // 表单 - input - 背景色 - 白天版
+$input-color-night:         rgba(255, 255, 255, 0.8);      // 表单 - input - 背景色 - 黑夜版
+
+$input-border-day:          #C4D0E0;                       // 表单 - input - 边框色 - 白天版
+$input-border-night:        rgba(223, 231, 242, 0.16);     // 表单 - input - 边框色 - 黑夜版
+
+$input-border-hover-day:    rgba(50, 120, 179, 0.6);       // 表单 - input - 边框色 - 白天版 注：原设计是#4588BF;但我觉得太深
+$input-border-hover-night:  #519EDD;                       // 表单 - input - 边框色 - 黑夜版
+
+$input-border-disabled-day:    #DFE7F2;                    // 表单 - input - 边框色 - disabled状态 - 白天版
+$input-border-disabled-night:  rgba(189, 195, 199, 0.1);   // 表单 - input - 边框色 - disabled状态 - 黑夜版
+
+$input-color-icon-day:      rgba(0, 0, 0, 0.6);            // 表单 - input - 背景色 - 白天版
+$input-color-icon-night:    rgba(255, 255, 255, 0.6);      // 表单 - input - 背景色 - 黑夜版
+
+$input-disabled-bg-day:     #F6F9FD;                       // 表单 - input - disabled - 背景色 - 白天版
+$input-disabled-bg-night:   #000;                          // 表单 - input - disabled - 背景色 - 黑夜版
+
+$header-input-prefix-color-day: rgba(0, 0, 0, 0.3);            // 放在卡片头的input - 图标颜色 - 白天版
+$header-input-prefix-color-night: rgba(255, 255, 255, 0.3);    // 放在卡片头的input - 图标颜色 - 黑夜版
+
+$header-input-border-day:   #DFE7F2;                       // 放在卡片头的input - 边框颜色 - 白天版
+$header-input-border-night: rgba(255, 255, 255, 0.12);     // 放在卡片头的input - 边框颜色 - 黑夜版
+
+$select-option-hover-color-day:     $text-title-day;       // 表单 - 下拉菜单 - 选项hover - 字体色 - 白天版
+$select-option-hover-color-night:   $text-title-night;     // 表单 - 下拉菜单 - 选项hover - 字体色 - 黑夜版
+
+$select-option-hover-bg-day:     #E6ECF7;                  // 表单 - 下拉菜单 - 选项hover - 背景色 - 白天版
+$select-option-hover-bg-night:   #303030;                  // 表单 - 下拉菜单 - 选项hover - 背景色 - 黑夜版
+
+$select-dropdown-bg-day:         #FFF;                     // 表单 - 下拉菜单 - 背景色 - 白天版
+$select-dropdown-bg-night:       #1D1D1D;                  // 表单 - 下拉菜单 - 背景色 - 黑夜版
+
+$select-dropdown-shadow-day:   0 10px 16px 0 rgba(55, 75, 94, 0.12);  // 表单 - 下拉菜单 - 阴影 - 白天版
+$select-dropdown-shadow-night: 0 10px 16px 0 rgba(0, 0, 0, 0.5);      // 表单 - 下拉菜单 - 阴影 - 黑夜版
+
+$text-selector-color-day:   rgba(50, 120, 179, 0.6);       // 看起来像文字hover才显示为input的选择框 -字体色 - 白天版
+$text-selector-color-night: #6F94B0;                       // 看起来像文字hover才显示为input的选择框 -字体色 - 黑夜版
+
+$checkbox-border-day:       rgba(179, 194, 209, 0.5);      // 表单 - checkbox - 边框色 - 白天版
+$checkbox-border-night:     rgba(179, 194, 209, 0.5);      // 表单 - checkbox - 边框色 - 黑夜版
+
+$checkbox-inner-checked-day:   #FFF;                       // 表单 - checkbox - 勾 - 白天版
+$checkbox-inner-checked-night: #000;                       // 表单 - checkbox - 勾 - 黑夜版
+
+$checkbox-bg-checked-day:    #6E8FA7;                      // 表单 - checkbox - 背景色 - 选中状态 - 白天版
+$checkbox-bg-checked-night:  #6F94B0;                      // 表单 - checkbox - 背景色 - 选中状态 - 黑夜版
+
+$checkbox-bg-disabled-day:   rgba(111, 148, 176, 0.4);     // 表单 - checkbox - 背景色 - 禁用状态 - 白天版
+$checkbox-bg-disabled-night: rgba(111, 148, 176, 0.4);     // 表单 - checkbox - 背景色 - 禁用状态 - 黑夜版
+
+$checkbox-border-disabled-day:   rgba(179, 194, 209, 0.3); // 表单 - checkbox - 边框色 - 禁用状态 - 白天版
+$checkbox-border-disabled-night: rgba(179, 194, 209, 0.3); // 表单 - checkbox - 边框色 - 禁用状态 - 黑夜版
+
+$checkbox-bg-checked-disabled-day:   #6E8FA7;              // 表单 - checkbox - 背景色 - 选中状态 - 白天版
+$checkbox-bg-checked-disabled-night: #6F94B0;              // 表单 - checkbox - 背景色 - 选中状态 - 黑夜版
+
+$checkbox-border-checked-disabled-day: rgba(179, 194, 209, 0.3);   // 表单 - checkbox - 边框色 - 禁用状态 - 白天版
+$checkbox-border-checked-disabled-night: rgba(179, 194, 209, 0.3); // 表单 - checkbox - 边框色 - 禁用状态 - 黑夜版
+
+$radio-btn-bg-checked-day:           #6F94B0;             // 按钮型radio - 背景色 - 选中状态 - 白天版
+$radio-btn-bg-checked-night:         #6F94B0;             // 按钮型radio - 背景色 - 选中状态 - 黑夜版
+
+$datepicker-bg-day:                 #FFF;                 // 表单 - datepicker - 背景色 - 白天版
+$datepicker-bg-night:               #1D1D1D;              // 表单 - datepicker - 背景色 - 黑夜版
+
+$datepicker-color-disabled-day:    #1D1D1D;                  // 表单 - datepicker - 背景色 - 白天版
+$datepicker-color-disabled-night:  rgba(255, 255, 255, 0.2); // 表单 - datepicker - 背景色 - 黑夜版
+
+$form-error-night:      #E25858;                           // 表单 - 出错 - border - 黑夜版
+
+$switch-inactive-bg-day: rgba(0, 0, 0, 0.1);               // switch切换按钮 - 背景色 - 非选中时 - 白天版
+$switch-inactive-bg-night: #888;       // switch切换按钮 - 背景色 - 非选中时 - 黑夜版
+$switch-active-bg: $color-primary;                         // switch切换按钮 - 背景色 - 选中时 - 黑白通用
+
+// ------------------- 下拉菜单 -------------------
+$dropdown-item-bg-day: #FFF;                                // 下拉菜单 - 选项 - hover状态 - 白天版
+$dropdown-item-bg-night: #2C2C2C;                           // 下拉菜单 - 选项 - hover状态 - 黑夜版
+
+$dropdown-item-bg-hover-day: #EDF1FA;                        // 下拉菜单 - 选项 - hover状态 - 白天版
+$dropdown-item-bg-hover-night: #353535;                      // 下拉菜单 - 选项 - hover状态 - 黑夜版
+
+
+// ------------------- 列表 -------------------
+$ul-li-bg-day:            #F6F9FD;                          // 列表项 - 背景色 - 白天版
+$ul-li-bg-night:          #1A1A1A;                          // 列表项 - 背景色 - 黑夜版
+
+// ------------------- 一切正常mask -------------------
+$all-right-bg-day:            #F6F9FD;                     // 一切正常mask - 背景色 - 白天版
+$all-right-bg-night:          #000;                        // 一切正常mask - 背景色 - 黑夜版
+
+$image-error-bg-day:          #F6F9FD;                     // 图片error 占位符 - 背景色 - 白天版
+$image-error-bg-night:        #000;                        // 图片error 占位符 - 背景色 - 黑夜版
+
+// ------------------- 进度条 -------------------
+$progress-default-front-day:  #5993CC;                     // 进度条 - 默认 - 前景色 - 白天版
+$progress-default-front-night: #4588BF;                    // 进度条 - 默认 - 前景色 - 默认版
+
+$progress-default-bg-day:  #C1D6EB;                        // 进度条 - 默认 - 前景色 - 白天版
+$progress-default-bg-night: #8A8F94;                       // 进度条 - 默认 - 背景色 - 默认版
+
+// ------------------- Dialog -------------------
+$dialog-mask-bg-day:      rgba(255, 255, 255, 0.96);       // 弹窗 - 遮罩 - 背景色 - 白天版
+$dialog-mask-bg-night:    rgba(0, 0, 0, 0.96);             // 弹窗 - 遮罩 - 背景色 - 黑夜版
+
+$dialog-bg-day:           #FFF;                            // 弹窗 - 内容 - 背景色 - 白天版
+$dialog-bg-night:         #171717;                         // 弹窗 - 内容 - 背景色 - 黑夜版
+
+$dialog-shadow-day: 0 4px 8px 0 rgba(129, 172, 224, 0.12); // 弹窗 - 内容 - 阴影 - 白天版
+$dialog-shadow-night: none;                                // 弹窗 - 内容 - 阴影 - 黑夜版
+
+$dialog-title-color-day:   rgba(0, 0, 0, 0.8);             // 弹窗 - 标题 - 字体色 - 白天版
+$dialog-title-color-night: #FFF;                           // 弹窗 - 标题 - 字体色 - 黑夜版
+
+$dialog-form-input-bg-day: #F6F9FD;                        // 弹窗 - 表单 - input - 背景色 - 白天版
+$dialog-form-input-bg-night: #0D0D0D;                      // 弹窗 - 表单 - input - 背景色 - 黑夜版
+
+$dialog-form-footer-bg-day:   rgba(246, 249, 253, 0.3);    // 弹窗 - 表单 - footer - 背景色 - 白天版
+$dialog-form-footer-bg-night: #121212;                     // 弹窗 - 表单 - footer - 背景色 - 黑夜版
+
+$dialog-transfer-bg-day:    #F6F9FD;                       // 弹窗 - 穿梭框 - 背景色 - 白天版
+$dialog-transfer-bg-night:  #0A0A0A;                          // 弹窗 - 穿梭框 - 背景色 - 黑夜版
+
+$transfer-close-bg-hover-day:    #8FA9BC;                  // 弹窗 - 穿梭框 - 关闭按钮 - hover背景色 - 白天版
+$transfer-close-bg-hover-night:  #6C8FAA;                  // 弹窗 - 穿梭框 - 关闭按钮 - hover背景色 - 白天版
+
+// ------------------- tree -------------------
+$tree-node-hover-bg-day:    #EDF1FA;                       // 树 - 节点 - 背景色 - 白天版
+$tree-node-hover-bg-night:  #353535;                       // 树 - 节点 - 背景色 - 黑夜版
+
+$tree-expand-icon-color-day:  #C0C4CC;                     // 树 - 节点icon - 字体色 - 白天版
+$tree-expand-icon-color-night:  #666;                   // 树 - 节点icon - 字体色 - 黑夜版
+
+
+// ------------------- Loading -------------------
+$loading-bg-day:           rgba(248, 251, 255, 0.9);       // loading - 遮罩 - 背景色 - 白天版
+$loading-bg-night:         rgba(0, 0, 0, 0.9);             // loading - 遮罩 - 背景色 - 黑夜版
+
+$no-data-bg-day:           rgba(248, 251, 255, 0.5);       // loading - 遮罩 - 背景色 - 白天版
+$no-data-bg-night:         rgba(0, 0, 0, 0.5);             // loading - 遮罩 - 背景色 - 黑夜版
+
+// ------------------- tag -------------------
+$tag-purple-day:            #7480C5;
+$tag-purple-night:          #626DA9;
+
+$tag-red-day:               #DD523F;
+$tag-red-night:             #CA523C;
+
+$tag-blue-light-day:        #24ACCB;
+$tag-blue-light-night:      #2096B2;
+
+$tag-yellow-day:            #D8B475;
+$tag-yellow-night:          #B19020;
+
+$tag-green-day:             #6BA07C;
+$tag-green-night:           #5D8B6B;
+
+$tag-orange-day:            #EA8336;
+$tag-orange-night:          #E27F35;
+
+$tag-blue-day:              #3B8AB1;
+$tag-blue-night:            #357EA3;
+
+// ------------------- spot -------------------
+$spot-red:                  #DD523F;
+$spot-green:                #52A28C;
+$spot-orange:               #E79E4F;
+$spot-gray:                 #878787;
+
+// ------------------- scrollbar -------------------
+$scrollbar-color-day:       rgba(204, 204, 204, 0.3);       // 滚动条 - 颜色 - 白天版
+$scrollbar-color-night:     rgba(204, 204, 204, 0.2);       // 滚动条 - 颜色 - 黑夜版
+
+$scrollbar-color-hover-day:   rgba(204, 204, 204, 0.4);       // 滚动条 - 颜色 - 白天版
+$scrollbar-color-hover-night: rgba(204, 204, 204, 0.3);       // 滚动条 - 颜色 - 黑夜版
+
+$scrollbar-body-color-day:  rgba(204, 204, 204, 0.8);         // 滚动条 - body - 颜色 - 白天版
+$scrollbar-body-color-hover-day:   rgba(204, 204, 204, 0.9);       // 滚动条 - body - 颜色 - hover - 白天版
+
+$scrollbar-md-color-day:       rgba(204, 204, 204, 0.7);       // 滚动条 - 颜色 - 白天版 - 更深
+$scrollbar-md-color-night:     rgba(204, 204, 204, 0.3);       // 滚动条 - 颜色 - 黑夜版 - 更深
+
+$scrollbar-md-color-hover-day:   rgba(204, 204, 204, 0.8);       // 滚动条 - 颜色 - 白天版 - 更深
+$scrollbar-md-color-hover-night: rgba(204, 204, 204, 0.4);       // 滚动条 - 颜色 - 黑夜版 - 更深
+
+// --------------------- sidebar -------------------
+$sidebar-bg-day:         #FFFFFF;                          // 左侧子菜单 - 背景色 - 白天版
+$sidebar-bg-night:       #171717;                          // 左侧子菜单 - 背景色 - 黑夜版
+$sidebar-color-day:         $text-default-day;               // 左侧子菜单 - 字体色 - 白天版
+$sidebar-color-night:       $text-default-night;             // 左侧子菜单 - 字体色 - 黑夜版
+$sidebar-color-active-day:  $text-max-day;                  // 左侧子菜单 - 字体色 - active - 白天版
+$sidebar-color-active-night:$text-max-night;                // 左侧子菜单 - 字体色 - active - 黑夜版
+
+$sidebar-toggle-icon-color-day:    #A3ADB8;                 // 左侧子菜单 - toggle按钮色 - 白天版
+$sidebar-toggle-icon-color-night:  #A9A9A9;                 // 左侧子菜单 - toggle按钮色 - 白天版
+
+$sidebar-icon-color-day:    #C1C8D0;                         // 左侧子菜单 - 图标色 - 白天版
+$sidebar-icon-color-night:  rgba(255, 255, 255, 0.3);        // 左侧子菜单 - 图标色 - 黑夜版
+
+$sidebar-item-bg-active-day: #F6F9FD;                       // 左侧子菜单 - 背景色 - active - 白天版
+$sidebar-item-bg-active-night: #0C0C0C;                     // 左侧子菜单 - 背景色 - active - 黑夜版
+
+// ------------------- echart -------------------
+$echart-tooltip-bg-day: "#FFF";                                     // echarts - tooltip - 背景色 - 白天版
+$echart-tooltip-bg-night: "#2C2D2D";                                  // echarts - tooltip - 背景色 - 黑夜版
+
+$echart-tooltip-box-shadow-day: 0px 4px 8px 0px rgba(129, 172, 224, 0.12); // echarts - tooltip - 阴影 - 白天版
+$echart-tooltip-box-shadow-night: 0px 10px 16px 0px rgba(0, 0, 0, 0.5);    // echarts - tooltip - 阴影 - 黑夜版
+
+$sidebar-border-day:         #F0F0F0;                       // 左侧子菜单 - 右边线 - 白天版
+$sidebar-border-night:       rgba(255, 255, 255, 0.04);      // 左侧子菜单 - 左边线 - 黑夜版
+
+// --------------------- message (微信消息) -------------------
+$message-active-bg-day:            #F6F9FD;                 // 微信消息 - 选中状态 - 白天版
+$message-active-bg-night:          #222;                    // 微信消息 - 选中状态 - 黑夜版
+
+$message-content-bg-day:           #FFF;                    // 微信消息 - 聊天正文 - 白天版
+$message-content-bg-night:         #111;                    // 微信消息 - 聊天正文 - 黑夜版
+
+$message-content-bg-hover-day:     #FFF;                    // 微信消息 - 聊天正文 - 白天版
+$message-content-bg-hover-night:   #111;                    // 微信消息 - 聊天正文 - 黑夜版
+
+// --------------------- 页码 -------------------
+$pagination-input-bg-day:   #F1F5FA;                        // 页码中的input - 背景色 - 白天版
+$pagination-input-bg-night:   #0A0A0A;                      // 页码中的input - 背景色 - 黑夜版
+
+// --------------------- 时间轴 -------------------
+$timeline-line-day: #DFE7F2;                               // 时间轴 - 线颜色 - 白天版
+$timeline-line-night: #424E63;                             // 时间轴 - 线颜色 - 黑夜版
+
+// --------------------- 折叠面板 -------------------
+$collapse-border-day: #F0F3F7;                             // 折叠面板 - border - 白天版
+$collapse-border-night: rgba(255, 255, 255, 0.12);         // 折叠面板 - border - 黑夜版
+
+$collapse-box-shadow-day:  0 0 10px 0 rgba(225, 225, 225,.5); // 折叠面板 - 阴影 - 白天版
+$collapse-box-shadow-night: 0 0 10px 0 rgba(0, 0, 0, .4);     // 折叠面板 - 阴影 - 黑夜版
+
+// --------------------- 拖拽容器 -------------------
+$drag-handler-bg-hover: rgba(69, 136, 191, 0.3);
+
+// --------------------- 文章 -------------------
+$article-top-order-color-day: #999;                        // 文章排行数字  - 字体色 - 白天版
+$article-top-order-color-night: #767676;                   // 文章排行数字  - 字体色 - 黑夜版
+
+// --------------------- charts -------------------
+$chart-grid-bg-day: #F8FBFF;                               // charts - grid - 背景色 - 白天版
+$chart-grid-bg-night: #000;                                // charts - grid - 背景色 - 黑夜版
+
+
+// --------------------- 日历选择器 -----------------
+$calendar-selector-header-bg-day: #CF4C4F;                 // 日历选择器 - 头部 - 背景色 - 白天版
+$calendar-selector-header-bg-night: #CF4C4F;               // 日历选择器 - 头部 - 背景色 - 黑夜版
+
+$calendar-selector-date-color-day: #CF4C4F;                 // 日历选择器 - 日 - 字体色 - 白天版
+$calendar-selector-date-color-night: #CF4C4F;               // 日历选择器 - 日 - 字体色 - 黑夜版
