@@ -36,17 +36,6 @@ module.exports = {
         "out_file": "../../log/fund-oracle-out.log",
         "pid_file": "../../log/fund-oracle.pid"
     }, {
-        "name": "jdjr",
-        "cwd": "./jdjr/dist",
-        "script": "http-server -x ---'.' -p 3005",
-        "watch": true,
-        "ignoreWatch": ["node_modules"],
-        "log_date_format": "YYYY-MM-DD HH:mm:ss",
-        "log_file": "../../log/jdjr.log",
-        "error_file": "../../log/jdjr-err.log",
-        "out_file": "../../log/jdjr-out.log",
-        "pid_file": "../../log/jdjr.pid"
-    }, {
         "name": "mall",
         "cwd": "./mall/server",
         "script": "app.js",
